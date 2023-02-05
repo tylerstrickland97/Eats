@@ -16,6 +16,8 @@ For the project proposal Tyler proposed the idea of creating a restaurant inform
 
 For the project proposal Collin created the mobile wireframe and formatted the project proposal into markdown. For the future of the project he will use his experience from CSC 326 to help set up a REST API and a database to store user information.
 
+Kayna will bring front and back end experience from CSC 326 and personal projects, and she has began research on restaurant APIs to use for this project. She understands the web development process and knows many different languages that support its development. For development, she will bring her previous experience and new ideas to flesh out for the restaurant app.
+
 ## Wireframes
 #### Mobile Design
 <img src="https://github.ncsu.edu/engr-csc342/csc342-2023Spring-groupV/blob/main/Proposal/wireframes/CSC-342%20WireFrame.jpeg"  width="600"><br>
