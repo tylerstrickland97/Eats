@@ -18,6 +18,6 @@ For the project proposal Collin created the mobile wireframe and formatted the p
 
 ## Wireframes
 #### Mobile Design
-{insert github link reference}
+<img src="https://github.ncsu.edu/engr-csc342/csc342-2023Spring-groupV/blob/main/Proposal/wireframes/CSC-342%20WireFrame.jpeg"  width="600"><br>
 #### Desktop Design
 {insert github link reference}
