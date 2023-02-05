@@ -21,5 +21,6 @@ Kayna will bring front and back end experience from CSC 326 and personal project
 ## Wireframes
 #### Mobile Design
 <img src="https://github.ncsu.edu/engr-csc342/csc342-2023Spring-groupV/blob/main/Proposal/wireframes/CSC-342%20WireFrame.jpeg"  width="600"><br>
-#### Desktop Design
-{insert github link reference}
+#### Desktop Designs
+<img src="https://github.ncsu.edu/engr-csc342/csc342-2023Spring-groupV/blob/main/Proposal/wireframes/CSC342ProjectWireframe.png"  width="900"><br>
+<img src="https://github.ncsu.edu/engr-csc342/csc342-2023Spring-groupV/blob/main/Proposal/wireframes/CSC342ProjectWireframe2.png"  width="900"><br>
