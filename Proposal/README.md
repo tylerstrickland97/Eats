@@ -12,7 +12,7 @@ _Eats_ will offer several features for a user. First, a user will be able to vie
 In order for _Eats_ to work correctly, we will need to find a way to retrieve the information for each restaurant, preferably through some API. So far, the team has found a few potential sources for this data, but more research will need to be conducted in order to determine whether these APIs have all of the information needed to implement all of our desired features. If such APIs do not exist, the team may have to manually import the data in order for our app to work as expected.
 
 ## Individual Contributions
-Tyler will bring web development experience from CSC 326 to the team. From taking the course, he is familiar with APIs and has a good understanding of the web development process in general. Besides technical skills, he will also bring a positive attitude and a good work ethic to the team. 
+For the project proposal Tyler proposed the idea of creating a restaurant information app, which was used by the team as a foundation of the project idea. He also created a draft of the formal proposal that the team then further expanded on. He will also bring web development experience from CSC 326 to the team. From taking the course, he is familiar with APIs and has a good understanding of the web development process in general. Besides technical skills, he will also bring a positive attitude and a good work ethic to the team. 
 
 For the project proposal Collin created the mobile wireframe and formatted the project proposal into markdown. For the future of the project he will use his experience from CSC 326 to help set up a REST API and a database to store user information.
 
