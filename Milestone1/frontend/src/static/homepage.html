@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eats</title>
+  <!-- Use for image in header next to Eats <link rel="icon" type="image/png" href="PATH_TO_IMAGE"> -->
+  <link rel="stylesheet" href="css/homepage.css">
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <image class="img-profile" src="imgs/temp-profile-img.png"></image>
+    </div>
+    <div class="header-middle">
+      <input class="search-bar" type="text" placeholder="Search">
+      <button class="search-button">
+        <img class="search-img" src="imgs/search-icon.png">
+      </button>
+    </div>
+    <div class="header-right">
+      <div class="sort-dropdown">
+        <button class="sort-button">Sort</button>
+        <div class="sort-dropdown-items">
+          <a href="#">Distance</a>
+          <a href="#">Rating</a>
+          <a href="#">Favorites</a>
+          <a href="#">Relevance</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="restaurant-grid">
+    <div class="restaurant-preview">
+      <div class="restaurant-image">
+        <image clas="restaurant-logo" src="imgs/temp-restaurant-logo.png"></image>
+        <button class="favorite-button"><image src="imgs/star.webp"></image></button>
+      </div>
+      <div class="restaurant-info"></div>
+        <p class="restaurant-name">Restaurant Name</p>
+        <div class="restaurant-details">
+          <p class="restaurant-distance">XX Miles</p>
+          <p class="restaurant-style">Style</p>
+        </div>
+      <div class="restaurant-view">
+        <button class="restaurant-view-button">View Menu</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
