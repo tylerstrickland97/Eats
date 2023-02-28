@@ -1,0 +1,107 @@
+[
+    {
+        "id": 200,
+        "username": "user1",
+        "password": "password1",
+        "favorites": [
+            "McDonald's", "Dunkin", "Red Robin"
+        ]
+    },
+    {
+        "id": 201,
+        "username": "user2",
+        "password": "password2",
+        "favorites": [
+            "Chipotle", "Olive Garden", "Domino's"
+        ]
+    },
+    {
+        "id": 202,
+        "username": "user3",
+        "password": "password3",
+        "favorites": [
+            "Pizza Hut", "Wendy's"
+        ]
+    },
+    {
+        "id": 203,
+        "username": "user4",
+        "password": "password4",
+        "favorites": [
+            "Subway", "Dunkin", "Starbucks", "Olive Garden"
+        ]
+    },
+    {
+        "id": 204,
+        "username": "user5",
+        "password": "password5",
+        "favorites": [
+            "Wendy's", "Taco Bell", "Red Robin"
+        ]
+    },
+    {
+        "id": 205,
+        "username": "user6",
+        "password": "password6",
+        "favorites": [
+            
+        ]
+    },
+    {
+        "id": 206,
+        "username": "user7",
+        "password": "password7",
+        "favorites": [
+            "Starbucks", "McDonald's"
+        ]
+    },
+    {
+        "id": 207,
+        "username": "user8",
+        "password": "password8",
+        "favorites": [
+            "Burger King", "Chipotle", "Olive Garden"
+        ]
+    },
+    {
+        "id": 208,
+        "username": "user9",
+        "password": "password9",
+        "favorites": [
+            "Pizza Hut", "Starbucks", "Wendy's"
+        ]
+    },
+    {
+        "id": 209,
+        "username": "user10",
+        "password": "password10",
+        "favorites": [
+            "McDonald's", "Subway"
+        ]
+    },
+    {
+        "id": 210,
+        "username": "user11",
+        "password": "password11",
+        "favorites": [
+            "Red Robin"
+        ]
+    },
+    {
+        "id": 211,
+        "username": "user12",
+        "password": "password12",
+        "favorites": [
+            "Burger King", "Olive Garden"
+        ]
+    },
+    {
+        "id": 212,
+        "username": "user13",
+        "password": "password13",
+        "favorites": [
+            "Starbucks", "Chipotle", "McDonalds"
+        ]
+    }
+
+]

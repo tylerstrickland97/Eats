@@ -1,0 +1,64 @@
+
+[
+    {
+        "id": 100,
+        "name": "McDonald's",
+        "category": "Fast Food"
+    },
+    {
+        "id": 101,
+        "name": "Starbucks",
+        "category": "Coffee"
+    },
+    {
+        "id": 102,
+        "name": "Subway",
+        "category": "Fast Food"
+    },
+    {
+        "id": 103,
+        "name": "Burger King",
+        "category": "Fast Food"
+    },
+    {
+        "id": 104,
+        "name": "Taco Bell",
+        "category": "Fast Food"
+    },
+    {
+        "id": 105,
+        "name": "Dunkin'",
+        "category": "Coffee"
+    },
+    {
+        "id": 106,
+        "name": "Domino's",
+        "category": "Pizza"
+    },
+    {
+        "id": 107,
+        "name": "Wendy's",
+        "category": "Fast Food"
+    }, 
+    {
+        "id": 108,
+        "name": "Pizza Hut",
+        "category": "Pizza"
+    },
+    {
+        "id": 109,
+        "name": "Chipotle",
+        "category": "Mexican"
+    },
+    {
+        "id": 110,
+        "name": "Olive Garden",
+        "category": "Italian"
+    },
+    {
+        "id": 111,
+        "name": "Red Robin",
+        "category": "Burger"
+    }
+    
+]
