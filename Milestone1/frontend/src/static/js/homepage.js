@@ -20,7 +20,7 @@ window.onload = () => {
         let restaurantImg = document.createElement('div');
         restaurantImg.className = "restaurant-image";
         let logo = document.createElement('img');
-        logo.src = "imgs/temp-restaurant-logo.png";
+        logo.src = `imgs/${restaurant.name}-logo.png`;
         restaurantImg.appendChild(logo);
 
 
@@ -55,8 +55,9 @@ window.onload = () => {
 
         let view = document.createElement('div');
         view.className = "restaurant-view";
-        let viewButton = document.createElement('button');
+        let viewButton = document.createElement('a');
         viewButton.className = "restaurant-view-button";
+        viewButton.href = '/restaurant?id=' + restaurant.id;
         viewButton.innerHTML = "View Menu";
         view.appendChild(viewButton);
         newRestaurant.appendChild(view);

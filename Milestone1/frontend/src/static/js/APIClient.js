@@ -24,7 +24,7 @@ const HTTPClient = {
         return HTTPClient.get('/restaurants');
     },
     getRestaurantById: (id) => {
-        return HTTPClient.get('restaurants/' + id);
+        return HTTPClient.get('/restaurants/' + id);
     },
     getRestaurantByName: (name) => {
         return HTTPClient.get('restaurants/' + name);

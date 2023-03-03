@@ -1,7 +1,7 @@
 const express = require('express');
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 // Designate the static folder as serving static resources
 app.use(express.static(__dirname + '/static'));
@@ -12,6 +12,10 @@ console.log(html_dir);
 
 app.get('/', (req, res) => {
     res.sendFile(html_dir + 'homepage.html');
+});
+
+app.get('/restaurant', (req, res) => {
+    res.sendFile(html_dir + 'restaurant.html');
 });
 
 

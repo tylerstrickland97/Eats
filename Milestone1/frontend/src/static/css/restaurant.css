@@ -4,6 +4,14 @@ body {
     font-family: Arial
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 6px;
+    border: 2px solid grey;
+}
+
 button {
     border-radius: 0;
     border: none;
@@ -34,14 +42,14 @@ header {
 
 .restaurant-logo {
     flex: 1;
-    
+    border: 2px solid black;
+    border-right: none;
+    vertical-align: middle;
 }
 
 .restaurant-logo-img {
     width: 100%;
     vertical-align: middle;
-    border: 2px solid black;
-    border-right: none;
 }
 
 .restaurant-info {

@@ -172,6 +172,16 @@ input:focus {
 
 .restaurant-view-button {
     width: 80%;
-    height: 32px;
+    height: 18px;
     font-size: 18px;
+    padding: 8px 0;
+    text-align: center;
+    border: 2px solid grey;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.restaurant-view-button:hover {
+    background-color: #EAEAEA;
 }

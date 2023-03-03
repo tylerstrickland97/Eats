@@ -7,11 +7,12 @@
         "distance": "3 miles",
         "num-favorites": 4384,
         "address": "McDonalds Drive",
+        "rating": 3.2,
         "menu": [
             {"name": "Burger", "calories": 300, "price": "4.30", "Allergies": ["Wheat", "Meat"]},
             {"name": "Big Mac", "calories": 350, "price": "4.50", "Allergies": ["Wheat", "Meat", "Cheese"]},
             {"name": "Fries", "calories": 150, "price": "2.30", "Allergies": ["Potato"]},
-            {"name": "Fish Fillet", "calores": 200, "price": "3.00", "Allergies": ["Fish"]},
+            {"name": "Fish Fillet", "calories": 200, "price": "3.00", "Allergies": ["Fish"]},
             {"name": "Milkshake", "calories": 800, "price": "1.00", "Allergies": []}
         ]
     },
@@ -22,6 +23,7 @@
         "distance": "0.3 miles",
         "num-favorites": 3345,
         "address": "Starbucks Street",
+        "rating": 4.3,
         "menu": [
             {"name": "Coffee", "calories": 100, "price": "5.30", "Allergies": []},
             {"name": "Cake", "calories": 350, "price": "7.50", "Allergies": ["Dairy", "Eggs"]}
@@ -34,6 +36,7 @@
         "distance": "5 miles",
         "num-favorites": 1022,
         "address": "Subway Suburbs",
+        "rating": 2.6,
         "menu": [
             {"name": "Sandwhich", "calories": 800, "price": "5.00", "Allergies": ["Wheat"]}
         ]
@@ -45,6 +48,7 @@
         "distance": "100 miles",
         "num-favorites": 0,
         "address": "Burger King Boulevard",
+        "rating": 0.0,
         "menu": [
             {"name": "Hamburger", "calories": 300, "price": "1.30", "Allergies": ["Wheat", "Meat"]},
             {"name": "Cheeseburger", "calories": 350, "price": "2.50", "Allergies": ["Wheat", "Meat", "Cheese"]},
@@ -58,6 +62,7 @@
         "distance": "3 miles",
         "num-favorites": 3833,
         "address": "Taco Terrace",
+        "rating": 4.5,
         "menu": [
             {"name": "Taco", "calories": 5000, "price": "0.01", "Allergies": []}
         ]
