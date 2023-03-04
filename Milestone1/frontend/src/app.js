@@ -18,6 +18,10 @@ app.get('/restaurant', (req, res) => {
     res.sendFile(html_dir + 'restaurant.html');
 });
 
+app.get('/profile', (req, res) => {
+    res.sendFile(html_dir + 'profile.html');
+});
+
 
 // As our server to listen for incoming connections
 app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
