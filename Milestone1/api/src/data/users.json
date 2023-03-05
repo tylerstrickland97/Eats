@@ -3,117 +3,143 @@
         "id": 200,
         "username": "user1",
         "password": "password1",
-        "email": "user1@mail.com",
         "favorites": [
             "McDonald's", "Dunkin", "Red Robin"
+        ],
+        "allergies": [
+            "Shellfish", "Eggs"
         ]
     },
     {
         "id": 201,
         "username": "user2",
         "password": "password2",
-        "email": "user2@mail.com",
         "favorites": [
             "Chipotle", "Olive Garden", "Domino's"
+        ],
+        "allergies": [
+            "Tree nuts"
         ]
     },
     {
         "id": 202,
         "username": "user3",
         "password": "password3",
-        "email": "user3@mail.com",
         "favorites": [
             "Pizza Hut", "Wendy's"
+        ],
+        "allergies": [
+            "Soy", "Peanuts"
         ]
     },
     {
         "id": 203,
         "username": "user4",
         "password": "password4",
-        "email": "user4@mail.com",
         "favorites": [
             "Subway", "Dunkin", "Starbucks", "Olive Garden"
+        ],
+        "allergies": [
+            "Wheat", "Soy"
         ]
     },
     {
         "id": 204,
         "username": "user5",
         "password": "password5",
-        "email": "user5@mail.com",
         "favorites": [
             "Wendy's", "Taco Bell", "Red Robin"
+        ],
+        "allergies": [
+            "Fish", "Shellfish"
         ]
     },
     {
         "id": 205,
         "username": "user6",
         "password": "password6",
-        "email": "user6@mail.com",
         "favorites": [
             
+        ],
+        "allergies": [
+            "Milk"
         ]
     },
     {
         "id": 206,
         "username": "user7",
         "password": "password7",
-        "email": "user7@mail.com",
         "favorites": [
             "Starbucks", "McDonald's"
+        ],
+        "allergies": [
+
         ]
     },
     {
         "id": 207,
         "username": "user8",
         "password": "password8",
-        "email": "user8@mail.com",
         "favorites": [
             "Burger King", "Chipotle", "Olive Garden"
+        ],
+        "allergies": [
+            "Eggs", "Milk"
         ]
     },
     {
         "id": 208,
         "username": "user9",
         "password": "password9",
-        "email": "user9@mail.com",
         "favorites": [
             "Pizza Hut", "Starbucks", "Wendy's"
+        ],
+        "allergies": [
+            "Gluten"
         ]
     },
     {
         "id": 209,
         "username": "user10",
         "password": "password10",
-        "email": "user10@mail.com",
         "favorites": [
             "McDonald's", "Subway"
+        ],
+        "allergies": [
+            "Tree nuts", "Gluten"
         ]
     },
     {
         "id": 210,
         "username": "user11",
         "password": "password11",
-        "email": "user11@mail.com",
         "favorites": [
             "Red Robin"
+        ],
+        "allergies": [
+            "Peanuts"
         ]
     },
     {
         "id": 211,
         "username": "user12",
         "password": "password12",
-        "email": "user12@mail.com",
         "favorites": [
             "Burger King", "Olive Garden"
+        ],
+        "allergies": [
+            "Gluten", "Soy"
         ]
     },
     {
         "id": 212,
         "username": "user13",
         "password": "password13",
-        "email": "user13@mail.com",
         "favorites": [
             "Starbucks", "Chipotle", "McDonalds"
+        ],
+        "allergies": [
+            "Shellfish"
         ]
     }
 

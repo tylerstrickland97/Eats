@@ -38,4 +38,7 @@ const HTTPClient = {
     getUserFavorites: (id) => {
         return HTTPClient.get('users/' + id + '/favorites');
     },
+    getAllergiesByUser: (id) => {
+      return HTTPClient.get('/users/' + id + '/allergies');
+    },
   };
