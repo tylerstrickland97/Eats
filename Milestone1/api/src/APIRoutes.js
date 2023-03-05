@@ -25,7 +25,7 @@ apiRouter.get('/restaurants/:restaurantId', (req, res) => {
 
 //get restaurant by name
 apiRouter.get('/restaurants/:restaurantName', (req, res) => {
-    const restaurantId = req.params.restaurantName;
+    const restaurantName = req.params.restaurantName;
     let restaurant = restaurants.find(restaurant => restaurant.name == restaurantName);
     if (restaurant) {
         res.json(restaurant);
@@ -74,13 +74,59 @@ apiRouter.post('/users', (req, res) => {
 
 //login
 apiRouter.post('/login', (req, res) => {
-    res.status(501).json({error: "Not implemented"});
+ // console.log("here login");
+    // //get user by username
+    // const username = req.params.username;
+    // //find user from username
+    // let user = users.find(user => user.username == username);
+
+    // //find password from username
+    // const pass = req.params.password;
+    // let userPass = users.find(userPass => user.password == pass);
+
+    // if (userPass) {
+    //     //user is successfully logged in
+    // }
+    // else {
+    //     res.status(404).json({error: "User not found"});
+    // }
+    //create session?
 })
 
 //logout
 apiRouter.post('/logout', (req, res) => {
+    //would have to create and delete a session
     res.status(501).json({error: "Not implemented"});
-})
+});
+
+//get user allergies
+apiRouter.get('/users/:userId/allergies', (req, res) => {
+    const userId = req.params.userId;
+    let user = users.find(user => user.id == userId);
+    if (user) {
+        res.json(user.allergies);
+    }
+    else {
+        res.status(404).json({error: "User not found"});
+    }
+});
+
+//add user allergies
+apiRouter.post('/users/:userId/allergies', (req, res) => {
+    const userId = req.params.userId;
+    let user = users.find(user => user.id == userId);
+    let newAllergy = req.body;
+    user.allergies.push(newAllergy);
+    res.json(user.allergies);
+});
+
+//delete user allergies
+apiRouter.delete('/users/:userId/allergies/:name', (req, res) => {
+    const userId = req.params.userId;
+    let user = users.find(user => user.id == userId);
+    //probably need ids or names for the allergy
+
+});
 
 //Add to user favorites
 apiRouter.post('/users/:userId/favorites', (req, res) => {

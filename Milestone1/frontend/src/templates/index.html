@@ -11,12 +11,16 @@
 <body>
   <h1>Welcome to <span>Eats</span></h1>
   <div class="container">
-    <input type="text" placeholder="Username" name="username">
-    <input type="password" placeholder="Password" name="password">
-    <button class="button-login">Login</button>
-    <a href="#">Forgot Password?</a>
-    <div class="container-divider"></div>
-    <button class="button-signup">Sign Up</button>
+    <form action="/login" method="post">
+      <input type="text" placeholder="Username" name="username">
+      <input type="password" placeholder="Password" name="password">
+      <button type="submit" class="button-login">Login</button>
+      
+      <a href="#">Forgot Password?</a>
+      <div class="container-divider"></div>
+      <button type="submit" formaction="/users" class="button-signup">Sign Up</button>
+    
+    </form>
   </div>
 
   <!-- Leaving this here just in case -->
