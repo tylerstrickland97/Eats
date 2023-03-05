@@ -22,6 +22,14 @@ app.get('/profile', (req, res) => {
     res.sendFile(html_dir + 'profile.html');
 });
 
+app.get('/users/201/allergies', (req, res) => { 
+    res.sendFile(html_dir + 'allergies.html'); 
+}); 
+    
+app.get('/users/201/favorites', (req, res) => { 
+    res.sendFile(html_dir + 'favorites.html'); 
+});
+
 
 // As our server to listen for incoming connections
 app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
