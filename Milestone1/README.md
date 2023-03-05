@@ -16,4 +16,5 @@ Tyler has been responsible for the Docker setup and adding all of the starter fi
 
 
 <img width="655" alt="Screen Shot 2023-03-05 at 4 10 54 PM" src="https://media.github.ncsu.edu/user/18889/files/5c60dba5-29a2-4650-8b03-0beb3bc5ff32">
-[wireframe](https://github.ncsu.edu/engr-csc342/csc342-2023Spring-groupV/blob/642c10fb2d871da83b051b34a4b7410b435aea11/Proposal/wireframes/CSC342ProjectWireframe.png)
+
+[Wireframe](https://github.ncsu.edu/engr-csc342/csc342-2023Spring-groupV/blob/main/Proposal/wireframes/CSC342ProjectWireframe.png?raw=true)
