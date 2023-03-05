@@ -1,14 +1,18 @@
 import api from './APIClient.js';
-window.onload = () => {
 
-    api.getAllergiesByUser().then(allergies => {
+const query = window.location.search;
+let parameters = new URLSearchParams(query);
+let id = parameters.get('user');
+
+window.onload = () => {
+    api.getAllergiesByUser(id).then(allergies => {
         allergies.forEach(allergy => {
             fillAllergyHTML(allergy);
         })
     });
 
     function fillAllergyHTML(allergy) {
-        const allergyList = document.getElementById('.allergies');
+        const allergyList = document.getElementById('allergies');
         allergyList.appendChild(createAllergyHTML(allergy));
     }
 
@@ -17,12 +21,13 @@ window.onload = () => {
 
         //idk if this is gonna work
         let allergyName = document.createElement('p');
-        allergyName.innerHTML = allergy.name;
+        allergyName.innerHTML = allergy;
 
         let deleteButton = document.createElement('button');
         //on click of this button, delete/add allergy
         deleteButton.id = "delete";
         deleteButton.value = 'delete';
+        deleteButton.innerHTML = "Delete";
         //add method to add and delete allergies 
 
         let horizontalLine = document.createElement('hr');

@@ -22,11 +22,11 @@ app.get('/profile', (req, res) => {
     res.sendFile(html_dir + 'profile.html');
 });
 
-app.get('/users/201/allergies', (req, res) => { 
+app.get('/allergies', (req, res) => { 
     res.sendFile(html_dir + 'allergies.html'); 
 }); 
     
-app.get('/users/201/favorites', (req, res) => { 
+app.get('/favorites', (req, res) => { 
     res.sendFile(html_dir + 'favorites.html'); 
 });
 

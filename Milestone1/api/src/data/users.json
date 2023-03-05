@@ -4,7 +4,7 @@
         "username": "user1",
         "password": "password1",
         "favorites": [
-            "McDonald's", "Dunkin", "Red Robin"
+            100, 102
         ],
         "allergies": [
             "Shellfish", "Eggs"
@@ -15,7 +15,7 @@
         "username": "user2",
         "password": "password2",
         "favorites": [
-            "Chipotle", "Olive Garden", "Domino's"
+            100, 102, 104
         ],
         "allergies": [
             "Tree nuts"
@@ -26,7 +26,7 @@
         "username": "user3",
         "password": "password3",
         "favorites": [
-            "Pizza Hut", "Wendy's"
+            101, 103
         ],
         "allergies": [
             "Soy", "Peanuts"
@@ -37,7 +37,7 @@
         "username": "user4",
         "password": "password4",
         "favorites": [
-            "Subway", "Dunkin", "Starbucks", "Olive Garden"
+            
         ],
         "allergies": [
             "Wheat", "Soy"
@@ -48,7 +48,7 @@
         "username": "user5",
         "password": "password5",
         "favorites": [
-            "Wendy's", "Taco Bell", "Red Robin"
+            100, 101, 102, 103, 104
         ],
         "allergies": [
             "Fish", "Shellfish"
@@ -70,7 +70,7 @@
         "username": "user7",
         "password": "password7",
         "favorites": [
-            "Starbucks", "McDonald's"
+            104
         ],
         "allergies": [
 
@@ -81,7 +81,7 @@
         "username": "user8",
         "password": "password8",
         "favorites": [
-            "Burger King", "Chipotle", "Olive Garden"
+            104, 102
         ],
         "allergies": [
             "Eggs", "Milk"
@@ -92,7 +92,7 @@
         "username": "user9",
         "password": "password9",
         "favorites": [
-            "Pizza Hut", "Starbucks", "Wendy's"
+            103, 102
         ],
         "allergies": [
             "Gluten"
@@ -103,7 +103,7 @@
         "username": "user10",
         "password": "password10",
         "favorites": [
-            "McDonald's", "Subway"
+            103, 104
         ],
         "allergies": [
             "Tree nuts", "Gluten"
@@ -114,7 +114,7 @@
         "username": "user11",
         "password": "password11",
         "favorites": [
-            "Red Robin"
+            101, 102
         ],
         "allergies": [
             "Peanuts"
@@ -125,7 +125,7 @@
         "username": "user12",
         "password": "password12",
         "favorites": [
-            "Burger King", "Olive Garden"
+            101, 100, 104
         ],
         "allergies": [
             "Gluten", "Soy"
@@ -136,7 +136,7 @@
         "username": "user13",
         "password": "password13",
         "favorites": [
-            "Starbucks", "Chipotle", "McDonalds"
+            100, 103
         ],
         "allergies": [
             "Shellfish"

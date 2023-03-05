@@ -27,7 +27,7 @@ const HTTPClient = {
         return HTTPClient.get('/restaurants/' + id);
     },
     getRestaurantByName: (name) => {
-        return HTTPClient.get('restaurants/' + name);
+        return HTTPClient.get('/restaurants/' + name);
     },
     getRestaurantsByCategory: (category) => {
         return HTTPClient.get('categories/' + category + '/restaurants');
@@ -36,7 +36,7 @@ const HTTPClient = {
         return HTTPClient.get('users/' + id);
     },
     getUserFavorites: (id) => {
-        return HTTPClient.get('users/' + id + '/favorites');
+        return HTTPClient.get('/users/' + id + '/favorites');
     },
     getAllergiesByUser: (id) => {
       return HTTPClient.get('/users/' + id + '/allergies');

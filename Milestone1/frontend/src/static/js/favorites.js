@@ -2,32 +2,35 @@ import api from './APIClient.js';
 
 const query = window.location.search;
 let parameters = new URLSearchParams(query);
-let id = parameters.get('id');
+let id = parameters.get('user');
 
 window.onload = () => {
 
     //get list of resturuant
     //does this iterate thorugh list?
-    api.getUserFavorites(id).then(restaurant => {
+    api.getUserFavorites(id).then(restaurants => {
+      restaurants.forEach(restaurant => {
         //for each resturuant, get it by name and return the resuturant object
-        api.getRestaurantByName(restaurant.name).then(favorite => {
-            loadFavoriteHTML(favorite);
+        api.getRestaurantById(restaurant).then(favorite => {
+          loadFavoriteHTML(favorite);
         })
+      });
     });
 
     function loadFavoriteHTML(restaurant) {
-        const favoriteInfo = document.querySelector('.restaurant-info-container');
+        const favoriteInfo = document.querySelector('.restaurant-grid'); // Was .restaurant-info-container
+        fillRestaurantHTML(restaurant);
 
-        favoriteInfo.appendChild(restaurantImage(restaurant));
-        favoriteInfo.appendChild(favoriteData(restaurant));
+        //favoriteInfo.appendChild(restaurantImage(restaurant));
+        //favoriteInfo.appendChild(favoriteData(restaurant));
 
-        const restaurantMenu = document.querySelector('.menu-items')
-        restaurant.menu.forEach(menu => {
-            restaurantMenu.appendChild(restaurantMenuGenerator(menu));
-        });
+        //const restaurantMenu = document.querySelector('.menu-items')
+        //restaurant.menu.forEach(menu => {
+        //    restaurantMenu.appendChild(restaurantMenuGenerator(menu));
+        //});
     }
 
-    function restaurantImage(restaurant) {
+    /*function restaurantImage(restaurant) {
         let restaurantImageContainer = document.createElement('div');
         restaurantImageContainer.className = "restaurant-logo";
         let restaurantLogo = document.createElement('img');
@@ -49,7 +52,7 @@ window.onload = () => {
             <div class="restaurant-info-grid-item">Address</div>
           </div>
         </div>
-        */
+        
         let restaurantInfo = document.createElement('div');
         restaurantInfo.className = "restaurant-info";
 
@@ -93,7 +96,7 @@ window.onload = () => {
             <div>Allergies: XX, XX, XX</div>
           </div>
         </div>
-        */
+        
        let menuItem = document.createElement('div');
        menuItem.className = "menu-item";
 
@@ -128,6 +131,63 @@ window.onload = () => {
        menuItem.appendChild(menuItemInfo);
 
        return menuItem;
-    }
+    } */
+    function fillRestaurantHTML(restaurant) {
+      const restaurantList = document.querySelector('.restaurant-grid');
+      restaurantList.appendChild(createRestaurantHTML(restaurant));
+  }
+
+  function createRestaurantHTML(restaurant) {
+      let newRestaurant = document.createElement('div');
+      newRestaurant.className = "restaurant-preview";
+
+      let restaurantImg = document.createElement('div');
+      restaurantImg.className = "restaurant-image";
+      let logo = document.createElement('img');
+      logo.src = `imgs/${restaurant.name}-logo.png`;
+      restaurantImg.appendChild(logo);
+
+
+      let favoriteButton = document.createElement('button');
+      favoriteButton.className = "favorite-button";
+      let buttonImg = document.createElement('img');
+      buttonImg.src = "imgs/star.webp";
+      favoriteButton.appendChild(buttonImg);
+      restaurantImg.appendChild(favoriteButton);
+      newRestaurant.appendChild(restaurantImg);
+
+      let name = document.createElement('p');
+      name.className = "restaurant-name";
+      name.innerHTML = restaurant.name;
+      newRestaurant.appendChild(name);
+
+      let details = document.createElement('div');
+      details.className = "restaurant-details";
+      let address = document.createElement('p');
+      address.className = "restaurant-address";
+      address.innerHTML = restaurant.address;
+      let distance = document.createElement('p');
+      distance.className = "restaurant-distance";
+      distance.innerHTML = restaurant.distance;
+      let style = document.createElement('p');
+      style.className = "restaurant-style";
+      style.innerHTML = restaurant.category;
+      details.appendChild(address);
+      details.appendChild(distance);
+      details.appendChild(style);
+      newRestaurant.appendChild(details);
+
+      let view = document.createElement('div');
+      view.className = "restaurant-view";
+      let viewButton = document.createElement('a');
+      viewButton.className = "restaurant-view-button";
+      viewButton.href = '/restaurant?id=' + restaurant.id;
+      viewButton.innerHTML = "View Menu";
+      view.appendChild(viewButton);
+      newRestaurant.appendChild(view);
+
+      return newRestaurant;
+
+  }
 }
 
