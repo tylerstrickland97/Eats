@@ -73,147 +73,102 @@ header img {
     margin-right: 5vw;
 }
 
-.main-content {
-    margin-top: 30px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(500px, 1fr));
-    grid-template-areas:
-        "img img account account account account"
-        "img img account account account account"
-        "img img allergens allergens favorites favorites"
-        ". . allergens  allergens favorites favorites";
-    column-gap: 40px;
-    row-gap: 30px;
-    margin-right: 10%;
-    margin-left: 2%;
-}
-
-.image-container {
-    flex: 1;
-    border-style: solid;
-    border-width: thin;
-    border-radius: 5px;
+main {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    grid-area: img;
-    background-color: white;
+    flex-wrap: wrap;
+    column-gap: 16px;
+    height: auto;
+    margin: 12px;
 }
 
-.image-container img {
-    display: block;
-}
-
-.account-info-container {
+main div {
     flex: 1;
+}
+
+h2 {
+    white-space:normal;
+    margin: 12px 0;
+}
+
+.container {
+    white-space: nowrap;
+    min-width: fit-content;
+    margin: 0 8px;
+    padding: 8px;
+    border: 2px solid #afafaf;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.user-allergens-favorites {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 8px 0;
+    border: none;
+}
+
+.account-information {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: 20px;
+    border-bottom: 2px solid #afafaf;
+    padding: 4px 0;
+}
+
+.account-information-title {
+    width: fit-content;
+    padding-right: 8px;
+}
+
+.allergen-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.allergen-button-container {
+    display: flex;
+    justify-content: end;
+}
+
+form {
     width: 100%;
-    border-style: solid;
-    border-width: thin;
-    border-radius: 5px;
-    grid-area: account;
-    background-color: white;
-}
-
-.account-info-container h2 {
-    margin-left: 20px;
-}
-
-.account-label {
-    text-decoration: bold;
-    font-size: 1.5em;
-    margin-left: 20px;
-}
-
-.account-element {
-    font-size: 1em;
-    margin-right: 30px;
-}
-
-.account-row {
-    flex: 1;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    align-items: flex-end;
-    height: 17%;
-    border-bottom-style: solid;
-    border-bottom-width: thin;
 }
 
-.account-row:last-child, .favorites-row:last-child, .allergens-row:last-child {
-    border-bottom: none;
+input[type=text] {
+    font-size: 20px;
+    width: 60%;
 }
 
-.favorites-container {
-    flex: 1;
-    border-style: solid;
-    border-width: thin;
-    border-radius: 5px;
-    grid-area: favorites;
-    height: 100%;
-    overflow-y: scroll;
-    background-color: white;
+input[type=submit] {
+    width: 30%;
 }
 
-.favorite-row {
-    flex: 1;
+.favorite-container {
+    align-items: center;
+}
+
+.favorite-container > img {
+    object-fit: cover;
+    height: 32px;
+    width: 32px;
+    padding-right: 6px;
+}
+
+.favorite-container > div {
+    white-space: normal;
+}
+
+.user-image {
     display: flex;
-    align-items: flex-end;
-    justify-content: space-around;
-    object-fit: contain;
-    height: 70px;
-    border-bottom-style: solid;
-    border-bottom-width: thin;
+    flex-direction: column;
+    align-items: center;
 }
 
-.favorite-row img {
-    float: left;
-    max-width: 100px;
-    max-height: 100%;
-    width: auto;
+.user-profile-image {
+    max-width: 50%;
 }
-
-.favorites-container h2 {
-    margin-left: 20px;
-}
-
-.favorite-row  span {
-    font-size: 1.5em;
-}
-
-.allergens-container {
-    flex: 1;
-    border-style: solid;
-    border-width: thin;
-    border-radius: 5px;
-    grid-area: allergens;
-    height: 100%;
-    overflow-y: scroll;
-    background-color: white;
-}
-
-.allergens-container h2 {
-    margin-left: 15px;
-}
-.allergens-row{
-    flex: 1;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    height: 50px;
-    border-bottom-style: solid;
-    border-bottom-width: thin;
-}
-
-.allergens-row span {
-    font-size: 1.5em;
-    margin-left: 15px;
-}
-
-
-
-
-
-
-

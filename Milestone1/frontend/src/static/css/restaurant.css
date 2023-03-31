@@ -1,7 +1,7 @@
 body {
     display: flex;
     justify-content: center;
-    font-family: Arial
+    font-family: Arial;
 }
 
 a {
@@ -38,12 +38,19 @@ header {
 .restaurant-info-container {
     display: flex;
     margin-bottom: 16px;
+    height: auto;
 }
 
 .restaurant-logo {
     flex: 1;
     border: 2px solid black;
     border-right: none;
+    vertical-align: middle;
+}
+
+.helper-span {
+    display: inline-block;
+    height: 100%;
     vertical-align: middle;
 }
 
@@ -60,28 +67,24 @@ header {
 
 .restaurant-name {
     display: flex;
-    height: 30%;
+    height: auto;
     font-size: 24px;
     font-weight: 700;
     overflow: hidden;
-    align-items: center;
     padding: 4px 0;
     box-sizing: border-box;
 }
 
-.restaurant-info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    row-gap: 0px;
-    column-gap: 8px;
-
+.restaurant-info-items {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
     justify-items: left;
     height: 70%;
     box-sizing: border-box;
 }
 
-.restaurant-info-grid-item {
+.restaurant-info-item {
     font-size: 18px;
 }
 
@@ -97,10 +100,14 @@ header {
 }
 
 .menu-item-basic {
-    
     display: flex;
     justify-content: space-between;
     margin-bottom: 8px;
+}
+
+.menu-item-basic > div {
+    flex: 2;
+    word-break: break-all;
 }
 
 .menu-item-name {
@@ -108,6 +115,12 @@ header {
 }
 
 .menu-item-price {
+    flex: 1 !important;
+    text-align: end;
     font-weight: 700;
     color: rgb(33, 192, 33);
+}
+
+.menu-item-info > div {
+    word-break: break-all;
 }

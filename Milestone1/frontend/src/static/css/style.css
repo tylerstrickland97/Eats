@@ -10,12 +10,16 @@ h1 > span {
   font-style: italic; 
 }
 
+h2 {
+  text-align: center;
+}
+
 .container {
   padding: 16px;
   border: 2px solid #CCC;
   border-radius: 16px;
   max-width: 512px;
-  text-align: center;
+  /*text-align: center;*/
 }
 
 input[type=text],
@@ -26,6 +30,10 @@ input[type=password] {
   margin: 8px 0;
   display: inline-block;
   box-sizing: border-box;
+}
+
+input:invalid {
+  border-color: red;
 }
 
 .container-divider {
@@ -66,4 +74,43 @@ button:active {
 
 button:focus {
   outline: none;
+}
+
+.popup {
+  position: absolute;
+  display: none;
+  margin-top: 16px;
+  background-color:rgb(238, 238, 238);
+}
+
+#popup-close-button {
+  position: absolute;
+  border: none;
+  font-size: 20px;
+  font-weight: 800;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  margin: 12px;
+  width: 38px;
+  height: 38px;
+  background: none;
+  overflow: hidden;
+}
+
+#popup-close-button:active {
+  box-shadow: none;
+}
+
+#password-conf:valid ~ .form-error {
+  display: none;
+}
+
+#password-conf:invalid ~ .form-error {
+  display: block;
+}
+
+.form-error {
+  color: red;
+  font-size: 14px;
 }
