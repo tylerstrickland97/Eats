@@ -1,0 +1,113 @@
+body {
+    display: flex;
+    justify-content: center;
+    font-family: Arial
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 6px;
+    border: 2px solid grey;
+}
+
+button {
+    border-radius: 0;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.container {
+    width: 95%;
+    max-width: 600px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0;
+}
+
+.favorite-button {
+    width: 28px;
+    height: 28px;
+}
+
+.restaurant-info-container {
+    display: flex;
+    margin-bottom: 16px;
+}
+
+.restaurant-logo {
+    flex: 1;
+    border: 2px solid black;
+    border-right: none;
+    vertical-align: middle;
+}
+
+.restaurant-logo-img {
+    width: 100%;
+    vertical-align: middle;
+}
+
+.restaurant-info {
+    flex: 2;
+    border: 2px solid black;
+    padding-left: 6px;
+}
+
+.restaurant-name {
+    display: flex;
+    height: 30%;
+    font-size: 24px;
+    font-weight: 700;
+    overflow: hidden;
+    align-items: center;
+    padding: 4px 0;
+    box-sizing: border-box;
+}
+
+.restaurant-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 0px;
+    column-gap: 8px;
+
+    justify-items: left;
+    height: 70%;
+    box-sizing: border-box;
+}
+
+.restaurant-info-grid-item {
+    font-size: 18px;
+}
+
+.menu-items {
+    padding: 4px;
+    border: 2px solid black;
+}
+
+.menu-item {
+    margin: 8px;
+    padding-bottom: 8px;
+    border-bottom: 2px grey solid;
+}
+
+.menu-item-basic {
+    
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.menu-item-name {
+    font-weight: 700;
+}
+
+.menu-item-price {
+    font-weight: 700;
+    color: rgb(33, 192, 33);
+}

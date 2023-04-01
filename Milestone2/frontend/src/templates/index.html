@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eats</title>
+  <!-- Use for image in header next to Eats <link rel="icon" type="image/png" href="PATH_TO_IMAGE"> -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>Welcome to <span>Eats</span></h1>
+  <div class="container">
+    <form action="/login" method="post">
+      <input type="text" placeholder="Username" name="username">
+      <input type="password" placeholder="Password" name="password">
+      <button type="submit" class="button-login">Login</button>
+      
+      <a href="#">Forgot Password?</a>
+      <div class="container-divider"></div>
+      <button type="submit" formaction="/users" class="button-signup">Sign Up</button>
+    
+    </form>
+  </div>
+
+  <!-- Leaving this here just in case -->
+  <p>Check your API <a href="/api" target="_blank">here</a>.</p>
+</body>
+</html>
