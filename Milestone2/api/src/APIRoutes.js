@@ -1,16 +1,26 @@
+const { json } = require('express');
 const express = require('express');
 const apiRouter = express.Router();
 
 // let restaurants = require('./../../database/data/restaurants.json');
 // let users = require('./database/data/users.json');
-const UserDAO = require('./UserDAO');
+const RestaurantDAO = require('./RestaurantDAO');
 
 
 apiRouter.use(express.json());
 
 //get restaurants
 apiRouter.get('/restaurants', (req, res) => {
-    res.json(restaurants);
+    RestaurantDAO.getRestaurants().then(restaurant => {
+        if (restaurant) {
+            res.json(restaurant);
+        }
+        else {
+            res.status(404).json({error: "Not found"});
+        }
+    }).catch(err => {
+        res.status(500).json({error: err});
+    });
 });
 
 //get restaurant by id
