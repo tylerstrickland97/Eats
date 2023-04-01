@@ -6,4 +6,4 @@ function getUser(message) {
 
 module.exports = {
     getUser: getUser,
-  };
+};

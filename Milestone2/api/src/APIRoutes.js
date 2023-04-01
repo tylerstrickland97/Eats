@@ -1,9 +1,9 @@
 const express = require('express');
 const apiRouter = express.Router();
 
-let restaurants = require('./../../database/data/restaurants.json');
-let users = require('./database/data/users.json');
-const UserDAO = require('./database/UserDAO');
+// let restaurants = require('./../../database/data/restaurants.json');
+// let users = require('./database/data/users.json');
+const UserDAO = require('./../../database/UserDAO');
 
 
 apiRouter.use(express.json());
