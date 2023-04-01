@@ -11,7 +11,7 @@
 CREATE TABLE IF NOT EXISTS `restaurants` (
   `restaurant_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `restaurant_name` varchar(100) NOT NULL,
-  PRIMARY KEY (`cty_id`)
+  PRIMARY KEY (`restaurants_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
