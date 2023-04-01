@@ -14,6 +14,10 @@ app.get('/', (req, res) => {
     res.sendFile(html_dir + 'homepage.html');
 });
 
+app.get('/login', (req, res) => {
+    res.sendFile(html_dir + 'index.html');
+});
+
 app.get('/restaurant', (req, res) => {
     res.sendFile(html_dir + 'restaurant.html');
 });

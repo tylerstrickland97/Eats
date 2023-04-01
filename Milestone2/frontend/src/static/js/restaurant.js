@@ -24,9 +24,12 @@ window.onload = () => {
     function restaurantImage(restaurant) {
         let restaurantImageContainer = document.createElement('div');
         restaurantImageContainer.className = "restaurant-logo";
+        let helperSpan = document.createElement('span');
+        helperSpan.classList.add('helper-span');
         let restaurantLogo = document.createElement('img');
         restaurantLogo.className = "restaurant-logo-img";
         restaurantLogo.src = `imgs/${restaurant.name}-logo.png`
+        restaurantImageContainer.appendChild(helperSpan);
         restaurantImageContainer.appendChild(restaurantLogo);
 
         return restaurantImageContainer;
@@ -53,18 +56,18 @@ window.onload = () => {
         restaurantInfo.appendChild(restaurantName);
 
         let restaurantInfoGrid = document.createElement('div');
-        restaurantInfoGrid.className = "restaurant-info-grid";
+        restaurantInfoGrid.className = "restaurant-info-items";
         let restaurantDistance = document.createElement('div');
-        restaurantDistance.className = "restaurant-info-grid-item";
+        restaurantDistance.className = "restaurant-info-item";
         restaurantDistance.innerHTML = `Distance ${restaurant.distance}`;
         let restaurantFavorites = document.createElement('div');
-        restaurantFavorites.className = "restaurant-info-grid-item";
+        restaurantFavorites.className = "restaurant-info-item";
         restaurantFavorites.innerHTML = `Favorites: ${restaurant['num-favorites']}`;
         let restaurantRatings = document.createElement('div');
-        restaurantRatings.className = "restaurant-info-grid-item";
+        restaurantRatings.className = "restaurant-info-item";
         restaurantRatings.innerHTML = `Rating: ${restaurant.rating}/5`;
         let restaurantAddress = document.createElement('div');
-        restaurantAddress.className = "restaurant-info-grid-item";
+        restaurantAddress.className = "restaurant-info-item";
         restaurantAddress.innerHTML = `Address: ${restaurant.address}`;
         restaurantInfoGrid.appendChild(restaurantDistance);
         restaurantInfoGrid.appendChild(restaurantFavorites);

@@ -4,7 +4,7 @@ const TOKEN_COOKIE_NAME = "EatsToken";
 
 const API_SECRET = process.env.API_SECRET_KEY;
 
-exports.TokenMiddleware = (req, res, next) => {
+exports.TokenMiddleWare = (req, res, next) => {
   // We will look for the token in two places:
   // 1. A cookie in case of a browser
   // 2. The Authorization header in case of a different client

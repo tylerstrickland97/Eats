@@ -6,18 +6,6 @@ body {
   align-items: center;
 }
 
-#errorbox {
-  background-color: #debaba;
-  border: 1px solid #db7d7d;
-  padding: 10px;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-#errorbox.hidden {
-  visibility: hidden;
-}
-
 h1 > span {
 font-style: italic; 
 }
@@ -35,8 +23,7 @@ max-width: 512px;
 }
 
 input[type=text],
-input[type=password],
-input[type=email] {
+input[type=password] {
 font-size: 100%;
 width: 100%;
 padding: 12px 20px;
