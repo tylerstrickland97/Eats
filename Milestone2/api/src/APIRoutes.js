@@ -1,11 +1,11 @@
 const express = require('express');
 const apiRouter = express.Router();
 
-let restaurants = require('./../../database/data/restaurants.json');
-let users = require('./../../database/data/users.json');
-const UserDAO = require('./../../database/UserDAO.js');
+let restaurants = require('./database/data/restaurants.json');
+let users = require('./database/data/users.json');
+const UserDAO = require('./database/UserDAO.js');
 
-const paths = __dirname + '../.././database/UserDAO.js';
+const paths = __dirname + './database/UserDAO.js';
 
 apiRouter.use(express.json());
 
