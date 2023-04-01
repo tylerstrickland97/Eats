@@ -5,6 +5,7 @@ let restaurants = require('./../../database/data/restaurants.json');
 let users = require('./database/data/users.json');
 const UserDAO = require('./database/UserDAO');
 
+
 apiRouter.use(express.json());
 
 //get restaurants
