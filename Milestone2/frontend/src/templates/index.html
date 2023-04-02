@@ -7,12 +7,12 @@
   <title>Eats</title>
   <!-- Use for image in header next to Eats <link rel="icon" type="image/png" href="PATH_TO_IMAGE"> -->
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/login.js"></script>
+  <script src="js/login.js" type="module"></script>
 </head>
 <body>
   <h1>Welcome to <span>Eats</span></h1>
   <div class="container">
-    <form action="/login" method="post">
+    <form id="login">
       <input type="text" placeholder="Username" name="username">
       <input type="password" placeholder="Password" name="password">
       <button type="submit" class="button-login">Login</button>    
@@ -21,7 +21,7 @@
     <button id="signup-button" class="button-signup">Sign Up</button>
   </div>
   <div class="container popup" id="popup">
-    <form class="signup-form">
+    <form id="signup-form">
       <button id="popup-close-button">X</button>
       <h2>Create a new account</h2>
       <label for="fname">First Name</label>
