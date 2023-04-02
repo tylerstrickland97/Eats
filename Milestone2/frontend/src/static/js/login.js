@@ -1,22 +1,25 @@
 import api from './APIClient.js';
 
 window.onload = () => {
-
     let signUp = document.getElementById('popup');
     const signupButton = document.getElementById('signup-button');
+    //const signupForm = document.getElementById('signup-form');
+
+    //signup fields
+    const submitSignup = document.getElementById('signup-submit');
+    const signUpUser = document.getElementById('username');
+    // const signUpPassword = document.getElementById('password');
+    const firstname = document.getElementById('fname');
+    const lastname = document.getElementById('lname');
+    const email = document.getElementById('email');
+
+    const createAccountButton = document.getElementById('createaccountbtn');
     const popupCloseButton = document.getElementById('popup-close-button');
     const passwordInput = document.getElementById('password');
     let passwordConfInput = document.getElementById('password-conf');
-    let createAccountButton = document.getElementById('createaccountbtn');
-
     signupButton.addEventListener('click', (e) => {
         e.preventDefault();
         signUp.style.display = 'block';
-    });
-
-    popupCloseButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        signUp.style.display = 'none';
     });
 
     createAccountButton.addEventListener('click', (e) => {
@@ -27,16 +30,16 @@ window.onload = () => {
         let newPassword = document.getElementById('password').value;
 
         api.signUp(newFirstName, newLastName, newUsername, newPassword, newEmail).then(res => {
-            if (res) {
-                console.log(res);
-            }
-            else {
-                console.log('error');
-            }
+            console.log(res);
+        }).catch(err => {
+            console.log(err);
         })
-
     })
 
+    popupCloseButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        signUp.style.display = 'none';
+    });
 
     function checkPasswords() {
         if (passwordInput.value != passwordConfInput.value) {

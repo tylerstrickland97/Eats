@@ -24,6 +24,8 @@ function getUserById(userId) {
 function createUser(user) {
   console.log(user);
   let newUser = new User(user);
+  console.log("new user: ");
+  console.log(newUser);
   return db.query('INSERT INTO users (first_name, last_name, username, email, salt, password_hash) VALUES (?)', [newUser]).then(({results}) => {
     return getUserById(results.insertId);
   })

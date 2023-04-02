@@ -1,8 +1,6 @@
 const crypto = require('crypto');
 
 module.exports = class {
-  password_hash;
-  salt;
 
   constructor(data) {
     this.first_name = data.first_name;
