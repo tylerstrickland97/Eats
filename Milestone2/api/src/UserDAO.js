@@ -26,9 +26,10 @@ function createUser(user) {
   let newUser = new User(user);
   console.log("new user: ");
   console.log(newUser);
-  return db.query('INSERT INTO users (first_name, last_name, username, email, salt, password_hash) VALUES (?)', [newUser]).then(({results}) => {
-    return getUserById(results.insertId);
-  })
+  return db.query('INSERT INTO users (first_name, last_name, username, email, salt, password_hash) VALUES (?, ?, ?, ?, ?, ?)',
+   [newUser.first_name, newUser.last_name, newUser.username, newUser.email, newUser.salt, newUser.password_hash]).then(({results}) => {
+     getUserById(results.insertId)
+  });
 }
 
 module.exports = {
