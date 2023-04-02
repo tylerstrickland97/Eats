@@ -3,7 +3,6 @@ import api from './APIClient.js';
 window.onload = () => {
     //login
     const errorBox = document.querySelector('#errorbox');
-
     const loginForm = document.getElementById('login');
     const loginBtn = document.getElementById('login-btn');
     const loginUser = document.getElementById('login-user');

@@ -1,21 +1,24 @@
 const { json } = require('express');
 const express = require('express');
 const apiRouter = express.Router();
+const crypto = require('crypto');
 
 const cookieParser = require('cookie-parser');
 apiRouter.use(cookieParser());
 
 const RestaurantDAO = require('./RestaurantDAO');
+const UserDAO = require('./UserDAO');
 
 const {TokenMiddleWare, generateToken, removeToken} = require('./TokenMiddleWare');
 apiRouter.use(express.json());
 
 //get restaurants
-apiRouter.get('/restaurants', TokenMiddleWare, (req, res) => {
+apiRouter.get('/restaurants', (req, res) => {
     RestaurantDAO.getRestaurants().then(restaurants => {
         res.json(restaurants);
     })
     .catch(err => {
+        console.log(err);
         res.status(400).json({error: err});
     })
 });
@@ -53,7 +56,7 @@ apiRouter.get('/restaurants/:restaurantName', TokenMiddleWare, (req, res) => {
 });
 
 //Add a restaurant 
-apiRouter.post('/restaurants', TokenMiddleWare, (req, res) => {
+apiRouter.post('/restaurants', (req, res) => {
     let newRestaurant = req.body;
     RestaurantDAO.createRestaurant(newRestaurant).then(restaurant => {
         res.json(restaurant);
@@ -85,10 +88,37 @@ apiRouter.get('/users/:userId/favorites', TokenMiddleWare, (req, res) => {
     res.status(500).json({error: "Not implemented yet"});
 })
 //create user
-apiRouter.post('/users', TokenMiddleWare, (req, res) => {
-    let newUser = req.body;
-    users.push(newUser);
-    res.json(newUser);
+apiRouter.post('/users', (req, res) => {
+    let salt = crypto.randomBytes(16).toString('hex');
+    let password = req.body.password;
+
+    crypto.pbkdf2(password, salt , 10000, 64, 'sha512',function(err, derivedKey) {
+        if (err) {
+            res.status(401).json({error: "Login Failed"});
+        }
+        const digest = derivedKey.toString('hex');
+
+        user = {
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            username: req.body.username,
+            email: req.body.email,
+            salt: salt,
+            password_hash: digest
+        }
+
+        UserDAO.createUser(user).then(user => {
+            if (user) {
+                res.json(user);
+            }
+            else {
+                res.status(400).json({error: "Error creating user"});
+            }
+        })
+        .catch(err => {
+            res.status(400).json({error: err});
+        })
+    });
 })
 
 //login

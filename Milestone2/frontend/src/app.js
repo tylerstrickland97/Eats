@@ -11,11 +11,11 @@ const html_dir  = __dirname + '/templates/';
 console.log(html_dir);
 
 app.get('/', (req, res) => {
-    res.sendFile(html_dir + 'homepage.html');
+    res.sendFile(html_dir + 'index.html');
 });
 
-app.get('/login', (req, res) => {
-    res.sendFile(html_dir + 'index.html');
+app.get('/home', (req, res) => {
+    res.sendFile(html_dir + 'homepage.html');
 });
 
 app.get('/restaurant', (req, res) => {

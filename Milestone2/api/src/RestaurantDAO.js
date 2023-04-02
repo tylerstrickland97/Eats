@@ -4,7 +4,7 @@ const Restaurant = require('./models/Restaurant');
 
 function getRestaurants() {
     return db.query('SELECT * FROM restaurants').then(({results}) => {
-        return results.map(restaurant => new Restaurants(restaurant));
+        return results.map(restaurant => new Restaurant(restaurant));
     });
 }
 

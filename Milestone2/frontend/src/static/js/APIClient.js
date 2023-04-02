@@ -60,12 +60,13 @@ const HTTPClient = {
 
     signUp: (firstname, lastname, username, password, email) => {
       let data = {
-        firstname: firstname,
-        lastname: lastname,
+        first_name: firstname,
+        last_name: lastname,
         username: username,
         password: password,
         email: email
       }
+      console.log(data);
       return HTTPClient.post('/users', data);
     },
 

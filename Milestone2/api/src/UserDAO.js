@@ -22,9 +22,11 @@ function getUserById(userId) {
 }
 
 function createUser(user) {
-  return db.query('INSERT into users (user_id, first_name, last_name, username, email, salt, password_hash) VALUES (NULL, ' + user.first_name + ', ' + user.last_name + ', ' + user.username + ', ' + user.email + ', ' + user.salt + ', ' + user.password_hash + ')').then(({results}) => {
+  console.log(user);
+  let newUser = new User(user);
+  return db.query('INSERT INTO users (first_name, last_name, username, email, salt, password_hash) VALUES (?)', [newUser]).then(({results}) => {
     return getUserById(results.insertId);
-  });
+  })
 }
 
 module.exports = {

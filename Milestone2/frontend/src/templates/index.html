@@ -7,7 +7,7 @@
   <title>Eats</title>
   <!-- Use for image in header next to Eats <link rel="icon" type="image/png" href="PATH_TO_IMAGE"> -->
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/login.js"></script>
+  <script src="js/login.js" type="module"></script>
 </head>
 <body>
   <h1>Welcome to <span>Eats</span></h1>
@@ -37,7 +37,7 @@
       <label for="password-conf">Repeat Password</label>
       <input type="password" id="password-conf" name="password-conf" required>
       <div class="form-error" for="password-conf">Password does not match</div>
-      <button type="submit" class="button-signup">Sign Up</button>
+      <button type = "button" class="signup-button" id = "createaccountbtn">Sign Up</button>
     </form>
   </div>
 </body>
