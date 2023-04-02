@@ -2,11 +2,16 @@ import api from './APIClient.js';
 
 window.onload = () => {
     api.getRestaurants().then(restaurants => {
-        
         restaurants.forEach(restaurant => {
             fillRestaurantHTML(restaurant);
         })
     });
+
+    function filterRestaurantName(restaurant_name) {
+        let filtered_name = restaurant_name.replaceAll(/[^A-Za-z\s]/g, '');
+        filtered_name = filtered_name.replaceAll(' ', '-');
+        return filtered_name;
+    }
 
     function fillRestaurantHTML(restaurant) {
         const restaurantList = document.querySelector('.restaurant-grid');
@@ -20,7 +25,7 @@ window.onload = () => {
         let restaurantImg = document.createElement('div');
         restaurantImg.className = "restaurant-image";
         let logo = document.createElement('img');
-        logo.src = `imgs/${restaurant.name}-logo.png`;
+        logo.src = `imgs/restaurant-logos/${filterRestaurantName(restaurant.name)}-logo.png`;
         restaurantImg.appendChild(logo);
 
 
@@ -37,21 +42,21 @@ window.onload = () => {
         name.innerHTML = restaurant.name;
         newRestaurant.appendChild(name);
 
-        let details = document.createElement('div');
-        details.className = "restaurant-details";
-        let address = document.createElement('p');
-        address.className = "restaurant-address";
-        address.innerHTML = restaurant.address;
-        let distance = document.createElement('p');
-        distance.className = "restaurant-distance";
-        distance.innerHTML = restaurant.distance;
-        let style = document.createElement('p');
-        style.className = "restaurant-style";
-        style.innerHTML = restaurant.category;
-        details.appendChild(address);
-        details.appendChild(distance);
-        details.appendChild(style);
-        newRestaurant.appendChild(details);
+        // let details = document.createElement('div');
+        // details.className = "restaurant-details";
+        // let address = document.createElement('p');
+        // address.className = "restaurant-address";
+        // address.innerHTML = restaurant.address;
+        // let distance = document.createElement('p');
+        // distance.className = "restaurant-distance";
+        // distance.innerHTML = restaurant.distance;
+        // let style = document.createElement('p');
+        // style.className = "restaurant-style";
+        // style.innerHTML = restaurant.category;
+        // details.appendChild(address);
+        // details.appendChild(distance);
+        // details.appendChild(style);
+        // newRestaurant.appendChild(details);
 
         let view = document.createElement('div');
         view.className = "restaurant-view";

@@ -9,6 +9,12 @@ window.onload = () => {
         loadRestaurantHTML(restaurant);
     });
 
+    function filterRestaurantName(restaurant_name) {
+      let filtered_name = restaurant_name.replaceAll(/[^A-Za-z\s]/g, '');
+      filtered_name = filtered_name.replaceAll(' ', '-');
+      return filtered_name;
+    }
+
     function loadRestaurantHTML(restaurant) {
         const restaurantInfo = document.querySelector('.restaurant-info-container');
 
@@ -16,9 +22,14 @@ window.onload = () => {
         restaurantInfo.appendChild(restaurantData(restaurant));
 
         const restaurantMenu = document.querySelector('.menu-items')
-        restaurant.menu.forEach(menu => {
-            restaurantMenu.appendChild(restaurantMenuGenerator(menu));
+        api.getMenuById(id).then(menu => {
+          menu.forEach(item => {
+            restaurantMenu.appendChild(restaurantMenuGenerator(item));
+          })
         });
+        // restaurant.menu.forEach(menu => {
+        //     restaurantMenu.appendChild(restaurantMenuGenerator(menu));
+        // });
     }
 
     function restaurantImage(restaurant) {
@@ -28,7 +39,7 @@ window.onload = () => {
         helperSpan.classList.add('helper-span');
         let restaurantLogo = document.createElement('img');
         restaurantLogo.className = "restaurant-logo-img";
-        restaurantLogo.src = `imgs/${restaurant.name}-logo.png`
+        restaurantLogo.src = `imgs/restaurant-logos/${filterRestaurantName(restaurant.name)}-logo.png`
         restaurantImageContainer.appendChild(helperSpan);
         restaurantImageContainer.appendChild(restaurantLogo);
 
@@ -55,25 +66,25 @@ window.onload = () => {
         restaurantName.innerHTML = restaurant.name;
         restaurantInfo.appendChild(restaurantName);
 
-        let restaurantInfoGrid = document.createElement('div');
-        restaurantInfoGrid.className = "restaurant-info-items";
-        let restaurantDistance = document.createElement('div');
-        restaurantDistance.className = "restaurant-info-item";
-        restaurantDistance.innerHTML = `Distance ${restaurant.distance}`;
-        let restaurantFavorites = document.createElement('div');
-        restaurantFavorites.className = "restaurant-info-item";
-        restaurantFavorites.innerHTML = `Favorites: ${restaurant['num-favorites']}`;
-        let restaurantRatings = document.createElement('div');
-        restaurantRatings.className = "restaurant-info-item";
-        restaurantRatings.innerHTML = `Rating: ${restaurant.rating}/5`;
-        let restaurantAddress = document.createElement('div');
-        restaurantAddress.className = "restaurant-info-item";
-        restaurantAddress.innerHTML = `Address: ${restaurant.address}`;
-        restaurantInfoGrid.appendChild(restaurantDistance);
-        restaurantInfoGrid.appendChild(restaurantFavorites);
-        restaurantInfoGrid.appendChild(restaurantRatings);
-        restaurantInfoGrid.appendChild(restaurantAddress);
-        restaurantInfo.appendChild(restaurantInfoGrid);
+        // let restaurantInfoGrid = document.createElement('div');
+        // restaurantInfoGrid.className = "restaurant-info-items";
+        // let restaurantDistance = document.createElement('div');
+        // restaurantDistance.className = "restaurant-info-item";
+        // restaurantDistance.innerHTML = `Distance ${restaurant.distance}`;
+        // let restaurantFavorites = document.createElement('div');
+        // restaurantFavorites.className = "restaurant-info-item";
+        // restaurantFavorites.innerHTML = `Favorites: ${restaurant['num-favorites']}`;
+        // let restaurantRatings = document.createElement('div');
+        // restaurantRatings.className = "restaurant-info-item";
+        // restaurantRatings.innerHTML = `Rating: ${restaurant.rating}/5`;
+        // let restaurantAddress = document.createElement('div');
+        // restaurantAddress.className = "restaurant-info-item";
+        // restaurantAddress.innerHTML = `Address: ${restaurant.address}`;
+        // restaurantInfoGrid.appendChild(restaurantDistance);
+        // restaurantInfoGrid.appendChild(restaurantFavorites);
+        // restaurantInfoGrid.appendChild(restaurantRatings);
+        // restaurantInfoGrid.appendChild(restaurantAddress);
+        // restaurantInfo.appendChild(restaurantInfoGrid);
 
         return restaurantInfo;
     }
@@ -100,28 +111,62 @@ window.onload = () => {
        let menuItemName = document.createElement('div');
        menuItemName.className = "menu-item-name";
        menuItemName.innerHTML = menu.name;
-       let menuItemCalories = document.createElement('div');
-       menuItemCalories.innerHTML = `Calories: ${menu.calories}`;
+       
        let menuItemPrice = document.createElement('div');
        menuItemPrice.className = "menu-item-price";
-       menuItemPrice.innerHTML = `\$${menu.price}`;
+       //menuItemPrice.innerHTML = `\$${menu.price}`;
        menuItemBasic.appendChild(menuItemName);
-       menuItemBasic.appendChild(menuItemCalories);
-       menuItemBasic.appendChild(menuItemPrice);
+       //menuItemBasic.appendChild(menuItemPrice);
 
        menuItem.appendChild(menuItemBasic);
 
        let menuItemInfo = document.createElement('div');
        menuItemInfo.className = "menu-item-info";
 
-       let menuItemAllergies = document.createElement('div');
-       if (menu.Allergies.length == 0) {
-        menuItemAllergies.innerHTML = `Allergies: None`;
+       if (menu.calories != null) {
+        let menuItemCalories = document.createElement('div');
+        menuItemCalories.innerHTML = `Calories: ${menu.calories}`;
+        menuItemInfo.appendChild(menuItemCalories);
        }
-       else {
-        menuItemAllergies.innerHTML = `Allergies: ${menu.Allergies.join(', ')}`;
+       if (menu.fat != null) {
+        let menuItemFat = document.createElement('div');
+        menuItemFat.innerHTML = `Fat (g): ${menu.fat}`;
+        menuItemInfo.appendChild(menuItemFat);
        }
-       menuItemInfo.appendChild(menuItemAllergies);
+       if (menu.carbohydrates != null) {
+        let menuItemCarbohydrates = document.createElement('div');
+        menuItemCarbohydrates.innerHTML = `Carbohydrates (g): ${menu.carbohydrates}`;
+        menuItemInfo.appendChild(menuItemCarbohydrates);
+       }
+       if (menu.protein != null) {
+        let menuItemProtein = document.createElement('div');
+        menuItemProtein.innerHTML = `Protein (g): ${menu.protein}`;
+        menuItemInfo.appendChild(menuItemProtein);
+       }
+       if (menu.sodium != null) {
+        let menuItemSodium = document.createElement('div');
+        menuItemSodium.innerHTML = `Sodium (mg): ${menu.sodium}`;
+        menuItemInfo.appendChild(menuItemSodium);
+       }
+       if (menu.cholesterol != null) {
+        let menuItemCholesterol = document.createElement('div');
+        menuItemCholesterol.innerHTML = `Cholesterol (mg): ${menu.cholesterol}`;
+        menuItemInfo.appendChild(menuItemCholesterol);
+       }
+       if (menu.fiber != null) {
+        let menuItemFiber = document.createElement('div');
+        menuItemFiber.innerHTML = `Fiber (g): ${menu.fiber}`;
+        menuItemInfo.appendChild(menuItemFiber);
+       }
+
+       //let menuItemAllergies = document.createElement('div');
+       //if (menu.Allergies.length == 0) {
+       // menuItemAllergies.innerHTML = `Allergies: None`;
+       //}
+       //else {
+       // menuItemAllergies.innerHTML = `Allergies: ${menu.Allergies.join(', ')}`;
+       //}
+       //menuItemInfo.appendChild(menuItemAllergies);
        menuItem.appendChild(menuItemInfo);
 
        return menuItem;

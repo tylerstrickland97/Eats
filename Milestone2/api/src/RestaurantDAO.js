@@ -1,4 +1,3 @@
-
 const db = require('./DBConnection');
 const Restaurant = require('./models/Restaurant');
 
@@ -9,6 +8,7 @@ function getRestaurants() {
 }
 
 function getRestaurantById(restaurantId) {
+    console.log(db.query('SELECT * FROM restaurants WHERE restaurant_id=?', [restaurantId]));
     return db.query('SELECT * FROM restaurants WHERE restaurant_id=?', [restaurantId]).then(({results}) => {
         if (results[0]) {
             return new Restaurant(results[0]);
