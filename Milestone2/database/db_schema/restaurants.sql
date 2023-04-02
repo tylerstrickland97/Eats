@@ -26,20 +26,20 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `menu_items` (
-  `item_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `item_id` int(10)unsigned NOT NULL,
   `restaurant` varchar(100) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `calories` varchar(100) NOT NULL,
-  `fat_g` varchar(100) NOT NULL,
-  `carbohydrates_g` varchar(100) NOT NULL,
-  `protein_g` varchar(100) NOT NULL,
-  `sodium_mg` varchar(100) NOT NULL,
-  `cholesterol_mg` varchar(100) NOT NULL,
-  `fiber_g` varchar(100) NOT NULL,
-  `restaurant_id` int(10) unsigned NOT NULL
+  `calories` int(10) unsigned,
+  `fat_g` int(10) unsigned,
+  `carbohydrates_g` int(10) unsigned,
+  `protein_g` int(10) unsigned,
+  `sodium_mg` int(10) unsigned,
+  `cholesterol_mg` int(10) unsigned,
+  `fiber_g` int(10) unsigned,
+  `restaurant_id` int(10) unsigned,
   PRIMARY KEY (`item_id`),
   FOREIGN KEY (restaurant_id) REFERENCES restaurants(restaurant_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DELETE FROM `restaurants`;
 INSERT INTO `restaurants` (`restaurant_id`, `restaurant_name`) VALUES
