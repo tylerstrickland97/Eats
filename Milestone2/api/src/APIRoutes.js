@@ -6,12 +6,13 @@ const cookieParser = require('cookie-parser');
 apiRouter.use(cookieParser());
 
 const RestaurantDAO = require('./RestaurantDAO');
+const MenuDAO = require('./MenuDAO');
 
 const {TokenMiddleWare, generateToken, removeToken} = require('./TokenMiddleWare');
 apiRouter.use(express.json());
 
 //get restaurants
-apiRouter.get('/restaurants', TokenMiddleWare, (req, res) => {
+apiRouter.get('/restaurants', /*TokenMiddleWare,*/ (req, res) => {
     RestaurantDAO.getRestaurants().then(restaurants => {
         res.json(restaurants);
     })
@@ -21,14 +22,32 @@ apiRouter.get('/restaurants', TokenMiddleWare, (req, res) => {
 });
 
 //get restaurant by id
-apiRouter.get('/restaurants/:restaurantId', TokenMiddleWare, (req, res) => {
+apiRouter.get('/restaurants/:restaurantId', /*TokenMiddleWare,*/ (req, res) => {
     const restaurantId = req.params.restaurantId;
+    console.log(restaurantId);
     RestaurantDAO.getRestaurantById(restaurantId).then(restaurant => {
         if (restaurant) {
             res.json(restaurant);
         }
         else {
             res.status(404).json({error: "Restaurant does not exist in the database"});
+        }
+    })
+    .catch(err => {
+        res.json(500).json({error: err});
+    })
+});
+
+//get menu by restaurant id
+apiRouter.get('/menu/:restaurantId', /*TokenMiddleWare,*/ (req, res) => {
+    const restaurantId = req.params.restaurantId;
+    console.log(restaurantId);
+    MenuDAO.getMenuById(restaurantId).then(menu => {
+        if (menu) {
+            res.json(menu);
+        }
+        else {
+            res.status(404).json({error: "Menu does not exist in the database"});
         }
     })
     .catch(err => {

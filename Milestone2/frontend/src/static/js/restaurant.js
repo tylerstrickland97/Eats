@@ -9,6 +9,12 @@ window.onload = () => {
         loadRestaurantHTML(restaurant);
     });
 
+    function filterRestaurantName(restaurant_name) {
+      let filtered_name = restaurant_name.replaceAll(/[^A-Za-z\s]/g, '');
+      filtered_name = filtered_name.replaceAll(' ', '-');
+      return filtered_name;
+    }
+
     function loadRestaurantHTML(restaurant) {
         const restaurantInfo = document.querySelector('.restaurant-info-container');
 
@@ -16,9 +22,14 @@ window.onload = () => {
         restaurantInfo.appendChild(restaurantData(restaurant));
 
         const restaurantMenu = document.querySelector('.menu-items')
-        restaurant.menu.forEach(menu => {
-            restaurantMenu.appendChild(restaurantMenuGenerator(menu));
+        api.getMenuById(id).then(menu => {
+          menu.forEach(item => {
+            restaurantMenu.appendChild(restaurantMenuGenerator(item));
+          })
         });
+        // restaurant.menu.forEach(menu => {
+        //     restaurantMenu.appendChild(restaurantMenuGenerator(menu));
+        // });
     }
 
     function restaurantImage(restaurant) {
@@ -28,7 +39,7 @@ window.onload = () => {
         helperSpan.classList.add('helper-span');
         let restaurantLogo = document.createElement('img');
         restaurantLogo.className = "restaurant-logo-img";
-        restaurantLogo.src = `imgs/${restaurant.name}-logo.png`
+        restaurantLogo.src = `imgs/restaurant-logos/${filterRestaurantName(restaurant.name)}-logo.png`
         restaurantImageContainer.appendChild(helperSpan);
         restaurantImageContainer.appendChild(restaurantLogo);
 
@@ -101,13 +112,18 @@ window.onload = () => {
        menuItemName.className = "menu-item-name";
        menuItemName.innerHTML = menu.name;
        let menuItemCalories = document.createElement('div');
-       menuItemCalories.innerHTML = `Calories: ${menu.calories}`;
+       if (menu.calories != null) {
+        menuItemCalories.innerHTML = `Calories: ${menu.calories}`;
+       }
+       
        let menuItemPrice = document.createElement('div');
        menuItemPrice.className = "menu-item-price";
-       menuItemPrice.innerHTML = `\$${menu.price}`;
+       //menuItemPrice.innerHTML = `\$${menu.price}`;
        menuItemBasic.appendChild(menuItemName);
-       menuItemBasic.appendChild(menuItemCalories);
-       menuItemBasic.appendChild(menuItemPrice);
+       if (menu.calories != null) {
+        menuItemBasic.appendChild(menuItemCalories);
+       }
+       //menuItemBasic.appendChild(menuItemPrice);
 
        menuItem.appendChild(menuItemBasic);
 
@@ -115,12 +131,12 @@ window.onload = () => {
        menuItemInfo.className = "menu-item-info";
 
        let menuItemAllergies = document.createElement('div');
-       if (menu.Allergies.length == 0) {
-        menuItemAllergies.innerHTML = `Allergies: None`;
-       }
-       else {
-        menuItemAllergies.innerHTML = `Allergies: ${menu.Allergies.join(', ')}`;
-       }
+       //if (menu.Allergies.length == 0) {
+       // menuItemAllergies.innerHTML = `Allergies: None`;
+       //}
+       //else {
+       // menuItemAllergies.innerHTML = `Allergies: ${menu.Allergies.join(', ')}`;
+       //}
        menuItemInfo.appendChild(menuItemAllergies);
        menuItem.appendChild(menuItemInfo);
 

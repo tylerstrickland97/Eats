@@ -1,14 +1,14 @@
-
 const db = require('./DBConnection');
 const Restaurant = require('./models/Restaurant');
 
 function getRestaurants() {
     return db.query('SELECT * FROM restaurants').then(({results}) => {
-        return results.map(restaurant => new Restaurants(restaurant));
+        return results.map(restaurant => new Restaurant(restaurant));
     });
 }
 
 function getRestaurantById(restaurantId) {
+    console.log(db.query('SELECT * FROM restaurants WHERE restaurant_id=?', [restaurantId]));
     return db.query('SELECT * FROM restaurants WHERE restaurant_id=?', [restaurantId]).then(({results}) => {
         if (results[0]) {
             return new Restaurant(results[0]);

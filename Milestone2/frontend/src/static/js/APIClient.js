@@ -42,6 +42,9 @@ const HTTPClient = {
     getRestaurantById: (id) => {
         return HTTPClient.get('/restaurants/' + id);
     },
+    getMenuById: (id) => {
+        return HTTPClient.get('/menu/' + id);
+    },
     getRestaurantByName: (name) => {
         return HTTPClient.get('/restaurants/' + name);
     },
