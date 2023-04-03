@@ -36,3 +36,7 @@ Tyler and Collin have played a significant role in setting up the database and c
 | Page | Percent Complete | Wireframes | Comments |
 | ---- | ---------------- | ---------- | -------- |
 |restaurant | 100% | [wireframe](https://github.ncsu.edu/engr-csc342/csc342-2023Spring-groupV/blob/main/Proposal/wireframes/CSC342ProjectWireframe.png) | |
+| index (login) | 70% | [wireframe](https://github.ncsu.edu/engr-csc342/csc342-2023Spring-groupV/blob/main/Proposal/wireframes/CSC342ProjectWireframe.png) | Have some user authentication problems |
+|favorites|70%|[wireframe](https://github.ncsu.edu/engr-csc342/csc342-2023Spring-groupV/blob/main/Proposal/wireframes/CSC342ProjectWireframe.png) | Discussing how to structure database table for favorites |
+|profile | 70%| [wireframe](https://github.ncsu.edu/engr-csc342/csc342-2023Spring-groupV/blob/main/Proposal/wireframes/CSC342ProjectWireframe.png) | Can't edit user information yet |
+|homepage|100%|||
