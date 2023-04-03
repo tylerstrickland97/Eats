@@ -1,6 +1,7 @@
 import api from './APIClient.js';
 
 window.onload = () => {
+
     let currentUserId;
 
     api.getCurrentUser().then(current => {

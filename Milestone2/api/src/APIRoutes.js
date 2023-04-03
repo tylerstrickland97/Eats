@@ -85,17 +85,21 @@ apiRouter.post('/restaurants', (req, res) => {
 
 //get user by id
 apiRouter.get('/users/:userId', TokenMiddleWare, (req, res) => {
-    const userId = req.params.userId;
-    let user = users.find(user => user.id == userId);
-    if (user) {
-        res.json(user);
-    }
-    else {
-        res.status(404).json({error: "User not found"});
-    }
+    let userId = req.params.userId;
+    UserDAO.getUserById(userId).then(user => {
+        if (user) {
+            res.json(user);
+        }
+        else {
+            res.status(404).json({error: "User does not exist in the database"});
+        }
+    }).catch(err => {
+        res.json(500).json({error: err});
+    })
 });
 
-apiRouter.get('/users/current', TokenMiddleWare, (req, res) => {
+apiRouter.get('/current', TokenMiddleWare, (req, res) => {
+    console.log('hit');
     res.json(req.user);
 });
 
@@ -165,7 +169,6 @@ apiRouter.post('/login', (req, res) => {
     
           res.json(result);
         }).catch(err => {
-          console.log('here');
           res.status(400).json({error: err});
         });
       }
