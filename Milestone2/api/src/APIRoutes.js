@@ -95,6 +95,10 @@ apiRouter.get('/users/:userId', TokenMiddleWare, (req, res) => {
     }
 });
 
+apiRouter.get('/current', TokenMiddleWare, (req, res) => {
+    res.json(req.user);
+});
+
 //get user favorites
 apiRouter.get('/users/:userId/favorites', TokenMiddleWare, (req, res) => {
     // const userId = req.params.userId;

@@ -54,6 +54,9 @@ const HTTPClient = {
     getUserById: (id) => {
         return HTTPClient.get('users/' + id);
     },
+    getCurrentUser: () => {
+      return HTTPClient.get('/current');
+    },
     getUserFavorites: (id) => {
         return HTTPClient.get('/users/' + id + '/favorites');
     },
