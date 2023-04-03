@@ -64,8 +64,10 @@ window.onload = () => {
     loginButton.addEventListener('click', (e) => {
         let loginUsername = document.getElementById('login-username').value;
         let loginPassword = document.getElementById('login-password').value;
-        api.logIn(loginUsername, loginPassword).then(res => {
-            console.log(res);
+        api.logIn(loginUsername, loginPassword).then(user => {
+            document.location = "/home";
+        }).catch(err => {
+
         })
     })
 }

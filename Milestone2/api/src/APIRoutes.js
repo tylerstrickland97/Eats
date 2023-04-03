@@ -112,7 +112,7 @@ apiRouter.post('/users', (req, res) => {
     let salt = crypto.randomBytes(16).toString('hex');
     let password = req.body.password;
 
-    crypto.pbkdf2(password, salt , 10000, 64, 'sha512',function(err, derivedKey) {
+    crypto.pbkdf2(password, salt , 100000, 64, 'sha512',function(err, derivedKey) {
         if (err) {
             res.status(401).json({error: "Login Failed"});
         }
@@ -153,8 +153,6 @@ apiRouter.post('/login', (req, res) => {
     // }
     //create session?
     if(req.body.username  && req.body.password) {
-        console.log(req.body.username);
-        console.log(req.body.password);
         UserDAO.getUserByCredentials(req.body.username, req.body.password).then(user => {
           let result = {
             user: user
@@ -163,6 +161,7 @@ apiRouter.post('/login', (req, res) => {
     
           res.json(result);
         }).catch(err => {
+          console.log('here');
           res.status(400).json({error: err});
         });
       }
