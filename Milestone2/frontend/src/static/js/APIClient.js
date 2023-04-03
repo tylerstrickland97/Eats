@@ -1,5 +1,17 @@
 const API_BASE =  '/api';
 
+const handleError = (res) => {
+  if(!res.ok) {
+    if(res.status == 401) {
+      throw new Error("Authentication error");
+    }
+    else {
+      throw new Error("Error")
+    }
+  }
+  return res;
+};
+
 const HTTPClient = {
   get: (url) => {
     return fetch(`${API_BASE}${url}`)
@@ -22,13 +34,9 @@ const HTTPClient = {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
-    }).then(res => {
-      console.log(res);
-      res.json();
-    }).then(data => {
-      console.log(data)
+    }).then(handleError).then(res => {
+      return res.json();
     });
-    //then(res => {res.json()).then(data => { console.log(data) });
   },
   put: (url, data) => {
     return fetch(`${API_BASE}${url}`, {

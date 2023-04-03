@@ -167,8 +167,9 @@ apiRouter.post('/login', (req, res) => {
           }
           generateToken(req, res, user);
     
-          res.json(result);
+          res.status(200).json(result);
         }).catch(err => {
+            console.log(err);
           res.status(400).json({error: err});
         });
       }
