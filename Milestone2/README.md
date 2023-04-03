@@ -1,4 +1,4 @@
-# Milestone 1 Report
+# Milestone 2 Report
 
 ## Introduction 
 Our project, Eats, is a restaurant app in which users can view restaurants and their menu, view and add a restaurant to their favorites, view and add allergies, and view their own profile. Each restaurant includes a menu, a category, and a distance. Users will be able to edit their profile and sort the restaurants by distance, category, rating, and relevance. In addition, users will be able to edit their favorite restaurants through a favoriting action.
@@ -31,3 +31,8 @@ Tyler and Collin have played a significant role in setting up the database and c
 | POST   | /users/:userId/favorites               | Adds a restaurant to user favoritess        |
 | DELETE | /users:/userId/favorites/:restaurantId | Removes a restaurant from user favorites    |
 | POST   | /users/:userId                         | Updates a user account information          |
+
+## Pages
+| Page | Percent Complete | Wireframes | Comments |
+| ---- | ---------------- | ---------- | -------- |
+|restaurant | 100% | [wireframe](https://github.ncsu.edu/engr-csc342/csc342-2023Spring-groupV/blob/main/Proposal/wireframes/CSC342ProjectWireframe.png) | |
