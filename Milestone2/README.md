@@ -42,4 +42,4 @@ Tyler and Collin have played a significant role in setting up the database and c
 |homepage|100%||Homepage works as expected|
 
 ##ER Diagram of Database Schema
-(https://github.ncsu.edu/engr-csc342/csc342-2023Spring-groupV/blob/main/Proposal/db_schema.png)
+[](https://github.ncsu.edu/engr-csc342/csc342-2023Spring-groupV/blob/main/Proposal/db_schema.png)
