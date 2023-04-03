@@ -28,13 +28,16 @@ window.onload = () => {
         let newEmail = document.getElementById('email').value;
         let newUsername = document.getElementById('username').value;
         let newPassword = document.getElementById('password').value;
+        let successMsg = document.querySelector('.signup-success');
+        console.log(successMsg);
+
 
         api.signUp(newFirstName, newLastName, newUsername, newPassword, newEmail).then(res => {
             console.log(res);
-        }).catch(err => {
-            console.log(err);
-        })
-    })
+            successMsg.style.display = 'block';
+
+            });
+        });
 
     popupCloseButton.addEventListener('click', (e) => {
         e.preventDefault();
@@ -56,4 +59,13 @@ window.onload = () => {
     passwordConfInput.addEventListener("change", (e) => {
         checkPasswords();
     });
+
+    let loginButton = document.querySelector('.button-login');
+    loginButton.addEventListener('click', (e) => {
+        let loginUsername = document.getElementById('login-username').value;
+        let loginPassword = document.getElementById('login-password').value;
+        api.logIn(loginUsername, loginPassword).then(res => {
+            console.log(res);
+        })
+    })
 }

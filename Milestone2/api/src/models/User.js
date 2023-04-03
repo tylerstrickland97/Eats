@@ -19,7 +19,7 @@ module.exports = class {
         }
 
         const digest = derivedKey.toString('hex');
-        if (this.passwordHash == digest) {
+        if (this.password_hash == digest) {
           resolve(this);
         }
         else {

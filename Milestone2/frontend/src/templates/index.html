@@ -13,9 +13,9 @@
   <h1>Welcome to <span>Eats</span></h1>
   <div class="container">
     <form id="login">
-      <input type="text" placeholder="Username" name="username">
-      <input type="password" placeholder="Password" name="password">
-      <button type="submit" class="button-login">Login</button>    
+      <input type="text" id = 'login-username' placeholder="Username" name="username">
+      <input type="password" id = 'login-password' placeholder="Password" name="password">
+      <button type="button" class="button-login">Login</button>    
     </form>
     <div class="container-divider"></div>
     <button id="signup-button" class="button-signup">Sign Up</button>
@@ -37,6 +37,7 @@
       <label for="password-conf">Repeat Password</label>
       <input type="password" id="password-conf" name="password-conf" required>
       <div class="form-error" for="password-conf">Password does not match</div>
+      <div class = "signup-success">Successfully created account</div>
       <button type = "button" class="signup-button" id = "createaccountbtn">Sign Up</button>
     </form>
   </div>

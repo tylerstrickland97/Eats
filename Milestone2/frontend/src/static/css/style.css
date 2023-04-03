@@ -114,3 +114,9 @@ display: block;
 color: red;
 font-size: 14px;
 }
+
+.signup-success {
+  color: green;
+  font-size: 14px;
+  display: none;
+}

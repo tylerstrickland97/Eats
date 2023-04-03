@@ -4,7 +4,6 @@ const mysql = require('mysql');
 let connection;
 
 exports.getDatabaseConnection = () => {
-  console.log(process.env.DB_HOST);
   if(!connection) {
     connection = mysql.createConnection({
       host: process.env.DB_HOST,

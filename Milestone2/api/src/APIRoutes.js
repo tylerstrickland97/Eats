@@ -127,22 +127,14 @@ apiRouter.post('/users', (req, res) => {
             password_hash: digest
         }
 
-        UserDAO.createUser(user).then(user => {
-            if (user) {
-                res.json(user);
-            }
-            else {
-                res.status(400).json({error: "Error creating user"});
-            }
-        })
-        .catch(err => {
-            res.status(400).json({error: err});
-        })
+        newUser = UserDAO.createUser(user).then(usr => {
+            res.json(usr);
+        });
     });
 })
 
 //login
-apiRouter.post('/login', TokenMiddleWare, (req, res) => {
+apiRouter.post('/login', (req, res) => {
  // console.log("here login");
     // //get user by username
     // const username = req.params.username;
@@ -160,6 +152,23 @@ apiRouter.post('/login', TokenMiddleWare, (req, res) => {
     //     res.status(404).json({error: "User not found"});
     // }
     //create session?
+    if(req.body.username  && req.body.password) {
+        console.log(req.body.username);
+        console.log(req.body.password);
+        UserDAO.getUserByCredentials(req.body.username, req.body.password).then(user => {
+          let result = {
+            user: user
+          }
+          generateToken(req, res, user);
+    
+          res.json(result);
+        }).catch(err => {
+          res.status(400).json({error: err});
+        });
+      }
+      else {
+        res.status(401).json({error: 'Not authenticated'});
+      }
 })
 
 //logout
