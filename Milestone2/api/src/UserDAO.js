@@ -3,6 +3,9 @@ const User = require('./models/User');
 
 function getUserByCredentials(username, password) {
   return db.query('SELECT * FROM users WHERE username=?', [username]).then(({results}) => {
+    if (results.length == 0) {
+      throw new Error("No such user");
+    }
     const user = new User(results[0]);
     if (user) { // we found our user
       console.log(user.password_hash);

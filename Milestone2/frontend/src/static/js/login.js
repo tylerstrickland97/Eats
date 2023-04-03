@@ -72,7 +72,7 @@ window.onload = () => {
         let loginUsername = document.getElementById('login-username').value;
         let loginPassword = document.getElementById('login-password').value;
         api.logIn(loginUsername, loginPassword).then(user => {
-            document.location = "/home";
+            //document.location = "/home";
         }).catch(err => {
             loginMessage.classList.add('login-error-message');
             loginMessage.innerHTML = 'Error logging in';

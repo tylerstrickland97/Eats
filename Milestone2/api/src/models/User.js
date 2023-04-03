@@ -3,6 +3,7 @@ const crypto = require('crypto');
 module.exports = class {
 
   constructor(data) {
+    //console.log(data);
     this.first_name = data.first_name;
     this.last_name = data.last_name;
     this.username = data.username;

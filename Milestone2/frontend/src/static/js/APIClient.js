@@ -22,7 +22,13 @@ const HTTPClient = {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
-    }).then(res => res.json()).then(data => { console.log(data) });
+    }).then(res => {
+      console.log(res);
+      res.json();
+    }).then(data => {
+      console.log(data)
+    });
+    //then(res => {res.json()).then(data => { console.log(data) });
   },
   put: (url, data) => {
     return fetch(`${API_BASE}${url}`, {
