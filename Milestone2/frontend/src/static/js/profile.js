@@ -14,6 +14,9 @@ window.onload = () => {
         email.innerHTML = user.email;
         fullname.innerHTML = `${user.first_name} ${user.last_name}`;
         userid.innerHTML = user.username;
+    }).catch(err => {
+        console.log("We are not logged in");
+        document.location = '/';
     })
 }
 

@@ -115,8 +115,17 @@ color: red;
 font-size: 14px;
 }
 
-.signup-success {
+.signup-error-message {
+  color: red;
+  font-size: 14px;
+}
+
+.signup-success-message {
   color: green;
   font-size: 14px;
-  display: none;
+}
+
+.login-error-message {
+  font-size: 14px;
+  color: red;
 }

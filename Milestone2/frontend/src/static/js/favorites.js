@@ -6,6 +6,15 @@ let id = parameters.get('user');
 
 window.onload = () => {
 
+  let currentUserId;
+
+  api.getCurrentUser().then(current => {
+      currentUserId = current.id;
+  }).catch(err => {
+      console.log("We are not logged in");
+      document.location = '/';
+  });
+
     //get list of resturuant
     //does this iterate thorugh list?
     api.getUserFavorites(id).then(restaurants => {

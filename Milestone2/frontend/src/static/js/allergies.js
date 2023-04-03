@@ -5,6 +5,14 @@ let parameters = new URLSearchParams(query);
 let id = parameters.get('user');
 
 window.onload = () => {
+    let currentUserId;
+
+    api.getCurrentUser().then(current => {
+        currentUserId = current.id;
+    }).catch(err => {
+        console.log("We are not logged in");
+        document.location = '/';
+    });
     api.getAllergiesByUser(id).then(allergies => {
         allergies.forEach(allergy => {
             fillAllergyHTML(allergy);

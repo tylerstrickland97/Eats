@@ -5,6 +5,15 @@ let parameters = new URLSearchParams(query);
 let id = parameters.get('id');
 
 window.onload = () => {
+    let currentUserId;
+
+    api.getCurrentUser().then(current => {
+        currentUserId = current.id;
+    }).catch(err => {
+        console.log("We are not logged in");
+        document.location = '/';
+    });
+    
     api.getRestaurantById(id).then(restaurant => {
         loadRestaurantHTML(restaurant);
     });

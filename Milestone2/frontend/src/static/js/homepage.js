@@ -1,6 +1,15 @@
 import api from './APIClient.js';
 
 window.onload = () => {
+    let currentUserId;
+
+    api.getCurrentUser().then(current => {
+        currentUserId = current.id;
+    }).catch(err => {
+        console.log("We are not logged in");
+        document.location = '/';
+    });
+    
     api.getRestaurants().then(restaurants => {
         restaurants.forEach(restaurant => {
             fillRestaurantHTML(restaurant);

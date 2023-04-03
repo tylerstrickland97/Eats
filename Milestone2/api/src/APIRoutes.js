@@ -95,7 +95,7 @@ apiRouter.get('/users/:userId', TokenMiddleWare, (req, res) => {
     }
 });
 
-apiRouter.get('/current', TokenMiddleWare, (req, res) => {
+apiRouter.get('/users/current', TokenMiddleWare, (req, res) => {
     res.json(req.user);
 });
 

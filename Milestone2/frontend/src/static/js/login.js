@@ -28,13 +28,19 @@ window.onload = () => {
         let newEmail = document.getElementById('email').value;
         let newUsername = document.getElementById('username').value;
         let newPassword = document.getElementById('password').value;
-        let successMsg = document.querySelector('.signup-success');
-        console.log(successMsg);
+        let signupMessage = document.querySelector('.signup-message');
 
 
         api.signUp(newFirstName, newLastName, newUsername, newPassword, newEmail).then(res => {
-            console.log(res);
-            successMsg.style.display = 'block';
+            if (res) {
+                signupMessage.innerHTML = 'Successfully created account';
+                signupMessage.classList.add('signup-success-message');
+            }
+            else {
+                signupMessage.innerHTML = 'Error creating account';
+                signupMessage.classList.add('signup-error-message');
+            }
+            
 
             });
         });
@@ -61,13 +67,15 @@ window.onload = () => {
     });
 
     let loginButton = document.querySelector('.button-login');
+    let loginMessage = document.querySelector('.login-msg');
     loginButton.addEventListener('click', (e) => {
         let loginUsername = document.getElementById('login-username').value;
         let loginPassword = document.getElementById('login-password').value;
         api.logIn(loginUsername, loginPassword).then(user => {
             document.location = "/home";
         }).catch(err => {
-
+            loginMessage.classList.add('login-error-message');
+            loginMessage.innerHTML = 'Error logging in';
         })
     })
 }
