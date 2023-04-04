@@ -27,6 +27,16 @@ function getUserById(userId) {
   })
 }
 
+function getUserByUsername(userUsername) {
+  return db.query('SELECT * FROM users WHERE username=?', [userUsername]).then(({results}) => {
+    if (results[0]) {
+      return true; // User exists
+    } else {
+      return null;
+    }
+  });
+}
+
 function createUser(user) {
   let newUser = new User(user);
   return db.query('INSERT INTO users (first_name, last_name, username, email, salt, password_hash) VALUES (?, ?, ?, ?, ?, ?)',
@@ -38,6 +48,6 @@ function createUser(user) {
 module.exports = {
   getUserByCredentials: getUserByCredentials,
   getUserById: getUserById,
+  getUserByUsername: getUserByUsername,
   createUser: createUser
-
 };

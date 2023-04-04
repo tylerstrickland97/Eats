@@ -8,7 +8,7 @@ window.onload = () => {
     //signup fields
     const submitSignup = document.getElementById('signup-submit');
     const signUpUser = document.getElementById('username');
-    // const signUpPassword = document.getElementById('password');
+    //const signUpPassword = document.getElementById('password');
     const firstname = document.getElementById('fname');
     const lastname = document.getElementById('lname');
     const email = document.getElementById('email');
@@ -29,21 +29,52 @@ window.onload = () => {
         let newUsername = document.getElementById('username').value;
         let newPassword = document.getElementById('password').value;
         let signupMessage = document.querySelector('.signup-message');
-
-
-        api.signUp(newFirstName, newLastName, newUsername, newPassword, newEmail).then(res => {
-            if (res) {
-                signupMessage.innerHTML = 'Successfully created account';
-                signupMessage.classList.add('signup-success-message');
+        try {
+            if (newFirstName == '') {
+                throw new Error('Must have first name');
             }
-            else {
-                signupMessage.innerHTML = 'Error creating account';
-                signupMessage.classList.add('signup-error-message');
+            if (newLastName == '') {
+                throw new Error('Must have last name');
             }
-            
-
+            if (newEmail == '') {
+                throw new Error('Must have email');
+            }
+            if (newUsername == '') {
+                throw new Error('Must have username')
+            }
+            if (newPassword == '') {
+                throw new Error('Must have password');
+            }
+        } catch (e) {
+            signupMessage.innerHTML = 'Error creating account';
+            signupMessage.classList.add('signup-error-message');
+            return;
+        };
+        
+        api.getUserByUsername(newUsername).then(response => {
+            console.log(response.status);
+            if (response.status == "FOUND") {
+                throw new Error("User already exists");
+            }
+        })
+        .then(() => {
+            api.signUp(newFirstName, newLastName, newUsername, newPassword, newEmail).then(res => {
+                if (res) {
+                    signupMessage.innerHTML = 'Successfully created account';
+                    signupMessage.classList.add('signup-success-message');
+                    signUp.style.display = 'none';
+                }
+                else {
+                    signupMessage.innerHTML = 'Error creating account';
+                    signupMessage.classList.add('signup-error-message');
+                }
             });
+        })
+        .catch(err => {
+            signupMessage.innerHTML = 'Error creating account';
+            signupMessage.classList.add('signup-error-message');
         });
+    });
 
     popupCloseButton.addEventListener('click', (e) => {
         e.preventDefault();
@@ -58,6 +89,8 @@ window.onload = () => {
         }
     }
 
+
+
     passwordInput.addEventListener("change", (e) => {
         checkPasswords();
     });
@@ -65,6 +98,19 @@ window.onload = () => {
     passwordConfInput.addEventListener("change", (e) => {
         checkPasswords();
     });
+
+    username.addEventListener("change", (e) => {
+        api.getUserByUsername(username.value).then(response => {
+            if (response.status == "FOUND") {
+                signUpUser.setCustomValidity("Username already exists");
+            } else {
+                signUpUser.setCustomValidity("");
+            }
+        })
+        .catch((err) => {
+            console.log(`Error: ${err}`);
+        });
+    })
 
     let loginButton = document.querySelector('.button-login');
     let loginMessage = document.querySelector('.login-msg');

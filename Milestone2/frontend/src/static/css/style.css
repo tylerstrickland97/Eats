@@ -102,6 +102,14 @@ overflow: hidden;
 box-shadow: none;
 }
 
+#username:valid ~ .form-error {
+  display: none;
+}
+
+#username:invalid ~ .form-error {
+  display: block;
+}
+
 #password-conf:valid ~ .form-error {
 display: none;
 }
@@ -113,6 +121,8 @@ display: block;
 .form-error {
 color: red;
 font-size: 14px;
+padding-bottom: 4px;
+display: none;
 }
 
 .signup-error-message {

@@ -22,7 +22,7 @@ const HTTPClient = {
         throw new Error('Network response was not ok.');
       })
       .then(obj => {
-        console.log(obj);
+        //console.log(obj);
         return obj;
       })
       .catch(err => console.log(err));
@@ -67,6 +67,9 @@ const HTTPClient = {
     }, 
     getUserById: (id) => {
         return HTTPClient.get('users/' + id);
+    },
+    getUserByUsername: (username) => {
+        return HTTPClient.get('/username/' + username);
     },
     getCurrentUser: () => {
       return HTTPClient.get('/current');
