@@ -163,6 +163,15 @@ input[type=submit] {
     white-space: normal;
 }
 
+.favorite-name a {
+    text-decoration: none;
+    color: black;
+}
+
+.favorite-name a:hover {
+    text-decoration: underline;
+}
+
 .user-image {
     display: flex;
     flex-direction: column;
