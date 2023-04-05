@@ -78,6 +78,9 @@ const HTTPClient = {
     getUserById: (id) => {
         return HTTPClient.get('users/' + id);
     },
+    getUserByUsername: (username) => {
+        return HTTPClient.get('/username/' + username);
+    },
     getCurrentUser: () => {
       return HTTPClient.get('/current');
     },
