@@ -1,5 +1,6 @@
 const db = require('./DBConnection');
 const User = require('./models/User');
+const Favorite = require('./models/Favorite');
 
 function getUserByCredentials(username, password) {
   return db.query('SELECT * FROM users WHERE username=?', [username]).then(({results}) => {
@@ -21,7 +22,7 @@ function getUserById(userId) {
   return db.query('SELECT * FROM users WHERE user_id=?', [userId]).then(({results}) => {
     if (results[0]) {
       let newUser = new User(results[0]);
-      console.log(newUser);
+      //console.log(newUser);
       return newUser;
     }
   })
@@ -35,9 +36,38 @@ function createUser(user) {
   });
 }
 
+function addToUserFavorites(userId, restaurantId) {
+  return db.query('INSERT INTO favorites (user_id, restaurant_id) VALUES (?, ?)', [userId, restaurantId]).then(({results}) => {
+    return results.insertId;
+  })
+}
+
+function getFavorite(userId, restaurantId) {
+  return db.query('SELECT * FROM favorites WHERE user_id=? AND restaurant_id=?', [userId, restaurantId]).then(({results}) => {
+    if (results[0]) {
+      return new Favorite(results[0]);
+    }
+  });
+}
+
+function getUserFavorites(userId) {
+  return db.query('SELECT * FROM favorites WHERE user_id=?', [userId]).then(({results}) => {
+    return results;
+  })
+}
+
+function removeUserFavorite(userId, restaurantId) {
+  return db.query('DELETE FROM favorites WHERE user_id=? AND restaurant_id=?', [userId, restaurantId]).then(({results}) => {
+    console.log(results);
+    return results;
+  })
+}
+
 module.exports = {
   getUserByCredentials: getUserByCredentials,
   getUserById: getUserById,
-  createUser: createUser
-
+  createUser: createUser,
+  addToUserFavorites: addToUserFavorites,
+  getUserFavorites: getUserFavorites,
+  removeUserFavorite, removeUserFavorite
 };

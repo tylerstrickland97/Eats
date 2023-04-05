@@ -17,7 +17,8 @@ function getRestaurantById(restaurantId) {
 }
 
 function getRestaurantByName(restaurantName) {
-    return db.query('SELECT * FROM restaurants WHERE restaurant_name=?', [restaurantName]).then(({results}) => {
+    //console.log(restaurantName);
+    return db.query('SELECT * FROM restaurants WHERE restaurant_name=\'' + restaurantName + '\'').then(({results}) => {
         if (results[0]) {
             return new Restaurant(results[0]);
         }

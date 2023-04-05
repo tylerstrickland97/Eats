@@ -22,7 +22,6 @@ const HTTPClient = {
         throw new Error('Network response was not ok.');
       })
       .then(obj => {
-        console.log(obj);
         return obj;
       })
       .catch(err => console.log(err));
@@ -46,6 +45,17 @@ const HTTPClient = {
       },
       body: JSON.stringify(data)
     }).then(res => res.json()).then(data => { console.log(data) });
+  },
+  delete: (url, data) => {
+    return fetch(`${API_BASE}${url}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then(handleError).then(res => {
+      return res.json();
+    });
   }
 };
 
@@ -100,5 +110,21 @@ const HTTPClient = {
   
     logOut: () => {
       return HTTPClient.post('/logout', {});
+    },
+
+    addUserFavorite: (userId, restaurantName) => {
+      let data = {
+        restaurantName: restaurantName,
+        userId: userId
+      }
+      return HTTPClient.post('/users/' + userId + '/favorites', data);
+    },
+
+    removeUserFavorite: (userId, restaurantId) => {
+      let data = {
+        userId: userId,
+        restaurantId: restaurantId
+      }
+      return HTTPClient.delete('/users/' + userId + '/favorites/' + restaurantId, data);
     }
   };

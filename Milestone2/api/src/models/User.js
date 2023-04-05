@@ -3,7 +3,7 @@ const crypto = require('crypto');
 module.exports = class {
 
   constructor(data) {
-    //console.log(data);
+    this.id = data.user_id;
     this.first_name = data.first_name;
     this.last_name = data.last_name;
     this.username = data.username;
@@ -32,6 +32,7 @@ module.exports = class {
 
   toJSON() {
     return {
+      id: this.id,
       first_name: this.first_name,
       last_name: this.last_name,
       username: this.username,

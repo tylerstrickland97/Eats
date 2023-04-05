@@ -105,15 +105,17 @@ apiRouter.get('/current', TokenMiddleWare, (req, res) => {
 
 //get user favorites
 apiRouter.get('/users/:userId/favorites', TokenMiddleWare, (req, res) => {
-    // const userId = req.params.userId;
-    // let user = users.find(user => user.id == userId);
-    // if (user) {
-    //     res.json(user.favorites);
-    // }
-    // else {
-    //     res.status(404).json({error: "User not found"});
-    // }
-    res.status(500).json({error: "Not implemented yet"});
+    let userId = req.params.userId;
+    UserDAO.getUserFavorites(userId).then(results => {
+        if (results) {
+            res.json(results);
+        }
+        else {
+            res.status(400).json({error: "No favorites found for this user"});
+        }
+    }).catch(err => {
+        res.status(400).json({error: err});
+    })
 })
 //create user
 apiRouter.post('/users', (req, res) => {
@@ -143,23 +145,6 @@ apiRouter.post('/users', (req, res) => {
 
 //login
 apiRouter.post('/login', (req, res) => {
- // console.log("here login");
-    // //get user by username
-    // const username = req.params.username;
-    // //find user from username
-    // let user = users.find(user => user.username == username);
-
-    // //find password from username
-    // const pass = req.params.password;
-    // let userPass = users.find(userPass => user.password == pass);
-
-    // if (userPass) {
-    //     //user is successfully logged in
-    // }
-    // else {
-    //     res.status(404).json({error: "User not found"});
-    // }
-    //create session?
     if(req.body.username  && req.body.password) {
         UserDAO.getUserByCredentials(req.body.username, req.body.password).then(user => {
           let result = {
@@ -216,30 +201,39 @@ apiRouter.delete('/users/:userId/allergies/:name', TokenMiddleWare, (req, res) =
 
 //Add to user favorites
 apiRouter.post('/users/:userId/favorites', TokenMiddleWare, (req, res) => {
-    // const userId = req.params.userId;
-    // let user = users.find(user => user.id == userId);
-    // let newFav = req.body;
-    // user.favorites.push(newFav);
-    // res.json(user.favorites);
+    //Get the restaurant name in the parameters
+    let restaurantName = req.body.restaurantName;
+    let userId = req.body.userId;
+    RestaurantDAO.getRestaurantByName(restaurantName).then(restaurant => {
+        if (restaurant) {
+            let restaurantId = restaurant.id;
+            UserDAO.addToUserFavorites(userId, restaurantId).then(result => {
+                res.json(result);
+            }).catch(err => {
+                console.log('problem in userDao');
+                console.log(err);
+            });
+        }
+        else {
+            console.log('no restaurant');
+            res.status(400).json({err: "The restaurant does not exist in the database"});
+        }
+    }).catch(err => {
+        console.log(err);
+        res.status(400).json({error: err});
+    })
 });
 
 
 //Remove from user favorites
 apiRouter.delete('/users/:userId/favorites/:restaurantId', TokenMiddleWare, (req, res) => {
-    // const userId = req.params.userId;
-    // const favId = req.params.restaurantId;
-    // let user = users.find(user => user.id == userId);
-    // if (!user) {
-    //     res.status(400).json({error: "The user does not exist"});
-    // }
-    // let favorite = user.favorites.find(fav => fav.id == favId);
-    // if (!favorite) {
-    //     res.status(400).json({error: "This restaurant is not in the user favorites"});
-    // }
-    // let idx = user.favorites.indexOf(favorite);
-    // user.favorites.splice(idx, 1);
-    // res.json(user.favorites);
-    res.status(501).json({error: 'Not implemented'});
+    let userId = req.params.userId;
+    let restaurantId = req.params.restaurantId;
+    UserDAO.removeUserFavorite(userId, restaurantId).then(result => {
+        res.json({success: "Successfully removed from favorites"});
+    }).catch(err => {
+        res.status(400).json({error: err});
+    })
 });
 
 //edit account information

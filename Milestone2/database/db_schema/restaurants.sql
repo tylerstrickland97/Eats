@@ -114,3 +114,17 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2023-04-02 12:30:59
+
+DROP TABLE IF EXISTS `favorites`;
+
+CREATE TABLE `favorites` (
+  `favorite_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL,
+  `restaurant_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`favorite_id`),
+  CONSTRAINT `favorites_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  CONSTRAINT `favorites_ibfk_2` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`restaurant_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `favorites`
+  ADD CONSTRAINT `favorites` UNIQUE(`user_id`, `restaurant_id`);
