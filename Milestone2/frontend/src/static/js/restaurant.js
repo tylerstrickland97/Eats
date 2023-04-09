@@ -116,15 +116,11 @@ window.onload = () => {
 
        let menuItemBasic = document.createElement('div');
        menuItemBasic.className = "menu-item-basic";
-
-       let menuItemName = document.createElement('div');
-       menuItemName.className = "menu-item-name";
-       menuItemName.innerHTML = menu.name;
        
        let menuItemPrice = document.createElement('div');
        menuItemPrice.className = "menu-item-price";
        //menuItemPrice.innerHTML = `\$${menu.price}`;
-       menuItemBasic.appendChild(menuItemName);
+       menuItemBasic.appendChild(fillMenuNameHTML(menu.name));
        //menuItemBasic.appendChild(menuItemPrice);
 
        menuItem.appendChild(menuItemBasic);
@@ -179,6 +175,56 @@ window.onload = () => {
        menuItem.appendChild(menuItemInfo);
 
        return menuItem;
+    }
+
+    function fillMenuNameHTML(name) {
+      let menuItemName = document.createElement('div');
+      menuItemName.className = "menu-item-name";
+      menuItemName.innerHTML = name;
+
+      let itemImgFileName = getMenuImg(name.toLowerCase());
+      let menuItemImg = document.createElement('img');
+      menuItemImg.src = '/imgs/' + itemImgFileName + '.png';
+      menuItemName.appendChild(menuItemImg);
+      return menuItemName;
+
+      
+    }
+
+    function getMenuImg(item) {
+      if (item.includes('burger')) {
+        return 'cheeseburger'
+      }
+      else if (item.includes('pizza')) {
+        return 'pizza'
+      }
+      else if (item.includes('sandwich') || item.includes('blt') || item.includes('club') || item.includes('sub')) {
+        return 'sandwich';
+      }
+      else if (item.includes('coffee') || item.includes('caffe') || item.includes('latte') || item.includes('cappucino') || item.includes('americano') || item.includes('frappe') || item.includes('mocha')) {
+        return 'coffee-cup'
+      }
+      else if (item.includes('coke') || item.includes('juice') || item.includes('pepsi') || item.includes('soda') || item.includes('lemonade') || item.includes('slushie') || item.includes('milk') || item.includes('freeze') || item.includes('sprite') || item.includes('coca cola') || item.includes('cheerwine') || item.includes('fanta') || item.includes('sunkist') || item.includes('tea') || item.includes('punch')) {
+        return 'drink';
+      }
+      else if (item.includes('taco')) {
+        return 'taco';
+      }
+      else if (item.includes('beer') || item.includes('cerveza') || item.includes('margarita') || item.includes('wine')) {
+        return 'champagne';
+      }
+      else if (item.includes('soup') || item.includes('oatmeal') || item.includes('cereal') || item.includes('chowder')) {
+        return 'bowl';
+      }
+      else if (item.includes('pasta') || item.includes('spaghetti') || item.includes('noodle') || item.includes('alfredo') || item.includes('marsala') || item.includes('penne') || item.includes('fettuccine') || item.includes('rigatoni') || item.includes('ravioli') || item.includes('lasagna') || item.includes('ziti')) {
+        return 'pasta';
+      }
+      else if (item.includes('seafood') || item.includes('calamari') || item.includes('fish') || item.includes('salmon') || item.includes('lobster') || item.includes('shrimp') || item.includes('crab') || item.includes('flounder') || item.includes('shellfish')) {
+        return 'lobster';
+      }
+      else {
+        return 'fork';
+      }
     }
 }
 

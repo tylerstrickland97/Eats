@@ -112,6 +112,13 @@ header {
 
 .menu-item-name {
     font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu-item-name img {
+    width: 24px;
+    height: 24px;
 }
 
 .menu-item-price {
