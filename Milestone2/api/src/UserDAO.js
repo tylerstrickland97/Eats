@@ -18,6 +18,14 @@ function getUserByCredentials(username, password) {
   });
 }
 
+function getUserByUsername(username) {
+  return db.query('SELECT * FROM users WHERE username=?', [usernme]).then(({results}) => {
+    if (results[0]) {
+      return new User(results[0]);
+    }
+  })
+}
+
 function getUserById(userId) {
   return db.query('SELECT * FROM users WHERE user_id=?', [userId]).then(({results}) => {
     if (results[0]) {
@@ -75,6 +83,7 @@ function removeUserFavorite(userId, restaurantId) {
 
 module.exports = {
   getUserByCredentials: getUserByCredentials,
+  getUserByUsername: getUserByUsername,
   getUserById: getUserById,
   createUser: createUser,
   addToUserFavorites: addToUserFavorites,

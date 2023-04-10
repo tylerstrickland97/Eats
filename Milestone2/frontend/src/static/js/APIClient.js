@@ -87,6 +87,9 @@ const HTTPClient = {
     getUserFavorites: (id) => {
         return HTTPClient.get('/users/' + id + '/favorites');
     },
+    getAllergies: () => {
+      return HTTPClient.get('/allergies');
+    },
     getAllergiesByUser: (id) => {
       return HTTPClient.get('/users/' + id + '/allergies');
     },

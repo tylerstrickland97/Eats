@@ -128,3 +128,25 @@ CREATE TABLE `favorites` (
 
 ALTER TABLE `favorites`
   ADD CONSTRAINT `favorites` UNIQUE(`user_id`, `restaurant_id`);
+
+DROP TABLE IF EXISTS `allergies`;
+
+CREATE TABLE `allergies`(
+  `allergy_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `allergy_type` varchar(100) NOT NULL,
+  PRIMARY KEY (`allergy_id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `allergies` (`allergy_id`, `allergy_type`) VALUES (1, 'Dairy'), (2, 'Egg'), (3, 'Soy'), (4, 'Peanut'), (5, 'Shellfish'), (6, 'Fish'), (7, 'Gluten'), (8, 'Treenut'), (9, 'Chicken'), (10, 'Beef');
+
+CREATE TABLE `user_allergies`(
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL,
+  `allergy_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `allergies_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  CONSTRAINT `allergies_ibfk_2` FOREIGN KEY (`allergy_id`) REFERENCES `allergies` (`allergy_id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `user_allergies`
+  ADD CONSTRAINT `allergies` UNIQUE(`user_id`, `allergy_id`);

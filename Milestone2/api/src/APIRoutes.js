@@ -9,6 +9,7 @@ apiRouter.use(cookieParser());
 const RestaurantDAO = require('./RestaurantDAO');
 const UserDAO = require('./UserDAO');
 const MenuDAO = require('./MenuDAO');
+const AllergiesDAO = require('./AllergiesDAO');
 
 const {TokenMiddleWare, generateToken, removeToken} = require('./TokenMiddleWare');
 apiRouter.use(express.json());
@@ -184,33 +185,56 @@ apiRouter.post('/logout', TokenMiddleWare, (req, res) => {
     res.json({success: true});
 });
 
+apiRouter.get('/allergies', TokenMiddleWare, (req, res) => {
+    AllergiesDAO.getAllergies().then(allergies => {
+        if (allergies) {
+            res.json(allergies);
+        }
+        else {
+            res.status(500).json({error: "Internal error"});
+        }
+    }).catch(err => {
+        res.status(400).json({error: err});
+    })
+})
+
 //get user allergies
 apiRouter.get('/users/:userId/allergies', TokenMiddleWare, (req, res) => {
-    // const userId = req.params.userId;
-    // let user = users.find(user => user.id == userId);
-    // if (user) {
-    //     res.json(user.allergies);
-    // }
-    // else {
-    //     res.status(404).json({error: "User not found"});
-    // }
+    const userId = req.params.userId;
+    AllergiesDAO.getUserAllergies(userId).then(results => {
+        if (results) {
+            res.json(results);
+        }
+        else {
+            res.status(500).json({error: "Internal error"})
+        }
+    }).catch(err => {
+        res.status(400).json({error: err});
+    })
     res.status(500).json({error: "Not yet implemented"});
 });
 
 //add user allergies
 apiRouter.post('/users/:userId/allergies', TokenMiddleWare, (req, res) => {
-    // const userId = req.params.userId;
-    // let user = users.find(user => user.id == userId);
-    // let newAllergy = req.body;
-    // user.allergies.push(newAllergy);
-    // res.json(user.allergies);
+    const type = req.body.type;
+    const userId = req.params.userId;
+    AllergiesDAO.addUserAllergy(userId, type).then(result => {
+        res.json(result);
+    }).catch(err => {
+        res.status(400).json({error: err});
+    })
 });
 
 //delete user allergies
 apiRouter.delete('/users/:userId/allergies/:name', TokenMiddleWare, (req, res) => {
-    // const userId = req.params.userId;
-    // let user = users.find(user => user.id == userId);
-    // //probably need ids or names for the allergy
+    const userId = req.params.userId;
+    const type = req.params.name;
+
+    AllergiesDAO.deleteUserAllergy(userId, type).then(results => {
+        res.json(results);
+    }).catch(err => {
+        res.status(400).json({error: err});
+    })
 
 });
 

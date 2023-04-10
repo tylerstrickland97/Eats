@@ -15,6 +15,7 @@ window.onload = () => {
         fullname.innerHTML = `${user.first_name} ${user.last_name}`;
         userid.innerHTML = user.username;
         loadFavorites(user.id);
+        loadAllergies(user.id);
     }).catch(err => {
         console.log("We are not logged in");
         document.location = '/';
@@ -25,6 +26,34 @@ function filterRestaurantName(restaurant_name) {
     let filtered_name = restaurant_name.replaceAll(/[^A-Za-z\s]/g, '');
     filtered_name = filtered_name.replaceAll(' ', '-');
     return filtered_name;
+}
+
+function loadAllergies(userId) {
+    const userAllergens = document.querySelector('.user-allergens');
+    let allergiesSelection = document.createElement('select');
+
+    let allergiesSelectionPlaceholder = document.createElement('option');
+    allergiesSelectionPlaceholder.disabled = 'disabled';
+    allergiesSelectionPlaceholder.selected = 'selected';
+    allergiesSelectionPlaceholder.innerHTML = "Add a new allergy";
+    allergiesSelection.appendChild(allergiesSelectionPlaceholder);
+    api.getAllergies().then(allergies => {
+        allergies.forEach(allergy => {
+            fillAllergiesSelection(allergy, allergiesSelection);
+        })
+    }).catch(err => {
+        console.log(err);
+    });
+
+    userAllergens.appendChild(allergiesSelection);
+}
+
+function fillAllergiesSelection(allergy, selection) {
+    let newOption = document.createElement('option');
+    newOption.value = allergy.type;
+    newOption.innerHTML = allergy.type;
+    console.log(newOption);
+    selection.appendChild(newOption);
 }
 
 function loadFavorites(userId) {
