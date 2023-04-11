@@ -115,7 +115,6 @@ apiRouter.get('/username/:userUsername', (req, res) => {
 });
 
 apiRouter.get('/current', TokenMiddleWare, (req, res) => {
-    console.log('hit');
     res.json(req.user);
 });
 
@@ -210,15 +209,29 @@ apiRouter.get('/users/:userId/allergies', TokenMiddleWare, (req, res) => {
         }
     }).catch(err => {
         res.status(400).json({error: err});
-    })
-    res.status(500).json({error: "Not yet implemented"});
+    });
 });
+
+//get allergy by id
+apiRouter.get('/allergies/:id', TokenMiddleWare, (req, res) => {
+    const id  = req.params.id;
+    AllergiesDAO.getAllergyById(id).then(result => {
+        if (result) {
+            res.json(result);
+        }
+        else {
+            res.status(500).json(({error: "Internal error"}));
+        }
+    }).catch(err => {
+        res.status(400).json({error: err});
+    })
+})
 
 //add user allergies
 apiRouter.post('/users/:userId/allergies', TokenMiddleWare, (req, res) => {
-    const type = req.body.type;
+    const allergyId = req.body.allergyId;
     const userId = req.params.userId;
-    AllergiesDAO.addUserAllergy(userId, type).then(result => {
+    AllergiesDAO.addUserAllergy(userId, allergyId).then(result => {
         res.json(result);
     }).catch(err => {
         res.status(400).json({error: err});
@@ -229,11 +242,14 @@ apiRouter.post('/users/:userId/allergies', TokenMiddleWare, (req, res) => {
 apiRouter.delete('/users/:userId/allergies/:name', TokenMiddleWare, (req, res) => {
     const userId = req.params.userId;
     const type = req.params.name;
-
-    AllergiesDAO.deleteUserAllergy(userId, type).then(results => {
-        res.json(results);
+    AllergiesDAO.getAllergyByType(type).then(allergy => {
+        AllergiesDAO.deleteUserAllergy(userId, allergy.id).then(results => {
+            res.json({success: "Successfully removed from allergens"});
+        }).catch(err => {
+            res.status(400).json({error: err});
+        })
     }).catch(err => {
-        res.status(400).json({error: err});
+        res.status(500).json({error: err});
     })
 
 });

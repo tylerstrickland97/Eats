@@ -118,6 +118,10 @@ const HTTPClient = {
       return HTTPClient.post('/logout', {});
     },
 
+    getAllergyById(allergyId) {
+      return HTTPClient.get('/allergies/' + allergyId);
+    },
+
     addUserFavorite: (userId, restaurantName) => {
       let data = {
         restaurantName: restaurantName,
@@ -126,11 +130,23 @@ const HTTPClient = {
       return HTTPClient.post('/users/' + userId + '/favorites', data);
     },
 
+    addUserAllergy: (userId, allergyId) => {
+      let data = {
+        allergyId: allergyId
+      }
+      return HTTPClient.post('/users/' + userId + '/allergies', data);
+    },
+
     removeUserFavorite: (userId, restaurantId) => {
       let data = {
         userId: userId,
         restaurantId: restaurantId
       }
       return HTTPClient.delete('/users/' + userId + '/favorites/' + restaurantId, data);
+    },
+
+    removeUserAllergy: (userId, name) => {
+      let data = {};
+      return HTTPClient.delete('/users/' + userId + '/allergies/' + name, data);
     }
   };

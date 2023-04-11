@@ -30,6 +30,30 @@ function filterRestaurantName(restaurant_name) {
 
 function loadAllergies(userId) {
     const userAllergens = document.querySelector('.user-allergens');
+    userAllergens.innerHTML = '';
+    api.getAllergiesByUser(userId).then(allergies => {
+        if (allergies.length == 0) {
+            let noAllergiesMsg = document.createElement('h3');
+            noAllergiesMsg.innerHTML = "You have no reported allergies";
+            userAllergens.appendChild(noAllergiesMsg);
+        }
+        else {
+            allergies.forEach(allergy => {
+                api.getAllergyById(allergy.allergy_id).then(result => {
+                    fillAllergyHTML(result, userId);
+                });
+            })
+        }
+    }).catch(err => {
+        console.log(err);
+    });
+    fillAllergiesSelection(userId);
+}
+
+function fillAllergiesSelection(userId) {
+    const userAllergens = document.querySelector('.user-allergens');
+    const allergensSelectionContainer = document.createElement('div');
+    allergensSelectionContainer.classList.add('allergen-container');
     let allergiesSelection = document.createElement('select');
 
     let allergiesSelectionPlaceholder = document.createElement('option');
@@ -39,20 +63,62 @@ function loadAllergies(userId) {
     allergiesSelection.appendChild(allergiesSelectionPlaceholder);
     api.getAllergies().then(allergies => {
         allergies.forEach(allergy => {
-            fillAllergiesSelection(allergy, allergiesSelection);
+            addAllergyToSelection(allergy, allergiesSelection, userId);
         })
     }).catch(err => {
         console.log(err);
     });
 
-    userAllergens.appendChild(allergiesSelection);
+    let addButton = document.createElement('button');
+    addButton.innerHTML = "Add Allergen";
+    addButton.addEventListener('click', function() {
+        let allergyId = allergiesSelection.selectedIndex;
+        api.addUserAllergy(userId, allergyId).then(result => {
+            console.log('Successfully added allergy');
+            loadAllergies(userId);
+        }).catch(err => {
+            console.log(err);
+        });
+    });
+    allergensSelectionContainer.appendChild(allergiesSelection);
+    allergensSelectionContainer.appendChild(addButton);
+    userAllergens.appendChild(allergensSelectionContainer);
 }
 
-function fillAllergiesSelection(allergy, selection) {
+function fillAllergyHTML(allergy, userId) {
+    let mainContainer = document.querySelector('.user-allergens');
+    let allergenContainer = document.createElement('div');
+    allergenContainer.classList.add('allergen-container');
+    let nameDiv = document.createElement('div');
+    nameDiv.innerHTML = allergy.type;
+
+    let buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('allergen-button-container');
+    let removeButton = document.createElement('button');
+    removeButton.innerHTML = 'Remove';
+    removeButton.addEventListener('click', function() {
+        api.removeUserAllergy(userId, allergy.type).then(results => {
+            if (results) {
+                loadAllergies(userId);
+            }
+            else {
+                console.log('Failed to remove');
+            }
+        }).catch(err => {
+            console.log(err);
+        })
+    });
+    buttonContainer.appendChild(removeButton);
+
+    allergenContainer.appendChild(nameDiv);
+    allergenContainer.appendChild(buttonContainer);
+    mainContainer.appendChild(allergenContainer);
+}
+
+function addAllergyToSelection(allergy, selection, userId) {
     let newOption = document.createElement('option');
     newOption.value = allergy.type;
     newOption.innerHTML = allergy.type;
-    console.log(newOption);
     selection.appendChild(newOption);
 }
 
@@ -60,7 +126,7 @@ function loadFavorites(userId) {
     const userFavorites = document.querySelector('.user-favorites');
     api.getUserFavorites(userId).then(favorites => {
         if (favorites.length == 0) {
-            let noFavoritesText = document.createElement('p');
+            let noFavoritesText = document.createElement('h3');
             noFavoritesText.innerHTML = "You currently have no favorites";
             userFavorites.appendChild(noFavoritesText);
         }
