@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eats</title>
+    <script src="../js/allergies.js" type="module"></script>
+    <!-- Use for image in header next to Eats <link rel="icon" type="image/png" href="PATH_TO_IMAGE"> -->
+    <link rel="stylesheet" href="css/homepage.css">
+</head>
+
+<body>
+    <!-- <div style="margin-left:25%">
+      ... page content ...
+      </div> -->
+    <header style="top:0%">
+        <div class="header-left">
+            <image class="img-profile" src="../../imgs/temp-profile-img.png"></image>
+        </div>
+        <div class="header-middle">
+            <input class="search-bar" type="text" placeholder="Search">
+            <button class="search-button">
+                <img class="search-img" src="../../imgs/search-icon.png">
+            </button>
+        </div>
+        <div class="header-right">
+            <div class="sort-dropdown">
+                <button class="sort-button">Sort</button>
+                <div class="sort-dropdown-items">
+                    <a href="#">Distance</a>
+                    <a href="#">Rating</a>
+                    <a href="#">Favorites</a>
+                    <a href="#">Relevance</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <aside style="width:25%">
+        <h3>Menu</h3>
+        <a href="homepage.html">Home</a><br>
+        <a href="favorites.html">Favorites</a><br>
+        <a href="allergies.html">My Allergies</a>
+    </aside>
+
+    <div style="margin-left:25%">
+        <h1>My Allergies</h1>
+        <div class="container">
+            <div class="allergy-grid">
+                <div class="allergy-preview">
+                    <!-- <div class="allergy-image">
+                        <image clas="allergy-logo" src="imgs/temp-allergy-logo.png"></image>
+                        <button class="favorite-button">
+                            <image src="imgs/star.webp"></image>
+                        </button>
+                    </div> -->
+                    <div class="allergy-info"></div>
+                    <p class="allergy-name">Allergies</p>
+                    <div id="allergies">
+
+                    </div>
+                    <!-- Commenting these two out assuming they were placce holders 
+                    <div class="allergy-details">
+                        <p class="allergy">Shellfish</p>
+                        <button class="allergy-style">Delete</button>
+                    </div>
+                    <div class="allergy-details">
+                        <p class="allergy">Peanut Butter</p>
+                        <button class="allergy-style">Delete</button>
+                    </div> -->
+                </div>
+
+                <div class="allergy-preview">
+                    <!-- <div class="allergy-image">
+                        <image clas="allergy-logo" src="imgs/temp-allergy-logo.png"></image>
+                        <button class="favorite-button">
+                            <image src="imgs/star.webp"></image>
+                        </button>
+                    </div> -->
+                    <!-- <div class="allergy-info"></div> -->
+                    <p class="allergy-name">Add Allergy</p>
+                    <!-- doubt this is valid -->
+                    <form action="/users/:userId/allergies" method="post">
+                        <div class="allergy-details">
+                            <input type="text" class="allergy"></p>
+                            <button type="submit" class="allergy-style">Add Allergy</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaving this here just in case -->
+</body>
+
+</html>
