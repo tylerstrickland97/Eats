@@ -6,19 +6,34 @@ window.onload = () => {
     //const signupForm = document.getElementById('signup-form');
 
     //signup fields
-    const submitSignup = document.getElementById('signup-submit');
-    const signUpUser = document.getElementById('username');
-    //const signUpPassword = document.getElementById('password');
-    const firstname = document.getElementById('fname');
-    const lastname = document.getElementById('lname');
-    const email = document.getElementById('email');
+    let submitSignup = document.getElementById('signup-submit');
+    let signUpUser = document.getElementById('username');
+    let signUpPassword = document.getElementById('password');
+    let passwordConfInput = document.getElementById('password-conf');
+    let firstname = document.getElementById('fname');
+    let lastname = document.getElementById('lname');
+    let email = document.getElementById('email');
 
     const createAccountButton = document.getElementById('createaccountbtn');
     const popupCloseButton = document.getElementById('popup-close-button');
-    const passwordInput = document.getElementById('password');
-    let passwordConfInput = document.getElementById('password-conf');
     signupButton.addEventListener('click', (e) => {
         e.preventDefault();
+        checkPasswords();
+        let err = document.getElementById('username-taken');
+        if (username.value != '') {
+            api.getUserByUsername(username.value).then(response => {
+                if (response.status == "FOUND") {
+                    err.style.display = 'block';
+                    signUpUser.setCustomValidity("Username already exists");
+                } else {
+                    signUpUser.setCustomValidity("");
+                    err.style.display = 'none';
+                }
+            })
+            .catch((err) => {
+                console.log(`Error: ${err}`);
+            });
+        }
         signUp.style.display = 'block';
     });
 
@@ -45,8 +60,11 @@ window.onload = () => {
             if (newPassword == '') {
                 throw new Error('Must have password');
             }
+            if (!checkPasswords()) {
+                throw new Error('Password fields must match');
+            }
         } catch (e) {
-            signupMessage.innerHTML = 'Error creating account';
+            signupMessage.innerHTML = `Error creating account: ${e.message}`;
             signupMessage.classList.add('signup-error-message');
             return;
         };
@@ -59,10 +77,25 @@ window.onload = () => {
         })
         .then(() => {
             api.signUp(newFirstName, newLastName, newUsername, newPassword, newEmail).then(res => {
+                console.log(res);
                 if (res) {
                     signupMessage.innerHTML = 'Successfully created account';
                     signupMessage.classList.add('signup-success-message');
                     signUp.style.display = 'none';
+                    // Reset form fields
+                    signUpUser.innerHTML = '';
+                    signUpPassword.innerHTML = '';
+                    passwordConfInput.innerHTML = '';
+                    firstname.innerHTML = '';
+                    lastname.innerHTML = '';
+                    email.innerHTML = '';
+                    // Login user on successful signup
+                    api.logIn(newUsername, newPassword).then(user => {
+                        document.location = "/home";
+                    }).catch(err => {
+                        loginMessage.classList.add('login-error-message');
+                        loginMessage.innerHTML = 'Error logging in';
+                    })
                 }
                 else {
                     signupMessage.innerHTML = 'Error creating account';
@@ -70,8 +103,8 @@ window.onload = () => {
                 }
             });
         })
-        .catch(err => {
-            signupMessage.innerHTML = 'Error creating account';
+        .catch(e => {
+            signupMessage.innerHTML = `Error creating account: ${e.message}`;
             signupMessage.classList.add('signup-error-message');
         });
     });
@@ -82,29 +115,41 @@ window.onload = () => {
     });
 
     function checkPasswords() {
-        if (passwordInput.value != passwordConfInput.value) {
+        let err = document.getElementById('password-mismatch');
+        if (signUpPassword.value != passwordConfInput.value) {
+            err.style.display = "block";
             passwordConfInput.setCustomValidity("Password does not match");
+            return false;
         } else {
+            err.style.display = "none";
             passwordConfInput.setCustomValidity("");
+            return true;
         }
     }
 
 
 
-    passwordInput.addEventListener("change", (e) => {
+    signUpPassword.addEventListener("input", (e) => {
         checkPasswords();
     });
 
-    passwordConfInput.addEventListener("change", (e) => {
+    passwordConfInput.addEventListener("input", (e) => {
         checkPasswords();
     });
 
-    username.addEventListener("change", (e) => {
+    username.addEventListener("input", (e) => {
+        let err = document.getElementById('username-taken');
+        if (username.value == '') {
+            err.style.display = 'none';
+            return;
+        }
         api.getUserByUsername(username.value).then(response => {
             if (response.status == "FOUND") {
+                err.style.display = 'block';
                 signUpUser.setCustomValidity("Username already exists");
             } else {
                 signUpUser.setCustomValidity("");
+                err.style.display = 'none';
             }
         })
         .catch((err) => {

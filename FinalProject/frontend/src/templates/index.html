@@ -10,18 +10,31 @@
   <script src="js/login.js" type="module"></script>
 </head>
 <body>
-  <h1>Welcome to <span>Eats</span></h1>
+  <!-- <h1>Welcome to <span>Eats</span></h1> -->
   <div class="container">
-    <form id="login">
-      <input type="text" id = 'login-username' placeholder="Username" name="username">
-      <input type="password" id = 'login-password' placeholder="Password" name="password">
-      <button type="button" class="button-login">Login</button>
-      <div class = 'login-msg'></div>    
-    </form>
-    <div class="container-divider"></div>
-    <button id="signup-button" class="button-signup">Sign Up</button>
+    <div class="container-information">
+      <div class="eats-title">
+        <div>
+          <h4>Welcome to</h2>
+          <h1>EATS</h1>
+        </div>
+      </div>
+    </div>
+    <div class="container-login">
+      <div>
+        <div class="container-title">Login or Sign Up</div>
+        <form id="login">
+          <input type="text" id = 'login-username' placeholder="Username" name="username">
+          <input type="password" id = 'login-password' placeholder="Password" name="password">
+          <button type="button" class="button-login">Login</button>
+          <div class = 'login-msg'></div>    
+        </form>
+        <div class="container-divider"></div>
+        <button id="signup-button" class="button-signup">Sign Up</button>
+      </div>
+    </div>
   </div>
-  <div class="container popup" id="popup">
+  <div class="popup" id="popup">
     <form id="signup-form">
       <button id="popup-close-button">X</button>
       <h2>Create a new account</h2>
@@ -33,14 +46,14 @@
       <input type="text" id="email" name="email" required>
       <label for="username">Username</label>
       <input type="text" id="username" name="username" required pattern="[A-Za-z0-9]+">
-      <div class="form-error" for="username">Username already taken</div>
+      <div class="form-error" id="username-taken" for="username">Username already taken</div>
       <label for="password">Password</label>
       <input type="password" id="password" name="password" required>
       <label for="password-conf">Repeat Password</label>
       <input type="password" id="password-conf" name="password-conf" required>
-      <div class="form-error" for="password-conf">Password does not match</div>
+      <div class="form-error" id="password-mismatch" for="password-conf">Password does not match</div>
       <div class = "signup-message"></div>
-      <button type = "button" class="signup-button" id = "createaccountbtn">Sign Up</button>
+      <button type = "button" class="button-signup" id = "createaccountbtn">Sign Up</button>
     </form>
   </div>
 </body>

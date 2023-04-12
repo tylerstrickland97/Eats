@@ -1,6 +1,18 @@
 import api from './APIClient.js';
 
 window.onload = () => {
+
+    const logoutButton = document.getElementById('logout-button');
+    logoutButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        api.logOut().then(res => {
+            document.location = '/';
+        })
+        .catch(e => {
+            console.log("Error occured during logout process");
+        });
+    })
+
     api.getCurrentUser().then(user => {
         let fname = document.getElementById('user-fname');
         let lname = document.getElementById('user-lname');

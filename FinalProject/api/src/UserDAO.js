@@ -30,7 +30,6 @@ function getUserById(userId) {
   return db.query('SELECT * FROM users WHERE user_id=?', [userId]).then(({results}) => {
     if (results[0]) {
       let newUser = new User(results[0]);
-      //console.log(newUser);
       return newUser;
     }
   })
@@ -50,7 +49,7 @@ function createUser(user) {
   let newUser = new User(user);
   return db.query('INSERT INTO users (first_name, last_name, username, email, salt, password_hash) VALUES (?, ?, ?, ?, ?, ?)',
    [newUser.first_name, newUser.last_name, newUser.username, newUser.email, newUser.salt, newUser.password_hash]).then(({results}) => {
-     getUserById(results.insertId);
+     return getUserById(results.insertId);
   });
 }
 
