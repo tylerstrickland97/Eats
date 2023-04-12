@@ -34,6 +34,10 @@ app.get('/favorites', (req, res) => {
     res.sendFile(html_dir + 'favorites.html'); 
 });
 
+app.get('/locations', (req, res) => {
+    res.sendFile(html_dir + 'locations.html');
+})
+
 
 // As our server to listen for incoming connections
 app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));

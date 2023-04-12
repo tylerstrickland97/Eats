@@ -18,6 +18,7 @@ window.onload = () => {
         loadRestaurantHTML(restaurant);
     });
 
+
     function filterRestaurantName(restaurant_name) {
       let filtered_name = restaurant_name.replaceAll(/[^A-Za-z\s]/g, '');
       filtered_name = filtered_name.replaceAll(' ', '-');
@@ -74,6 +75,11 @@ window.onload = () => {
         restaurantName.className = "restaurant-name";
         restaurantName.innerHTML = restaurant.name;
         restaurantInfo.appendChild(restaurantName);
+
+        let viewLocationsButton = document.createElement('a');
+        viewLocationsButton.href = '/locations?id=' + id;
+        viewLocationsButton.innerHTML = 'View Nearby Locations';
+        restaurantInfo.appendChild(viewLocationsButton);
 
         // let restaurantInfoGrid = document.createElement('div');
         // restaurantInfoGrid.className = "restaurant-info-items";
