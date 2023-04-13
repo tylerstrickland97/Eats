@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/restaurant.css" />
     <script src="../js/restaurant.js" type="module"></script>
+    <!-- <script src="../js/locations.js" type="module"></script> -->
     <title>Restaurant</title>
   </head>
   <body>
@@ -34,9 +35,10 @@
       </div>
       <div class="restaurant-menu">
         <div class="restaurant-tabs">
-          <button>Menu</button>
+          <button id="menu-button">Menu</button>
+          <button id="locations-button">Locations</button>
         </div>
-        <div class="menu-items">
+        <div id="menu-container" class="menu-items">
           <!-- This is an example of what the JS generates
           <div class="menu-item">
             <div class="menu-item-basic">
@@ -50,6 +52,35 @@
               <div>Allergies: XX, XX, XX</div>
             </div>
           </div> -->
+        </div>
+        <div id="locations-container" class="location-items">
+          <div id="map-container">
+            <div class='map' id = 'map'></div>
+          </div>
+          <div id="locations-list">
+            <!-- <div class="location">
+              <div class="location-header">
+                105 E South St, Raleigh, NC 27602, USA
+              </div>
+              <div class="location-information">
+                <div>Rating: 3.3</div>
+                <div>Phone: (123) 456-7890</div>
+                <div>Location Hours:</div>
+                <div class="open-container">
+                  <div class="empty-space"></div>
+                  <div>
+                    <div>Monday: Open 24 hours</div>
+                    <div>Tuesday: Open 24 hours</div>
+                    <div>Wednesday: Open 24 hours</div>
+                    <div>Thursday: Open 24 hours</div>
+                    <div>Friday: Open 24 hours</div>
+                    <div>Saturday: Open 24 hours</div>
+                    <div>Sunday: Open 24 hours</div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
         </div>
       </div>
     </div>

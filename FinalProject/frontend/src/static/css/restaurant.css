@@ -88,7 +88,7 @@ header {
     font-size: 18px;
 }
 
-.menu-items {
+.menu-items, .location-items {
     padding: 4px;
     border: 2px solid black;
 }
@@ -130,4 +130,37 @@ header {
 
 .menu-item-info > div {
     word-break: break-all;
+}
+
+.location-items {
+    height: auto;
+}
+
+#map-container {
+    height: 40vh;
+    width: 100%;
+    border: 2px solid grey;
+    margin-bottom: 8px;
+}
+
+#map {
+    height: 100%;
+}
+
+.location {
+    padding: 4px;
+    border-bottom: 2px solid grey;
+}
+
+.location-header {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.open-container {
+    display: flex;
+}
+
+.empty-space {
+    width: 32px;
 }

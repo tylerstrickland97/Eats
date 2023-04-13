@@ -18,6 +18,143 @@ window.onload = () => {
         loadRestaurantHTML(restaurant);
     });
 
+    // Container Tabs
+    const menuButton = document.getElementById('menu-button');
+    const locationsButton = document.getElementById('locations-button');
+
+    // Container Contents
+    let menuContainer = document.getElementById('menu-container');
+    let locationsContainer = document.getElementById('locations-container');
+
+    menuButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      menuContainer.style.display = "block";
+      locationsContainer.style.display = "none";
+    });
+
+    locationsButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      menuContainer.style.display = "none";
+      locationsContainer.style.display = "block";
+
+      let script = document.createElement('script');
+      script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDy4NjpOMUHvID5kAR55dtOZANnGQItEXk&libraries=places&callback=initMap';
+      script.async = true;
+
+      window.initMap = async function() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        }
+      }
+
+      async function showPosition(position) {
+        let lat = position.coords.latitude;
+        let lgt = position.coords.longitude;
+        const { Map } = await google.maps.importLibrary("maps");
+        let map = new Map(document.getElementById("map"), {
+          center: { lat: position.coords.latitude, lng: position.coords.longitude },
+          zoom: 12,
+        });
+        let infowindow = new google.maps.InfoWindow();
+        let loc = new google.maps.LatLng(lat, lgt);
+
+        let restaurantName;
+        api.getRestaurantById(id).then(restaurant => {
+          console.log(restaurant);
+          let request = {
+            location: loc,
+            rankBy: google.maps.places.RankBy.DISTANCE,
+            type: ['restaurant'],
+            name: [restaurant.name]
+          };
+            
+          let service = new google.maps.places.PlacesService(map);
+          service.nearbySearch(request, (results, status) => {
+            console.log(status);
+            if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+              for (let i = 0; i < results.length; i++) {
+                createMarker(map, results[i], infowindow);
+                getLocationDetails(results[i], service);
+              }
+            
+                  //map.setCenter(results[0].geometry.location);
+            }
+          });
+        });
+      }
+
+      function fillLocationHTML(location) {
+        let locationDiv = document.createElement('div');
+        locationDiv.classList.add("location");
+
+        let locationHeader = document.createElement('div');
+        locationHeader.classList.add("location-header");
+        locationHeader.innerHTML = location.formatted_address;
+        locationDiv.appendChild(locationHeader);
+
+        let locationInformation = document.createElement('div');
+        locationInformation.classList.add("location-information");
+        let ratingDiv = document.createElement('div');
+        ratingDiv.innerHTML = `Rating: ${location.rating}`;
+        locationInformation.appendChild(ratingDiv);
+        let phoneDiv = document.createElement('div');
+        phoneDiv.innerHTML = `Phone: ${location.formatted_phone_number}`;
+        locationInformation.appendChild(phoneDiv);
+        let locationHoursDiv = document.createElement('div');
+        locationHoursDiv.innerHTML = `Location Hours:`;
+        locationInformation.appendChild(locationHoursDiv);
+
+        let openContainer = document.createElement('div');
+        openContainer.classList.add('open-container');
+
+        let emptySpace = document.createElement('div');
+        emptySpace.classList.add('empty-space');
+        openContainer.appendChild(emptySpace);
+        let genericDiv = document.createElement('div');
+        for (let i = 0; i < location.opening_hours.weekday_text.length; i++) {
+          let workday = document.createElement('div');
+          workday.innerHTML = location.opening_hours.weekday_text[i];
+          genericDiv.appendChild(workday);
+        }
+        openContainer.appendChild(genericDiv);
+        locationInformation.appendChild(openContainer);
+        locationDiv.appendChild(locationInformation);
+        let locationsList = document.getElementById('locations-list');
+        locationsList.appendChild(locationDiv);
+      }
+
+      function getLocationDetails(result, service) {
+        let placeId = result.place_id;
+
+        let request = {
+          placeId: placeId,
+          fields: ['formatted_address', 'rating', 'formatted_phone_number', 'geometry', 'opening_hours', 'price_level']
+        };
+        service.getDetails(request, (results, status) => {
+          if (status == google.maps.places.PlacesServiceStatus.OK) {
+            fillLocationHTML(results);
+          }
+        });
+      }
+
+      function createMarker(map, place, infowindow) {
+        if (!place.geometry || !place.geometry.location) return;
+      
+        const marker = new google.maps.Marker({
+          map,
+          position: place.geometry.location,
+        });
+      
+        google.maps.event.addListener(marker, "click", () => {
+          infowindow.setContent(place.vicinity || "");
+          infowindow.open(map, marker);
+        });
+    }
+
+    // Append the 'script' element to 'head'
+    document.head.appendChild(script);
+    });
+
 
     function filterRestaurantName(restaurant_name) {
       let filtered_name = restaurant_name.replaceAll(/[^A-Za-z\s]/g, '');
@@ -75,11 +212,6 @@ window.onload = () => {
         restaurantName.className = "restaurant-name";
         restaurantName.innerHTML = restaurant.name;
         restaurantInfo.appendChild(restaurantName);
-
-        let viewLocationsButton = document.createElement('a');
-        viewLocationsButton.href = '/locations?id=' + id;
-        viewLocationsButton.innerHTML = 'View Nearby Locations';
-        restaurantInfo.appendChild(viewLocationsButton);
 
         // let restaurantInfoGrid = document.createElement('div');
         // restaurantInfoGrid.className = "restaurant-info-items";
