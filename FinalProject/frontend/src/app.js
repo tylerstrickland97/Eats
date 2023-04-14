@@ -36,6 +36,10 @@ app.get('/favorites', (req, res) => {
 
 app.get('/locations', (req, res) => {
     res.sendFile(html_dir + 'locations.html');
+});
+
+app.get('/offline', (req, res) => {
+    res.sendFile(html_dir + 'offline.html');
 })
 
 
