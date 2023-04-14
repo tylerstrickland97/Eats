@@ -70,12 +70,14 @@ right: 32px;
 h1 {
   font-size: max(64px, 10vw);
   margin: 0;
+  /* color: #F3CA40; */
   font-weight: 600;
 }
 
 h4 {
   font-size: max(24px, 2vw);
   margin: 0;
+  /* color: #577590; */
 }
 
 .container-login {
