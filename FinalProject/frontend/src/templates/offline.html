@@ -4,13 +4,29 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="" />
+    <link rel="stylesheet" href="css/offline.css" />
     <script src="../js/common.js" type="module"></script>
     <title>Offline</title>
   </head>
   <body>
-        <div class = "container">
-            You are offline
+    <header>
+      <div class="header-left">
+        <div class="menu-dropdown">
+          <img class="menu-image" src="imgs/menu.png">
+          <div class="menu-dropdown-items">
+            <a href="#">Edit Profile</a>
+            <a id="logout-button" href="#">Logout</a>
+          </div>
         </div>
+      </div>
+      <div class="header-right">
+        <a href="/home"><img class="home-image" src="imgs/home.png"></a>
+      </div>
+    </header>
+    <div class = "container">
+      <img src="../imgs/wings-modified.png" alt="intro">
+      <h1>You are offline</h1>
+      <h2>This page is currently unavailable. Please check your network connection and try again later.</h2>
+    </div>
   </body>
 </html>
