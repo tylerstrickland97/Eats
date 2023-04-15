@@ -19,7 +19,7 @@
   <!-- <link rel="stylesheet" href="../static/css/" /> -->
 
   <script src="../js/homepage.js" type="module"></script>
-  <script src="../js/common.js" type="module"></script>
+  <!-- <script src="../js/common.js" type="module"></script> -->
 </head>
 
 <body>
@@ -67,17 +67,17 @@
           <span>&emsp; and some more tomorrow</span>
         </div>
         <div class="input-group mb-3">
-          <button type="button" class="btn btn-outline-secondary">Sort</button>
-          <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+          <button type="button" class="btn btn-outline-secondary" style="">Sort</button>
+          <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="">
             <span class="visually-hidden">Toggle Dropdown</span>
           </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Distance</a></li>
-            <li><a class="dropdown-item" href="#">Rating</a></li>
-            <li><a class="dropdown-item" href="#">Favorites</a></li>
+          <ul id="sort-dropdown" class="dropdown-menu" style="">
+            <li><a class="dropdown-item">Alphabetically</a></li>
+            <li><a class="dropdown-item">Rating</a></li>
+            <li><a class="dropdown-item">Favorites</a></li>
           </ul>
-          <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" placeholder="Search Resturaunts">
-          <button class="btn btn-outline-secondary">Search</button>
+          <input id="search-input" type="text" class="form-control" aria-label="Text input with segmented dropdown button" placeholder="Search Resturaunts">
+          <button id="search-button" class="btn btn-outline-secondary">Search</button>
         </div>
         <!-- End Example Code -->
       </div>
