@@ -1,7 +1,7 @@
 body {
-    margin: 0;
-    font-family: Arial;
-    background-color: #edf2f7;
+    /* margin: 0; */
+    /* font-family: Arial; */
+    /* background-color: #edf2f7; */
 }
 
 p {
@@ -16,7 +16,7 @@ header {
     display: flex;
     width: 100%;
     height: 48px;
-    background-color: #CCC;
+    background-color: #577590;
     justify-content: space-around;
 }
 
@@ -77,21 +77,23 @@ main {
     display: flex;
     flex-wrap: wrap;
     column-gap: 16px;
-    height: auto;
-    margin: 12px;
+    flex-direction: column;
+    /* height: auto; */
+    /* margin: 12px; */
 }
 
 main div {
-    flex: 1;
+    /* flex: 1; */
 }
 
 h2 {
     white-space:normal;
     margin: 12px 0;
+    /* height: 200px; */
 }
 
 .container {
-    white-space: nowrap;
+    /* white-space: nowrap; */
     min-width: fit-content;
     margin: 0 8px;
     padding: 8px;
@@ -176,8 +178,25 @@ input[type=submit] {
 
 .user-image {
     display: flex;
-    flex-direction: column;
+    /* margin: 0; */
+    /* height: 100%; */
+    /* padding: 0; */
+    /* font-family: "Poppins",sans-serif; */
+    padding: 100px;
+    /* left: 40px; */
+    /* flex-direction: column; */
+    /* background: aliceblue; */
     align-items: center;
+    height: 300px;
+    /* white-space: nowrap; */
+    /* min-width: fit-content; */
+    /* margin: 0 8px; */
+    /* padding: 8px; */
+    /* border: 2px solid #afafaf; */
+    /* background-color: white; */
+    /* border-radius: 8px; */
+    background: rgb(243,202,64);
+    background: linear-gradient(90deg, rgba(243,202,64,1) 0%, rgba(242,165,65,1) 35%, rgba(240,138,75,1) 100%);
 }
 
 .user-profile-image {
