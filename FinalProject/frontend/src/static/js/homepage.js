@@ -1,207 +1,172 @@
 import api from './APIClient.js';
-
+let restaurantArray = [];
+const searchButton = document.getElementById("search-button");
+const sortButton = document.getElementById("sort-dropdown");
+let searchInput = document.getElementById("search-input");
+let currentUserId;
 window.onload = () => {
-    loadPage();
+    // Check if user logged in before doing anything
+    api.getCurrentUser().then(current => {
+        currentUserId = current.id;
 
+        // get restaurants
+        api.getRestaurants().then(restaurants => {
+            restaurantArray = restaurants;
+            loadRestaurants(restaurantArray);
+
+            searchButton.addEventListener("click", (e) => {
+                let searchedRestaurants = search(restaurantArray, searchInput.value);
+                loadRestaurants(searchedRestaurants);
+            });
+
+            sortButton.addEventListener("click", (e) => {
+                const sortMethod = e.target.innerHTML;
+                // For each case just add the sorting algorithm
+                switch(sortMethod) {
+                    case "Alphabetically":
+                        restaurantArray.sort((a, b) => {
+                            return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+                        });
+                        break;
+                    default:
+                        return;
+                }
+                loadRestaurants(restaurantArray);
+            });
+        });
+            
+    })
+    .catch(err => {
+        console.log("We are not logged in");
+        document.location = '/';
+    });
+
+    
 }
 
-    function loadPage() {
-        api.getCurrentUser().then(current => {
-            let currentUserId = current.id;
-            loadRestaurants(currentUserId);
-            loadProfileIntoCache(currentUserId);
-        }).catch(err => {
-            console.log("We are not logged in");
-            document.location = '/';
-        });
-    }
+// arr = array of restaurant JSON object
+// query = search query
+function search(arr, query) {
+    // convert query to alpha-numeric to safeguard names with dashes and apostrophes
+    let q = query.replace(/[^0-9a-z]/gi, '');
 
-    function loadProfileIntoCache(currentUserId) {
-       console.log('here');
-    }
+    // return based on contained substring anywhere (query = FC, restaurant KFC included)
+    // return arr.filter((r) => r.name.toLowerCase().replace(/[^0-9a-z]/gi, '').includes(q.toLowerCase()));
 
-    function loadRestaurants(currentUserId) {
-        api.getRestaurants().then(restaurants => {
-            console.log(currentUserId);
-            api.getUserFavorites(currentUserId).then(favorites => {
-                restaurants.forEach(restaurant => {
-                    fillRestaurantHTML(restaurant, favorites, currentUserId);
-                });
-            })
-        });
-    }
+    // return based on contained substring from start (query = FC, restaurant KFC NOT included)
+    return arr.filter((r) => r.name.toLowerCase().replace(/[^0-9a-z]/gi, '').substring(0, q.length).includes(q.toLowerCase()));
+}
 
-    function filterRestaurantName(restaurant_name) {
-        let filtered_name = restaurant_name.replaceAll(/[^A-Za-z\s]/g, '');
-        filtered_name = filtered_name.replaceAll(' ', '-');
-        return filtered_name;
-    }
+function loadRestaurants(restaurants) {
+    api.getUserFavorites(currentUserId).then(favorites => {
+        // Reset restaurants
+        clearRestaurantHTML();
 
-    function clearRestaurantHTML() {
+        if (restaurants.length == 0) {
+            // create html for no results found
+            console.log("No Results Found");
+            return;
+        }
+
         const restaurantList = document.querySelector('.restaurant-grid');
-        restaurantList.innerHTML = '';
+        // Iterate through restaurants
+        restaurants.forEach(r => {
+            restaurantList.appendChild(createRestaurantHTML(r, favorites)); 
+        });
+    });
+}
+
+function filterRestaurantName(restaurant_name) {
+    let filtered_name = restaurant_name.replaceAll(/[^A-Za-z\s]/g, '');
+    filtered_name = filtered_name.replaceAll(' ', '-');
+    return filtered_name;
+}
+
+function clearRestaurantHTML() {
+    const restaurantList = document.querySelector('.restaurant-grid');
+    restaurantList.innerHTML = '';
+}
+
+function createRestaurantHTML(restaurant, favorites) {
+    let newRestaurant = document.createElement('div');
+    newRestaurant.className = "restaurant-preview";
+
+    let restaurantImg = document.createElement('div');
+    restaurantImg.className = "restaurant-image";
+    let logo = document.createElement('img');
+    logo.src = `imgs/restaurant-logos/${filterRestaurantName(restaurant.name)}-logo.png`;
+    restaurantImg.appendChild(logo);
+
+
+    let favoriteButton = document.createElement('button');
+    favoriteButton.className = "favorite-button";
+    let buttonImg = document.createElement('img');
+
+    // Initialize favorite status
+    let isFavorite;
+    if (favorites.find(f => f.restaurant_id == restaurant.id)) {
+        isFavorite = true;
+        buttonImg.src = "imgs/yellow_favorited_img.png";
+    } else {
+        isFavorite = false;
+        buttonImg.src = "imgs/star.webp";
     }
 
-    function fillRestaurantHTML(restaurant, favorites, currentUserId) {
-        const restaurantList = document.querySelector('.restaurant-grid');
-        let favorite = false;
-        for (let i = 0; i < favorites.length; i++) {
-            if (restaurant.id == favorites[i].restaurant_id) {
-                favorite = true;
-                break;
-            }
-        }
-        if (favorite) {
-            restaurantList.appendChild(createFavoriteRestaurantHTML(restaurant, currentUserId));
-        }
-        else {
-            restaurantList.appendChild(createNonFavoriteRestaurantHTML(restaurant, currentUserId));
-        }
-        
-    }
-
-    function createFavoriteRestaurantHTML(restaurant, currentUserId) {
-        let newRestaurant = document.createElement('div');
-        newRestaurant.className = "restaurant-preview";
-
-        let restaurantImg = document.createElement('div');
-        restaurantImg.className = "restaurant-image";
-        let logo = document.createElement('img');
-        logo.src = `imgs/restaurant-logos/${filterRestaurantName(restaurant.name)}-logo.png`;
-        restaurantImg.appendChild(logo);
-
-
-        let favoriteButton = document.createElement('button');
-        favoriteButton.addEventListener('click', function() {
-            //Call api object to add the favorite to the user
+    favoriteButton.addEventListener('click', function() {
+        if (isFavorite) {
             api.removeUserFavorite(currentUserId, restaurant.id).then(result => {
                 console.log('successfully removed favorite');
-                clearRestaurantHTML();
-                loadRestaurants(currentUserId);
-                // favoriteButton.removeChild(favoriteButton.firstChild);
-                // let buttonImg = document.createElement('img');
-                // buttonImg.src = 'imgs/star.webp';
-                // favoriteButton.appendChild(buttonImg);
-                // api.getUserFavorites(currentUserId).then(results => {
-                //     console.log(results);
-                // }).catch(err => {
-                //     console.log(err);
-                // })
-
+                buttonImg.src = 'imgs/star.webp';
+                isFavorite = !isFavorite;
             }).catch(err => {
                 console.log('error removing favorite');
             })
-        });
-        favoriteButton.className = "favorite-button";
-        let buttonImg = document.createElement('img');
-        buttonImg.src = "imgs/yellow_favorited_img.png";
-        favoriteButton.appendChild(buttonImg);
-        restaurantImg.appendChild(favoriteButton);
-        newRestaurant.appendChild(restaurantImg);
-
-        let name = document.createElement('p');
-        name.className = "restaurant-name";
-        name.innerHTML = restaurant.name;
-        newRestaurant.appendChild(name);
-
-        // let details = document.createElement('div');
-        // details.className = "restaurant-details";
-        // let address = document.createElement('p');
-        // address.className = "restaurant-address";
-        // address.innerHTML = restaurant.address;
-        // let distance = document.createElement('p');
-        // distance.className = "restaurant-distance";
-        // distance.innerHTML = restaurant.distance;
-        // let style = document.createElement('p');
-        // style.className = "restaurant-style";
-        // style.innerHTML = restaurant.category;
-        // details.appendChild(address);
-        // details.appendChild(distance);
-        // details.appendChild(style);
-        // newRestaurant.appendChild(details);
-
-        let view = document.createElement('div');
-        view.className = "restaurant-view";
-        let viewButton = document.createElement('a');
-        viewButton.className = "restaurant-view-button";
-        viewButton.href = '/restaurant?id=' + restaurant.id;
-        viewButton.innerHTML = "View Menu";
-        view.appendChild(viewButton);
-        newRestaurant.appendChild(view);
-
-        return newRestaurant;
-
-    }
-
-    function createNonFavoriteRestaurantHTML(restaurant, currentUserId) {
-        let newRestaurant = document.createElement('div');
-        newRestaurant.className = "restaurant-preview";
-
-        let restaurantImg = document.createElement('div');
-        restaurantImg.className = "restaurant-image";
-        let logo = document.createElement('img');
-        logo.src = `imgs/restaurant-logos/${filterRestaurantName(restaurant.name)}-logo.png`;
-        restaurantImg.appendChild(logo);
-
-
-        let favoriteButton = document.createElement('button');
-        favoriteButton.addEventListener('click', function() {
-            //Call api object to add the favorite to the user
+        } else {
             api.addUserFavorite(currentUserId, restaurant.name).then(result => {
                 console.log('successfully added favorite');
-                clearRestaurantHTML();
-                loadRestaurants(currentUserId);
-                // favoriteButton.removeChild(favoriteButton.firstChild);
-                // let buttonImg = document.createElement('img');
-                // buttonImg.src = 'imgs/yellow_favorited_img.png';
-                // favoriteButton.appendChild(buttonImg);
-                // api.getUserFavorites(currentUserId).then(results => {
-                //     console.log(results);
-                // }).catch(err => {
-                //     console.log(err);
-                // })
-
+                buttonImg.src = 'imgs/yellow_favorited_img.png';
+                isFavorite = !isFavorite;  
             }).catch(err => {
                 console.log('error adding favorite');
             })
-        });
-        favoriteButton.className = "favorite-button";
-        let buttonImg = document.createElement('img');
-        buttonImg.src = "imgs/star.webp";
-        favoriteButton.appendChild(buttonImg);
-        restaurantImg.appendChild(favoriteButton);
-        newRestaurant.appendChild(restaurantImg);
+        }
+    })
 
-        let name = document.createElement('p');
-        name.className = "restaurant-name";
-        name.innerHTML = restaurant.name;
-        newRestaurant.appendChild(name);
+    favoriteButton.appendChild(buttonImg);
+    restaurantImg.appendChild(favoriteButton);
 
-        // let details = document.createElement('div');
-        // details.className = "restaurant-details";
-        // let address = document.createElement('p');
-        // address.className = "restaurant-address";
-        // address.innerHTML = restaurant.address;
-        // let distance = document.createElement('p');
-        // distance.className = "restaurant-distance";
-        // distance.innerHTML = restaurant.distance;
-        // let style = document.createElement('p');
-        // style.className = "restaurant-style";
-        // style.innerHTML = restaurant.category;
-        // details.appendChild(address);
-        // details.appendChild(distance);
-        // details.appendChild(style);
-        // newRestaurant.appendChild(details);
+    newRestaurant.appendChild(restaurantImg);
 
-        let view = document.createElement('div');
-        view.className = "restaurant-view";
-        let viewButton = document.createElement('a');
-        viewButton.className = "restaurant-view-button";
-        viewButton.href = '/restaurant?id=' + restaurant.id;
-        viewButton.innerHTML = "View Menu";
-        view.appendChild(viewButton);
-        newRestaurant.appendChild(view);
+    let name = document.createElement('p');
+    name.className = "restaurant-name";
+    name.innerHTML = restaurant.name;
+    newRestaurant.appendChild(name);
 
-        return newRestaurant;
+    // let details = document.createElement('div');
+    // details.className = "restaurant-details";
+    // let address = document.createElement('p');
+    // address.className = "restaurant-address";
+    // address.innerHTML = restaurant.address;
+    // let distance = document.createElement('p');
+    // distance.className = "restaurant-distance";
+    // distance.innerHTML = restaurant.distance;
+    // let style = document.createElement('p');
+    // style.className = "restaurant-style";
+    // style.innerHTML = restaurant.category;
+    // details.appendChild(address);
+    // details.appendChild(distance);
+    // details.appendChild(style);
+    // newRestaurant.appendChild(details);
 
-    }
+    let view = document.createElement('div');
+    view.className = "restaurant-view";
+    let viewButton = document.createElement('a');
+    viewButton.className = "restaurant-view-button";
+    viewButton.href = '/restaurant?id=' + restaurant.id;
+    viewButton.innerHTML = "View Menu";
+    view.appendChild(viewButton);
+    newRestaurant.appendChild(view);
+
+    return newRestaurant;
+
+}
