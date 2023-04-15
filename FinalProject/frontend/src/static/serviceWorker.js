@@ -1,14 +1,7 @@
-function log(...data) {
-    console.log("SWv1.0", ...data);
-  }
-  
-  log("SW Script executing");
-  
   
   const STATIC_CACHE_NAME = 'eats-static-v0';
   
   self.addEventListener('install', event => {
-    log('install', event);
     event.waitUntil(
       caches.open(STATIC_CACHE_NAME).then(cache => {
         return cache.addAll([
@@ -73,7 +66,6 @@ function log(...data) {
   });
   
   self.addEventListener('activate', event => {
-    log('activate', event);
     event.waitUntil(
       caches.keys().then(cacheNames => {
         return Promise.all(
@@ -93,9 +85,10 @@ function log(...data) {
     if(requestUrl.origin === location.origin && requestUrl.pathname.startsWith('/api')) {
       //If we are here, we are intercepting a call to our API
       if(event.request.method === "GET") {
+        console.log(event.request.url);
         //Only intercept (and cache) GET API requests
         event.respondWith(
-          cacheFirst(event.request)
+          networkFirst(event.request)
         );
       }
     }
@@ -108,13 +101,22 @@ function log(...data) {
   
   });
   
-  
   function cacheFirst(request) {
-    console.log('here');
     return caches.match(request)
     .then(response => {
       //Return a response if we have one cached. Otherwise, get from the network
       return response || fetchAndCache(request);
+    })
+    .catch(error => {
+      return caches.match('/offline');
+    })
+  }
+  
+  function networkFirst(request) {
+    return caches.match(request)
+    .then(response => {
+      //Return a response if we have one cached. Otherwise, get from the network
+      return fetchAndCache(request) || response;
     })
     .catch(error => {
       return caches.match('/offline');
@@ -139,7 +141,6 @@ function log(...data) {
   
   
   self.addEventListener('message', event => {
-    log('message', event.data);
     if(event.data.action === 'skipWaiting') {
       self.skipWaiting();
     }

@@ -38,6 +38,7 @@ window.onload = () => {
     }
 
     function fillRestaurantHTML(restaurant, favorites, currentUserId) {
+        console.log('here');
         const restaurantList = document.querySelector('.restaurant-grid');
         let favorite = false;
         for (let i = 0; i < favorites.length; i++) {
