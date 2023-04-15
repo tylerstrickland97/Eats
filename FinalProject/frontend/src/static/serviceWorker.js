@@ -16,7 +16,6 @@ function log(...data) {
           //CSS
           '/css/homepage.css',
           '/css/profile.css',
-          '/css/restaurant.css',
           '/css/style.css',
           '/css/offline.css',
           //Images
@@ -59,13 +58,15 @@ function log(...data) {
           '/imgs/taco.png',
           '/imgs/temp-profile-img.png',
           '/imgs/yellow_favorited_img.png',
+          '/imgs/wings-modified.png',
+          '/imgs/background.png',
           //Scripts
-          '/js/allergies.js',
           '/js/APIClient.js',
           '/js/favorites.js',
           '/js/homepage.js',
           '/js/profile.js',
-          '/js/restaurant.js'
+          '/js/login.js',
+          '/js/common.js'
         ]);
       })
     );
@@ -109,6 +110,7 @@ function log(...data) {
   
   
   function cacheFirst(request) {
+    console.log('here');
     return caches.match(request)
     .then(response => {
       //Return a response if we have one cached. Otherwise, get from the network
