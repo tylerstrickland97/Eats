@@ -9,10 +9,15 @@ window.onload = () => {
         api.getCurrentUser().then(current => {
             let currentUserId = current.id;
             loadRestaurants(currentUserId);
+            loadProfileIntoCache(currentUserId);
         }).catch(err => {
             console.log("We are not logged in");
             document.location = '/';
         });
+    }
+
+    function loadProfileIntoCache(currentUserId) {
+       console.log('here');
     }
 
     function loadRestaurants(currentUserId) {
@@ -38,7 +43,6 @@ window.onload = () => {
     }
 
     function fillRestaurantHTML(restaurant, favorites, currentUserId) {
-        console.log('here');
         const restaurantList = document.querySelector('.restaurant-grid');
         let favorite = false;
         for (let i = 0; i < favorites.length; i++) {

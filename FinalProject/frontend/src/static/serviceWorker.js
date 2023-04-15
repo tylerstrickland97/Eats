@@ -85,15 +85,18 @@
     if(requestUrl.origin === location.origin && requestUrl.pathname.startsWith('/api')) {
       //If we are here, we are intercepting a call to our API
       if(event.request.method === "GET") {
-        console.log(event.request.url);
         //Only intercept (and cache) GET API requests
         event.respondWith(
-          networkFirst(event.request)
+          cacheFirst(event.request)
         );
+      }
+      else {
+        event.respondWith(fetchAndCache(event.request));
       }
     }
     else {
       //If we are here, this was not a call to our API
+      console.log(event.request.url);
       event.respondWith(
         cacheFirst(event.request)
       );
@@ -112,19 +115,6 @@
     })
   }
   
-  function networkFirst(request) {
-    return caches.match(request)
-    .then(response => {
-      //Return a response if we have one cached. Otherwise, get from the network
-      return fetchAndCache(request) || response;
-    })
-    .catch(error => {
-      return caches.match('/offline');
-    })
-  }
-  
-  
-  
   function fetchAndCache(request) {
     return fetch(request).then(response => {
       var requestUrl = new URL(request.url);
@@ -134,7 +124,12 @@
           cache.put(request, response);
         });
       }
+      else {
+        return caches.match('/offline');
+      }
       return response.clone();
+    }).catch(err => {
+      return caches.match('/offline');
     });
   }
   

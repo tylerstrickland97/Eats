@@ -6,7 +6,7 @@ window.onload = () => {
     logoutButton.addEventListener('click', (e) => {
         e.preventDefault();
         api.logOut().then(res => {
-            document.location = '/';
+            //document.location = '/';
         })
         .catch(e => {
             console.log("Error occured during logout process");
@@ -30,7 +30,7 @@ window.onload = () => {
         loadAllergies(user.id);
     }).catch(err => {
         console.log("We are not logged in");
-        document.location = '/';
+        //document.location = '/';
     })
 }
 
