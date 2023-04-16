@@ -60,6 +60,7 @@ that occurred during the projects development.
 
 
 ### Tyler
+Tyler helped develop most of the backend for the project. He creaed most of the API routes, and worked to get the database initialized and connected to the app's API. He also was able to get the project running on Docker. He also was able to add some of the JavaScript to the frontend for certain functionalities, and also add some CSS to some of the files. He also helped to debug issues that occurred during development. 
 
 
 ## API Routes
