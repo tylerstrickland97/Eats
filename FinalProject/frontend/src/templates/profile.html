@@ -21,15 +21,17 @@
   <header>
     <div class="header-left">
       <div class="menu-dropdown">
-        <img class="menu-image" src="imgs/menu.png">
+        <a href="/home"><span>EATS</span></a>
+        <!-- <img class="menu-image" src="imgs/menu.png">
         <div class="menu-dropdown-items">
           <a href="#">Edit Profile</a>
           <a id="logout-button" href="#">Logout</a>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="header-right">
-      <a href="/home"><img class="home-image" src="imgs/home.png"></a>
+      <!-- <a href="/home"><img class="home-image" src="imgs/home.png"></a> -->
+      <button id="logout" class="btn btn-outline-dark">Log Out</button>
     </div>
   </header>
   <main>
@@ -42,7 +44,7 @@
       <div id="user-id">
         cmriggs
       </div>
-      <button class="btn btn-outline-secondary">Edit Profile</button>
+      <button id="edit-btn" class="btn btn-outline-secondary">Edit Profile</button>
     </div>
     <div class="user-information container">
       
@@ -98,39 +100,52 @@
 
       </div>
 
-      <div class="user-account-information container">
+      <div class="form-group user-account-information container">
         <h2>Account Information</h2>
         <div class="account-information">
-          <div class="account-information-title">
+          <!-- <div class="account-information-title">
             First Name
-          </div>
-          <div class="account-information-info" id="user-fname">
+          </div> -->
+          <label for="user-fname">First Name</label>
+          <!-- <div class="account-information-info" id="user-fname">
             Collin
-          </div>
+          </div> -->
+          <input type="text" disabled class="account-information-info form-control" id="user-fname">
+            <!-- Collin -->
+          <!-- </div> -->
         </div>
         <div class="account-information">
-          <div class="account-information-title">
+          <!-- <div class="account-information-title">
             Last Name
-          </div>
-          <div class="account-information-info" id="user-lname">
+          </div> -->
+          <label for="user-lname">Last Name</label>
+          <!-- <div class="account-information-info" id="user-lname">
             Riggs
-          </div>
+          </div> -->
+          <input type="text" disabled class="account-information-info form-control" id="user-lname">
         </div>
         <div class="account-information">
-          <div class="account-information-title">
+          <!-- <div class="account-information-title">
             Username
-          </div>
-          <div class="account-information-info" id="user-username">
+          </div> -->
+          <label for="user-username">Username</label>
+          <!-- <div class="account-information-info" id="user-username">
             cmriggs
-          </div>
+          </div> -->
+          <input type="text" disabled class="account-information-info form-control" id="user-username">
         </div>
         <div class="account-information">
-          <div class="account-information-title">
+          <!-- <div class="account-information-title">
             Email
-          </div>
-          <div class="account-information-info" id="user-email">
+          </div> -->
+          <label for="user-email">Email</label>
+          <!-- <div class="account-information-info" id="user-email">
             cmriggs@ncsu.edu
-          </div>
+          </div> -->
+          <input type="text" disabled class="account-information-info form-control" id="user-email">
+        </div>
+        <div class="save-div">
+          <button id="save-btn" class="btn btn-outline-secondary">Save</button>
         </div>
       </div>
     </div>
