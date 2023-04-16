@@ -94,8 +94,8 @@ h2 {
 
 .container {
     /* white-space: nowrap; */
-    /* min-width: fit-content;
-    margin: 0 8px;
+    min-width: fit-content;
+    /* margin: 0 8px;
     padding: 8px; */
     border: 2px solid #afafaf;
     /* background-color: white; */
@@ -104,11 +104,17 @@ h2 {
 
 .user-allergens-favorites {
     display: flex;
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
     padding: 0;
     margin: 8px 0;
     border: none;
     gap: 10px;
+}
+
+.user-allergens,
+.user-favorites {
+    flex: 1;
+    min-width: 300px;
 }
 
 #user-id {
@@ -161,7 +167,7 @@ input[type=submit] {
 }
 
 .favorite-container > img {
-    object-fit: cover;
+    object-fit: contain;
     height: 32px;
     width: 32px;
     padding-right: 6px;
@@ -180,6 +186,10 @@ input[type=submit] {
     text-decoration: underline;
 }
 
+.user-account-information {
+    margin: 4px;
+}
+
 .user-image {
     display: flex;
     flex-direction: column;
@@ -187,12 +197,14 @@ input[type=submit] {
     /* height: 100%; */
     /* padding: 0; */
     /* font-family: "Poppins",sans-serif; */
-    padding: 100px;
+    padding: min(5%, 100px);
+    margin: auto 0;
     /* left: 40px; */
     /* flex-direction: column; */
     /* background: aliceblue; */
     /* align-items: center; */
-    height: 300px;
+    /* height: 300px; */
+    max-height: 300px;
     /* white-space: nowrap; */
     /* min-width: fit-content; */
     /* margin: 0 8px; */
@@ -202,6 +214,7 @@ input[type=submit] {
     /* border-radius: 8px; */
     background: rgb(243,202,64);
     background: linear-gradient(90deg, rgba(243,202,64,1) 0%, rgba(242,165,65,1) 35%, rgba(240,138,75,1) 100%);
+    box-sizing: border-box;
 }
 
 .user-image > button {

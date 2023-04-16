@@ -226,6 +226,7 @@ input:focus {
     gap: 20px;
     background-color: #e6e6e6;
     justify-content: space-evenly;
+    max-height: 320px;
     /* align-items: center; */
 }
 
@@ -235,6 +236,8 @@ input:focus {
     /* position:absolute; */
     /* z-index: -2; */
     animation: rotation 8s infinite linear;
+    width: 240px;
+    height: 240px;
 }
 
 @keyframes rotation {
@@ -251,7 +254,7 @@ input:focus {
     /* width: 80%; */
     /* height:400px; */
     /* top: 50%; */
-    padding: 50px;
+    margin: auto 0px;
     gap: 20px;
     display:flex;
     flex-direction: column;
@@ -268,5 +271,31 @@ input:focus {
 }
 
 .heading span:nth-child(2) {
-    /* color: red; */
+    overflow-wrap:none;
+}
+
+#search-input {
+    text-overflow:ellipsis;
+}
+
+@media (max-width: 463px) {
+    .heading span {
+        font-size: 6.4vw;
+    }
+
+    .heading span:nth-child(2) {
+        font-size: 5vw;
+    }
+}
+
+@media (max-width: 669px) {
+    .intro img {
+        display: none !important;
+    }
+}
+
+@media (max-width: 827px) {
+    .heading span {
+        white-space: nowrap;
+    }
 }
