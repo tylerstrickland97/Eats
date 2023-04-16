@@ -28,7 +28,7 @@ window.onload = () => {
 
   menuButton.addEventListener("click", (e) => {
     e.preventDefault();
-    menuContainer.style.display = "block";
+    menuContainer.style.display = "grid";
     locationsContainer.style.display = "none";
   });
 
