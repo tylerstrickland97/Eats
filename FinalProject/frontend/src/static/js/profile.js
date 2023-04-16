@@ -42,7 +42,7 @@ function filterRestaurantName(restaurant_name) {
 
 function loadAllergies(userId) {
     const userAllergens = document.querySelector('.user-allergens');
-    userAllergens.innerHTML = '';
+    userAllergens.innerHTML = '<h2>My Allergies<h2>';
     api.getAllergiesByUser(userId).then(allergies => {
         if (allergies.length == 0) {
             let noAllergiesMsg = document.createElement('h3');
@@ -82,6 +82,7 @@ function fillAllergiesSelection(userId) {
     });
 
     let addButton = document.createElement('button');
+    addButton.className = 'btn btn-outline-secondary'
     addButton.innerHTML = "Add Allergen";
     addButton.addEventListener('click', function() {
         let allergyId = allergiesSelection.selectedIndex;
@@ -140,7 +141,11 @@ function loadFavorites(userId) {
         if (favorites.length == 0) {
             let noFavoritesText = document.createElement('h3');
             noFavoritesText.innerHTML = "You currently have no favorites";
+            let noFavoritesButton = document.createElement('button');
+            noFavoritesButton.innerText="Find Some Good Eats"
+            noFavoritesButton.className = "btn btn-outline-secondary"
             userFavorites.appendChild(noFavoritesText);
+            userFavorites.appendChild(noFavoritesButton);
         }
         else {
             favorites.forEach(fav => {

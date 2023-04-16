@@ -8,7 +8,7 @@ body {
 }
 
 a {
-    text-decoration: none;
+    text-decoration: none !important;
     color: inherit;
     cursor: pointer;
     padding: 6px;
@@ -34,18 +34,36 @@ header {
 }
 
 .favorite-button {
-    width: 28px;
-    height: 28px;
+    /* width: 28px;
+    height: 28px; */
+    gap:10px;
+    padding:5px;
+    display:flex;
+    transform: translateY(50px);
+    border-radius: 20px;
 }
+
+.favorite-button:hover {
+    background-color:darkgray;
+}
+
+.favorite-label {
+    font-size:10px;
+    color:darkgray;
+}
+
 
 .restaurant-info-container {
     display: flex;
     margin-bottom: 16px;
     height: auto;
+    flex-direction: column;
 }
 
 .restaurant-logo {
-    flex: 1;
+    /* flex: 1; */
+    /* border: 2px solid black; */
+    border-right: none;
     vertical-align: middle;
     text-align: center;
 }
@@ -60,20 +78,29 @@ header {
     vertical-align: middle;
 }
 
+span {
+    color: white;
+    font-weight: 600;
+    font-size:30px;
+    font-family:"Poppins", sans-serif;
+}
+
 .restaurant-logo-img {
-    width: 100%;
+    width: 150px;
+    transform: translateY(-50%);
     vertical-align: middle;
 }
 
 .restaurant-info {
     flex: 2;
+    /* border: 2px solid black; */
     padding-left: 6px;
 }
 
 .restaurant-name {
     display: flex;
     height: auto;
-    font-size: 24px;
+    font-size: 32px;
     font-weight: 700;
     overflow: hidden;
     padding: 4px 0;
@@ -342,7 +369,9 @@ input:focus {
 
 .top {
     display:flex;
-    justify-content:space-between;
+    padding: 10px;
+    /* justify-content:space-between; */
+    justify-content: flex-end;
 }
 
 .intro-content {
@@ -360,10 +389,6 @@ input:focus {
     color:#FFF;
 }
 
-.heading span:nth-child(2) {
-    color: red;
-}
-
 .restaurant-background {
     width:100%;
 }
@@ -374,4 +399,9 @@ input:focus {
     height:175px;
     object-fit:cover;
     object-position:100% 75%;
+}
+
+.rest {
+    display:flex;
+    flex-direction: row;
 }
