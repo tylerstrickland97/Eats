@@ -27,11 +27,32 @@ window.onload = () => {
                         restaurantArray.sort((a, b) => {
                             return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
                         });
+                        loadRestaurants(restaurantArray);
+                        break;
+                    case "Favorites":
+                        let nonFavorite = [];
+                        let isFavorite = [];
+                        api.getUserFavorites(currentUserId).then(favorites => {
+                            restaurants.forEach(r => {
+                                let favoriteFound = false;
+                                favorites.forEach(f => {
+                                    if (r.id == f.restaurant_id) {
+                                        isFavorite.push(r);
+                                        favoriteFound = true;
+                                    }
+                                })
+                                if (!favoriteFound) {
+                                    nonFavorite.push(r);
+                                }
+                            })
+                            restaurantArray = isFavorite.concat(nonFavorite);
+                            console.log(restaurantArray);
+                            loadRestaurants(restaurantArray);
+                        })
                         break;
                     default:
                         return;
                 }
-                loadRestaurants(restaurantArray);
             });
         });
             

@@ -81,29 +81,30 @@
   
   self.addEventListener('fetch', event => {
     var requestUrl = new URL(event.request.url);
+    console.log(requestUrl);
     //Treat API calls (to our API) differently
     if(requestUrl.origin === location.origin && requestUrl.pathname.startsWith('/api')) {
       //If we are here, we are intercepting a call to our API
       if(event.request.method === "GET") {
         //Only intercept (and cache) GET API requests
         event.respondWith(
-          cacheFirst(event.request)
+          fetchAndCache(event.request)
         );
       }
-      else {
-        event.respondWith(fetchAndCache(event.request));
-      }
+    }
+    else if (requestUrl.origin.includes('google') || requestUrl.origin.includes('gstatic')) {
+      return;
     }
     else {
+      console.log(event.request);
       //If we are here, this was not a call to our API
-      console.log(event.request.url);
       event.respondWith(
         cacheFirst(event.request)
       );
     }
-  
+
   });
-  
+
   function cacheFirst(request) {
     return caches.match(request)
     .then(response => {
