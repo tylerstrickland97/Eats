@@ -87,28 +87,32 @@ main div {
 }
 
 h2 {
-    white-space:normal;
-    margin: 12px 0;
+    /* white-space:normal;
+    margin: 12px 0; */
     /* height: 200px; */
 }
 
 .container {
     /* white-space: nowrap; */
-    min-width: fit-content;
+    /* min-width: fit-content;
     margin: 0 8px;
-    padding: 8px;
+    padding: 8px; */
     border: 2px solid #afafaf;
-    background-color: white;
+    /* background-color: white; */
     border-radius: 8px;
 }
 
 .user-allergens-favorites {
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     padding: 0;
     margin: 8px 0;
     border: none;
     gap: 10px;
+}
+
+#user-id {
+    display: none;
 }
 
 .account-information {
@@ -178,6 +182,7 @@ input[type=submit] {
 
 .user-image {
     display: flex;
+    flex-direction: column;
     /* margin: 0; */
     /* height: 100%; */
     /* padding: 0; */
@@ -186,7 +191,7 @@ input[type=submit] {
     /* left: 40px; */
     /* flex-direction: column; */
     /* background: aliceblue; */
-    align-items: center;
+    /* align-items: center; */
     height: 300px;
     /* white-space: nowrap; */
     /* min-width: fit-content; */
@@ -197,6 +202,10 @@ input[type=submit] {
     /* border-radius: 8px; */
     background: rgb(243,202,64);
     background: linear-gradient(90deg, rgba(243,202,64,1) 0%, rgba(242,165,65,1) 35%, rgba(240,138,75,1) 100%);
+}
+
+.user-image > button {
+    width:150px;
 }
 
 .user-profile-image {
