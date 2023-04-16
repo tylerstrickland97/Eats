@@ -22,9 +22,9 @@ button {
 }
 
 .container {
-    width: 95%;
+    /* width: 95%;
     max-width: 600px;
-    border: solid;
+    border: solid; */
 }
 
 header {
@@ -69,7 +69,7 @@ header {
 }
 
 .restaurant-logo img {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 .helper-span {
@@ -105,7 +105,7 @@ span {
     overflow: hidden;
     padding: 4px 0;
     box-sizing: border-box;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .restaurant-info-items {

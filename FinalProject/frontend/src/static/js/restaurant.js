@@ -165,8 +165,8 @@ window.onload = () => {
   function loadRestaurantHTML(restaurant) {
     const restaurantInfo = document.querySelector('.restaurant-info-container');
 
-    //restaurantInfo.appendChild(restaurantBackground(restaurant));
-    // let restaurantBackgroundImg = `imgs/restaurant-logos/${filterRestaurantName(restaurant.name)}-logo.png`;
+    restaurantInfo.appendChild(restaurantBackground(restaurant));
+    // let restaurantBackgroundImg = `imgs/restaurant-backgrounds/${filterRestaurantName(restaurant.name)}-background.png`;
     // let imgUrl = "url('imgs/restaurant-backgrounds/McDonalds-background.png')";
     // restaurantInfo.style.backgroundImage = imgUrl;
     const rest = document.createElement('div');
