@@ -214,6 +214,11 @@ span {
     word-break: break-all;
 }
 
+.menu-item-name:first-letter,
+.menu-item-name:first-line {
+  text-transform: uppercase;
+}
+
 .menu-item-name {
     font-weight: 700;
     font-size: 18px;
@@ -221,6 +226,7 @@ span {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-transform: lowercase;
 }
 
 .menu-item-name img {

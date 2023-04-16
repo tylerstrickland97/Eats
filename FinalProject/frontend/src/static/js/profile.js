@@ -1,29 +1,32 @@
 import api from './APIClient.js';
 
+let fname = document.getElementById('user-fname');
+let lname = document.getElementById('user-lname');
+let username = document.getElementById('user-username');
+let email = document.getElementById('user-email');
+let fullname = document.getElementById('user-fullname');
+let userid = document.getElementById('user-id');
+
 window.onload = () => {
 
-    const logoutButton = document.getElementById('logout-button');
+    const logoutButton = document.getElementById('logout');
     logoutButton.addEventListener('click', (e) => {
         e.preventDefault();
         api.logOut().then(res => {
-            //document.location = '/';
+            document.location = '/';
         })
-        .catch(e => {
-            console.log("Error occured during logout process");
-        });
+            .catch(e => {
+                console.log("Error occured during logout process");
+            });
     })
 
     api.getCurrentUser().then(user => {
-        let fname = document.getElementById('user-fname');
-        let lname = document.getElementById('user-lname');
-        let username = document.getElementById('user-username');
-        let email = document.getElementById('user-email');
-        let fullname = document.getElementById('user-fullname');
-        let userid = document.getElementById('user-id');
-        fname.innerHTML = user.first_name;
-        lname.innerHTML = user.last_name;
-        username.innerHTML = user.username;
-        email.innerHTML = user.email;
+
+        // fname.innerHTML = user.first_name;
+        fname.value = user.first_name;
+        lname.value = user.last_name;
+        username.value = user.username;
+        email.value = user.email;
         fullname.innerHTML = `${user.first_name} ${user.last_name}`;
         userid.innerHTML = user.username;
         loadFavorites(user.id);
@@ -84,7 +87,7 @@ function fillAllergiesSelection(userId) {
     let addButton = document.createElement('button');
     addButton.className = 'btn btn-outline-secondary'
     addButton.innerHTML = "Add Allergen";
-    addButton.addEventListener('click', function() {
+    addButton.addEventListener('click', function () {
         let allergyId = allergiesSelection.selectedIndex;
         api.addUserAllergy(userId, allergyId).then(result => {
             console.log('Successfully added allergy');
@@ -110,7 +113,7 @@ function fillAllergyHTML(allergy, userId) {
     let removeButton = document.createElement('button');
     removeButton.innerHTML = 'Remove';
     removeButton.className = "btn btn-outline-secondary remove-btn";
-    removeButton.addEventListener('click', function() {
+    removeButton.addEventListener('click', function () {
         api.removeUserAllergy(userId, allergy.type).then(results => {
             if (results) {
                 loadAllergies(userId);
@@ -143,8 +146,8 @@ function loadFavorites(userId) {
             let noFavoritesText = document.createElement('h3');
             noFavoritesText.innerHTML = "You currently have no favorites";
             let noFavoritesButton = document.createElement('button');
-            noFavoritesButton.innerText="Find Some Good Eats";
-            noFavoritesButton.className = "btn btn-outline-secondary";
+            noFavoritesButton.innerText = "Find Some Good Eats";
+            noFavoritesButton.className = "btn btn-outline-secondary no-fav-btn";
 
             noFavoritesButton.addEventListener('click', e => {
                 document.location.href = '/home';
@@ -190,4 +193,56 @@ function fillFavoriteHTML(restaurant) {
 
     userFavorites.appendChild(favoriteContainer);
 }
+
+let editBtn = document.getElementById('edit-btn');
+let saveBtn = document.getElementById('save-btn');
+editBtn.addEventListener('click', e => {
+
+    if (saveBtn.display = 'none') {
+        saveBtn.style.display = 'block';
+    }
+    saveBtn.required = true;
+
+    fname.disabled = false;
+    lname.disabled = false;
+    username.disabled = false;
+    email.disabled = false;
+    fullname.disabled = false;
+});
+
+saveBtn.addEventListener('click', e => {
+    saveBtn.style.display = "none";
+    saveBtn.required = false;
+
+    fname.disabled = true;
+    lname.disabled = true;
+    username.disabled = true;
+    email.disabled = true;
+    fullname.disabled = true;
+    // let userId;
+    // api.getCurrentUser().then(user => {
+    //     userId = user.id;
+    //     console.log(userId);
+    //     console.log(user.id);
+    // });
+    // console.log(userId);
+    // console.log(fname.value);
+    // console.log(lname.value);
+    // console.log(username.value);
+    // console.log(email.value);
+    // // consolale.log(fname.value+ lname.value + username.valu+  email.value);
+    // api.editProfile(userId, fname.value, lname.value, username.value, email.value).then(results => {
+    //     if (results) {
+    //         // loadAllergies(userId);
+    //         console.log(results);
+    //     }
+    //     else {
+    //         console.log('Failed to remove');
+    //     }
+    // });
+
+
+});
+
+
 
