@@ -81,9 +81,7 @@
   
   self.addEventListener('fetch', event => {
     var requestUrl = new URL(event.request.url);
-    if (requestUrl.pathname.includes('home')) {
-      console.log(requestUrl);
-    }
+    console.log(requestUrl);
     //Treat API calls (to our API) differently
     if(requestUrl.origin === location.origin && requestUrl.pathname.startsWith('/api')) {
       //If we are here, we are intercepting a call to our API
@@ -98,15 +96,15 @@
       return;
     }
     else {
+      console.log(event.request);
       //If we are here, this was not a call to our API
       event.respondWith(
         cacheFirst(event.request)
       );
     }
-  
+
   });
 
-  
   function cacheFirst(request) {
     return caches.match(request)
     .then(response => {
