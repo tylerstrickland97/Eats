@@ -165,7 +165,10 @@ window.onload = () => {
   function loadRestaurantHTML(restaurant) {
     const restaurantInfo = document.querySelector('.restaurant-info-container');
 
-    restaurantInfo.appendChild(restaurantBackground(restaurant));
+    //restaurantInfo.appendChild(restaurantBackground(restaurant));
+    // let restaurantBackgroundImg = `imgs/restaurant-logos/${filterRestaurantName(restaurant.name)}-logo.png`;
+    // let imgUrl = "url('imgs/restaurant-backgrounds/McDonalds-background.png')";
+    // restaurantInfo.style.backgroundImage = imgUrl;
     const rest = document.createElement('div');
     rest.className = "rest";
 
@@ -289,40 +292,67 @@ window.onload = () => {
     let menuItemInfo = document.createElement('div');
     menuItemInfo.className = "menu-item-info";
 
+    let noNutritionInfo = true;
     if (menu.calories != null) {
       let menuItemCalories = document.createElement('div');
       menuItemCalories.innerHTML = `Calories: ${menu.calories}`;
       menuItemInfo.appendChild(menuItemCalories);
+      noNutritionInfo = false;
     }
     if (menu.fat != null) {
       let menuItemFat = document.createElement('div');
       menuItemFat.innerHTML = `Fat (g): ${menu.fat}`;
       menuItemInfo.appendChild(menuItemFat);
+      noNutritionInfo = false;
     }
     if (menu.carbohydrates != null) {
       let menuItemCarbohydrates = document.createElement('div');
       menuItemCarbohydrates.innerHTML = `Carbohydrates (g): ${menu.carbohydrates}`;
       menuItemInfo.appendChild(menuItemCarbohydrates);
+      noNutritionInfo = false;
     }
     if (menu.protein != null) {
       let menuItemProtein = document.createElement('div');
       menuItemProtein.innerHTML = `Protein (g): ${menu.protein}`;
       menuItemInfo.appendChild(menuItemProtein);
+      noNutritionInfo = false;
     }
     if (menu.sodium != null) {
       let menuItemSodium = document.createElement('div');
       menuItemSodium.innerHTML = `Sodium (mg): ${menu.sodium}`;
       menuItemInfo.appendChild(menuItemSodium);
+      noNutritionInfo = false;
     }
     if (menu.cholesterol != null) {
       let menuItemCholesterol = document.createElement('div');
       menuItemCholesterol.innerHTML = `Cholesterol (mg): ${menu.cholesterol}`;
       menuItemInfo.appendChild(menuItemCholesterol);
+      noNutritionInfo = false;
     }
     if (menu.fiber != null) {
       let menuItemFiber = document.createElement('div');
       menuItemFiber.innerHTML = `Fiber (g): ${menu.fiber}`;
       menuItemInfo.appendChild(menuItemFiber);
+      noNutritionInfo = false;
+    }
+
+    //If there is no nutrition information present, fill in the blank space and add a message to inform the user that there is no information to give
+    if (noNutritionInfo) {
+      let fillerDiv1 = document.createElement('div');
+      menuItemInfo.appendChild(fillerDiv1);
+      let fillerDiv2 = document.createElement('div');
+      menuItemInfo.appendChild(fillerDiv2);
+      let fillerDiv3 = document.createElement('div');
+      menuItemInfo.appendChild(fillerDiv3);
+      let fillerDiv4 = document.createElement('div');
+      fillerDiv4.innerHTML = 'There is no nutrition information for this item';
+      menuItemInfo.appendChild(fillerDiv4);
+      let fillerDiv5 = document.createElement('div');
+      menuItemInfo.appendChild(fillerDiv5);
+      let fillerDiv6 = document.createElement('div');
+      menuItemInfo.appendChild(fillerDiv6);
+      let fillerDiv7 = document.createElement('div');
+      menuItemInfo.appendChild(fillerDiv7);
     }
 
     //let menuItemAllergies = document.createElement('div');

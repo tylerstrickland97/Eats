@@ -1,7 +1,10 @@
 body {
-    display: flex;
-    justify-content: center;
     font-family: Arial;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
 }
 
 a {
@@ -9,7 +12,6 @@ a {
     color: inherit;
     cursor: pointer;
     padding: 6px;
-    border: 2px solid grey;
 }
 
 button {
@@ -22,6 +24,7 @@ button {
 .container {
     width: 95%;
     max-width: 600px;
+    border: solid;
 }
 
 header {
@@ -43,9 +46,12 @@ header {
 
 .restaurant-logo {
     flex: 1;
-    border: 2px solid black;
-    border-right: none;
     vertical-align: middle;
+    text-align: center;
+}
+
+.restaurant-logo img {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .helper-span {
@@ -61,7 +67,6 @@ header {
 
 .restaurant-info {
     flex: 2;
-    border: 2px solid black;
     padding-left: 6px;
 }
 
@@ -73,6 +78,7 @@ header {
     overflow: hidden;
     padding: 4px 0;
     box-sizing: border-box;
+    justify-content: center;
 }
 
 .restaurant-info-items {
@@ -88,20 +94,60 @@ header {
     font-size: 18px;
 }
 
+.content-container {
+    margin-top: 5vh;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 95vw;
+    margin-left: 2.5vw;
+}
+
+.restaurant-tabs {
+    background-color: #F2A541;
+    height: 5vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.restaurant-tabs button {
+    background-color: #F2A541;
+    border-right: 0.125rem solid rgb(102, 100, 100);
+    color: #fff;
+    cursor: pointer;
+    top: 0;
+    transition: all 0.25s;
+    width: 20%;
+    height: 100%;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.restaurant-tabs button:hover {
+    top: -1rem;
+    transition: top 0.25s;
+    background-color: #f29113;
+}
+
+.menu-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(512px, 1fr));
+    column-gap: 8px;
+    row-gap: 5px;
+}
+
 .menu-items, .location-items {
     padding: 4px;
-    border: 2px solid black;
 }
 
 .menu-item {
-    margin: 8px;
+    margin: 16px;
     padding-bottom: 8px;
-    border-bottom: 2px grey solid;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .menu-item-basic {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin-bottom: 8px;
 }
 
@@ -112,13 +158,18 @@ header {
 
 .menu-item-name {
     font-weight: 700;
+    font-size: 18px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .menu-item-name img {
-    width: 24px;
-    height: 24px;
+    margin: 24px;
+    width: 100%;
+    max-width: 60px;
+    height: auto;
 }
 
 .menu-item-price {
@@ -127,9 +178,16 @@ header {
     font-weight: 700;
     color: rgb(33, 192, 33);
 }
+.menu-item-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .menu-item-info > div {
     word-break: break-all;
+    font-size: 14px;
 }
 
 .location-items {
@@ -182,6 +240,7 @@ header > div {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: 600;
 }
 
 .header-middle {
@@ -315,7 +374,4 @@ input:focus {
     height:175px;
     object-fit:cover;
     object-position:100% 75%;
-}
-
-.rest {
 }
