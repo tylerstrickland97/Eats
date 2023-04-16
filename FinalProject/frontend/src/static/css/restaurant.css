@@ -33,7 +33,17 @@ header {
     padding: 16px 0;
 }
 
-.favorite-button {
+#icon {
+    position: relative;
+    transition: transform 0.3s ease;
+    transform: translateY(0px);
+  }
+  
+  #icon:hover {
+   transform: translateY(-2px);
+  }
+
+#favorite-button {
     /* width: 28px;
     height: 28px; */
     gap:10px;

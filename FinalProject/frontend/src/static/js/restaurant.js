@@ -16,7 +16,9 @@ window.onload = () => {
 
   api.getRestaurantById(id).then(restaurant => {
     api.getAllergiesByUser(currentUserId).then(allergies => {
-      loadRestaurantHTML(restaurant, allergies);
+      api.getUserFavorites(currentUserId).then(favorites => {
+        loadRestaurantHTML(restaurant, allergies, favorites);
+      });
     });
   });
 
@@ -170,7 +172,72 @@ window.onload = () => {
     return filtered_name;
   }
 
-  function loadRestaurantHTML(restaurant, allergies) {
+  function getFavorites(restaurant, favorites) {
+    // let top = document.getElementById('top');
+    let favoriteButton = document.getElementById('favorite-button');
+    // let favoriteButton = document.createElement('button');
+    // favoriteButton.className = "favorite-button";
+
+
+    //text
+    let buttonText = document.createElement('span');
+    // buttonText.innerText = "Add to Favorites";
+    buttonText.className = "favorite-label";
+
+    //icon
+    let icon = document.createElement('i');
+    // icon.className = "fa-regular fa-star";
+    icon.id="icon"
+
+    favoriteButton.appendChild(buttonText);
+    favoriteButton.appendChild(icon);
+
+    api.getUserFavorites(currentUserId).then(favorites => { 
+      let isFavorite;
+      if (favorites.find(f => f.restaurant_id == restaurant.id)) {
+          isFavorite = true;
+          icon.className = "fa-solid fa-star";
+          buttonText.innerHTML = "Remove Favorite";
+          // buttonImg.src = "imgs/yellow_favorited_img.png";
+      } else {
+          isFavorite = false;
+          icon.className = "fa-regular fa-star";
+          buttonText.innerHTML = "Add to Favorites";
+          // buttonImg.src = "imgs/star.webp";
+      }
+
+      favoriteButton.addEventListener('click', function() {
+          if (isFavorite) {
+              api.removeUserFavorite(currentUserId, restaurant.id).then(result => {
+                  console.log('successfully removed favorite');
+                  // buttonImg.src = 'imgs/star.webp';
+                  icon.className = "fa-regular fa-star";
+                  buttonText.innerHTML = "Add to Favorites";
+                  // icon.style.color = 'black';
+                  isFavorite = !isFavorite;
+              }).catch(err => {
+                  console.log('error removing favorite');
+              })
+          } else {
+              api.addUserFavorite(currentUserId, restaurant.name).then(result => {
+                  console.log('successfully added favorite');
+                  // buttonImg.src = 'imgs/yellow_favorited_img.png';
+                  icon.className = "fa-solid fa-star";
+                  buttonText.innerHTML = "Remove Favorite";
+                  // icon.style.color = 'yellow';
+                  isFavorite = !isFavorite;  
+              }).catch(err => {
+                  console.log('error adding favorite');
+              })
+          }
+      })
+    });
+
+  }
+
+  function loadRestaurantHTML(restaurant, allergies, favorites) {
+    getFavorites(restaurant, favorites);
+
     const restaurantInfo = document.querySelector('.restaurant-info-container');
     restaurantInfo.appendChild(restaurantBackground(restaurant));
     // let restaurantBackgroundImg = `imgs/restaurant-backgrounds/${filterRestaurantName(restaurant.name)}-background.png`;

@@ -109,6 +109,7 @@ function fillAllergyHTML(allergy, userId) {
     buttonContainer.classList.add('allergen-button-container');
     let removeButton = document.createElement('button');
     removeButton.innerHTML = 'Remove';
+    removeButton.className = "btn btn-outline-secondary remove-btn";
     removeButton.addEventListener('click', function() {
         api.removeUserAllergy(userId, allergy.type).then(results => {
             if (results) {
@@ -142,8 +143,12 @@ function loadFavorites(userId) {
             let noFavoritesText = document.createElement('h3');
             noFavoritesText.innerHTML = "You currently have no favorites";
             let noFavoritesButton = document.createElement('button');
-            noFavoritesButton.innerText="Find Some Good Eats"
-            noFavoritesButton.className = "btn btn-outline-secondary"
+            noFavoritesButton.innerText="Find Some Good Eats";
+            noFavoritesButton.className = "btn btn-outline-secondary";
+
+            noFavoritesButton.addEventListener('click', e => {
+                document.location.href = '/home';
+            });
             userFavorites.appendChild(noFavoritesText);
             userFavorites.appendChild(noFavoritesButton);
         }
@@ -158,6 +163,8 @@ function loadFavorites(userId) {
     })
 
 }
+
+
 
 function fillFavoriteHTML(restaurant) {
     const userFavorites = document.querySelector('.user-favorites');
