@@ -15,7 +15,9 @@ window.onload = () => {
   });
 
   api.getRestaurantById(id).then(restaurant => {
-    loadRestaurantHTML(restaurant);
+    api.getAllergiesByUser(currentUserId).then(allergies => {
+      loadRestaurantHTML(restaurant, allergies);
+    });
   });
 
   // Container Tabs
@@ -162,9 +164,8 @@ window.onload = () => {
     return filtered_name;
   }
 
-  function loadRestaurantHTML(restaurant) {
+  function loadRestaurantHTML(restaurant, allergies) {
     const restaurantInfo = document.querySelector('.restaurant-info-container');
-
     restaurantInfo.appendChild(restaurantBackground(restaurant));
     // let restaurantBackgroundImg = `imgs/restaurant-backgrounds/${filterRestaurantName(restaurant.name)}-background.png`;
     // let imgUrl = "url('imgs/restaurant-backgrounds/McDonalds-background.png')";
@@ -182,7 +183,7 @@ window.onload = () => {
     const restaurantMenu = document.querySelector('.menu-items')
     api.getMenuById(id).then(menu => {
       menu.forEach(item => {
-        restaurantMenu.appendChild(restaurantMenuGenerator(item));
+        restaurantMenu.appendChild(restaurantMenuGenerator(item, allergies));
       })
     });
     // restaurant.menu.forEach(menu => {
@@ -262,7 +263,23 @@ window.onload = () => {
     return restaurantInfo;
   }
 
-  function restaurantMenuGenerator(menu) {
+
+  function fillAllergyHTML(allergy, allergies, menuItemInfo) {
+    if (allergies.includes(allergy)) {
+      let allergyDiv = document.createElement('div');
+      allergyDiv.classList.add('allergy-container');
+      let allergyImage = document.createElement('img');
+      allergyImage.src = '/imgs/allergywarning.png';
+      allergyDiv.appendChild(allergyImage);
+      let allergyMessage = document.createElement('p');
+      allergyMessage.innerHTML = 'You might be allergic to this item';
+      allergyDiv.appendChild(allergyMessage);
+      menuItemInfo.appendChild(allergyDiv);
+    }
+
+  }
+
+  function restaurantMenuGenerator(menu, allergies) {
     /*
     <div class="menu-item">
       <div class="menu-item-basic">
@@ -289,8 +306,16 @@ window.onload = () => {
 
     menuItem.appendChild(menuItemBasic);
 
+    let itemAllergies = possibleAllergies(menu.name.toLowerCase());
+
     let menuItemInfo = document.createElement('div');
     menuItemInfo.className = "menu-item-info";
+
+    for (let i = 0; i < allergies.length; i++) {
+      api.getAllergyById(allergies[i].allergy_id).then(a => {
+        fillAllergyHTML(a.type, itemAllergies, menuItemInfo);
+      })
+    }
 
     let noNutritionInfo = true;
     if (menu.calories != null) {
@@ -365,7 +390,48 @@ window.onload = () => {
     //menuItemInfo.appendChild(menuItemAllergies);
     menuItem.appendChild(menuItemInfo);
 
+    console.log(menuItem);
     return menuItem;
+  }
+
+
+  function possibleAllergies(name) {
+    let itemAllergies = [];
+    if (name.includes('milk') || name.includes('cream') || name.includes('cheese') || name.includes('butter') || name.includes('ice cream') || name.includes('yogurt')) {
+      itemAllergies.push('Dairy');
+    }
+    if (name.includes('egg') || name.includes('cookie') || name.includes('milkshake') || name.includes('pancake') || name.includes('waffle') || name.includes('cake') || name.includes('fritter') || name.includes('croissant') || 
+    name.includes('donut') || name.includes('muffin')) {
+      itemAllergies.push('Egg');
+    }
+    if (name.includes('soy') || name.includes('edamame') || name.includes('tofu') || name.includes('miso') || name.includes('bread') || name.includes('bun') || name.includes('cookie') || name.includes('cracker')) {
+      itemAllergies.push('Soy')
+    }
+    if (name.includes('peanut')) {
+      itemAllergies.push('Peanut');
+    }
+    if (name.includes('shrimp') || name.includes('lobster') || name.includes('crab') || name.includes('crawfish') || name.includes('sushi')) {
+      itemAllergies.push('Shellfish');
+    }
+    if (name.includes('salmon') || name.includes('trout') || name.includes('flounder') || name.includes('fish') || name.includes('sushi') || name.includes('anchovies') || name.includes('cod') || name.includes('tuna') || name.includes('tilapia') || name.includes('bass')) {
+      itemAllergies.push('Fish');
+    }
+    if (name.includes('bread') || name.includes('wheat') || name.includes('oat') || name.includes('rye') || name.includes('barley') || name.includes('flour') || name.includes('cake') || 
+    name.includes('pie') || name.includes('fries') || name.includes('candy') || name.includes('sauce') || name.includes('dressing')) {
+      itemAllergies.push('Gluten');
+    }
+    if (name.includes('almond') || name.includes('walnut') || name.includes('cashew') || name.includes('hazelnut') || name.includes('chestnut') || name.includes('pecan') || name.includes('pistachio') || name.includes('coconut')) {
+      itemAllergies.push("Treenut");
+    }
+    if (name.includes('chick')) {
+      itemAllergies.push("Chicken");
+    }
+    if (name.includes('beef') || name.includes('burger') || name.includes('steak')) {
+      itemAllergies.push('Beef');
+    }
+
+    return itemAllergies;
+    
   }
 
   function fillMenuNameHTML(name) {
@@ -378,6 +444,8 @@ window.onload = () => {
     menuItemImg.src = '/imgs/' + itemImgFileName + '.png';
     menuItemName.appendChild(menuItemImg);
     return menuItemName;
+
+    
 
 
   }
@@ -395,7 +463,7 @@ window.onload = () => {
     else if (item.includes('coffee') || item.includes('caffe') || item.includes('latte') || item.includes('cappucino') || item.includes('americano') || item.includes('frappe') || item.includes('mocha')) {
       return 'coffee-cup'
     }
-    else if (item.includes('coke') || item.includes('juice') || item.includes('pepsi') || item.includes('soda') || item.includes('lemonade') || item.includes('slushie') || item.includes('milk') || item.includes('freeze') || item.includes('sprite') || item.includes('coca cola') || item.includes('cheerwine') || item.includes('fanta') || item.includes('sunkist') || item.includes('tea') || item.includes('punch')) {
+    else if (item.includes('coke') || item.includes('juice') || item.includes('pepsi') || item.includes('soda') || item.includes('lemonade') || item.includes('slushie') || item.includes('milk') || item.includes('freeze') || item.includes('sprite') || item.includes('coca cola') || item.includes('cheerwine') || item.includes('fanta') || item.includes('sunkist') || item.includes(' tea ') || item.includes('punch')) {
       return 'drink';
     }
     else if (item.includes('taco')) {
