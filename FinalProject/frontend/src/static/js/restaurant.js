@@ -39,11 +39,19 @@ window.onload = () => {
     menuContainer.style.display = "none";
     locationsContainer.style.display = "block";
 
-    let script = document.createElement('script');
-    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDy4NjpOMUHvID5kAR55dtOZANnGQItEXk&libraries=places&callback=initMap';
-    script.async = true;
+    if (document.getElementById('locations-script')) {
+      initMap();
+    }
+    else {
+      let script = document.createElement('script');
+      script.id = 'locations-script';
+      // Append the 'script' element to 'head'
+      document.head.appendChild(script);
+      script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDy4NjpOMUHvID5kAR55dtOZANnGQItEXk&libraries=places&callback=initMap';
+      script.async = true;
+    }
 
-    window.initMap = async function () {
+    window.initMap = function () {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
       }
@@ -153,8 +161,6 @@ window.onload = () => {
       });
     }
 
-    // Append the 'script' element to 'head'
-    document.head.appendChild(script);
   });
 
 
@@ -390,7 +396,6 @@ window.onload = () => {
     //menuItemInfo.appendChild(menuItemAllergies);
     menuItem.appendChild(menuItemInfo);
 
-    console.log(menuItem);
     return menuItem;
   }
 
