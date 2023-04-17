@@ -21,6 +21,8 @@ All main features of our app currently work. These features include:
 ## What doesn't work
 Everything that exists in our project works, but we did not get to add all of the features we
 wanted to. These features include:
+ - Service worker not validating user token with middleware
+ - Editing a user's profile information (name/password)
  - Leaving a review on a restaurant's page
  - Connect to a Restaurant API instead of using a hardcoded database
  - Favoriting menu items
