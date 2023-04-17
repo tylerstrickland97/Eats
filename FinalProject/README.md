@@ -59,10 +59,10 @@ the pages use. He created some of the backend API Routes. Collin also helped deb
 that occurred during the projects development. 
 
 ### Kayna
-
+Kayna wrote the remaining API Routes and worked on adding the Token Middleware. She helped update many HTML and Javascript pages once new knowldege was obtained about implementation. She did most of the styling towards the end of the project.
 
 ### Tyler
-Tyler helped develop most of the backend for the project. He creaed most of the API routes, and worked to get the database initialized and connected to the app's API. He also was able to get the project running on Docker. He also was able to add some of the JavaScript to the frontend for certain functionalities, and also add some CSS to some of the files. He also helped to debug issues that occurred during development. 
+Tyler helped develop most of the backend for the project. He created most of the API routes, and worked to get the database initialized and connected to the app's API. He also was able to get the project running on Docker. He also was able to add some of the JavaScript to the frontend for certain functionalities, and also add some CSS to some of the files. He also helped to debug issues that occurred during development. 
 
 
 ## API Routes
