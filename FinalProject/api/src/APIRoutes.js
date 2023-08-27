@@ -14,6 +14,13 @@ const AllergiesDAO = require('./AllergiesDAO');
 const {TokenMiddleWare, generateToken, removeToken} = require('./TokenMiddleWare');
 apiRouter.use(express.json());
 
+//get google key 
+apiRouter.get('/key', TokenMiddleWare, (req, res) => {
+    if (process.env.GOOGLE_API_KEY) {
+        res.json(process.env.GOOGLE_API_KEY);
+    }
+})
+
 //get restaurants
 
 apiRouter.get('/restaurants', TokenMiddleWare, (req, res) => {

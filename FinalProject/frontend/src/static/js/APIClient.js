@@ -60,6 +60,9 @@ const HTTPClient = {
 };
 
   export default {
+    getKey: () => {
+      return HTTPClient.get('/key');
+    },
     getRestaurants: () => {
         return HTTPClient.get('/restaurants');
     },

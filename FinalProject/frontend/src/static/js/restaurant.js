@@ -49,8 +49,11 @@ window.onload = () => {
       script.id = 'locations-script';
       // Append the 'script' element to 'head'
       document.head.appendChild(script);
-      script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDy4NjpOMUHvID5kAR55dtOZANnGQItEXk&libraries=places&callback=initMap';
-      script.async = true;
+      api.getKey().then(res => {
+        let key = res;
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=' + key + '&libraries=places&callback=initMap';
+        script.async = true;
+      })
     }
 
     window.initMap = function () {
@@ -72,7 +75,6 @@ window.onload = () => {
 
       let restaurantName;
       api.getRestaurantById(id).then(restaurant => {
-        console.log(restaurant);
         let request = {
           location: loc,
           rankBy: google.maps.places.RankBy.DISTANCE,
@@ -82,7 +84,6 @@ window.onload = () => {
 
         let service = new google.maps.places.PlacesService(map);
         service.nearbySearch(request, (results, status) => {
-          console.log(status);
           if (status === google.maps.places.PlacesServiceStatus.OK && results) {
             for (let i = 0; i < results.length; i++) {
               createMarker(map, results[i], infowindow);
