@@ -1,0 +1,72 @@
+body {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 6px;
+    border: 2px solid grey;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container {
+    width: 80%;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0;
+}
+
+#map-container {
+    height: 40vh;
+    width: 80vw;
+}
+
+#map {
+    height: 100%;
+}
+
+.locations {
+    margin-top: 10%;
+    padding: 4px;
+    border: 2px solid black;
+}
+
+.location {
+    margin: 8px;
+    padding-bottom: 8px;
+    border-bottom: 2px grey solid;
+}
+
+.location-basic {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.location-basic > div {
+    flex: 2;
+    word-break: break-all;
+}
+
+.location-address {
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+}
+
+.work-hours {
+    list-style: none;
+}

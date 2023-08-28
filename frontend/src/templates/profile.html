@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="css/profile.css" />
+  <script src="../js/profile.js" type="module"></script>
+  <script src="../js/common.js" type="module"></script>
+</head>
+
+<body>
+  <header>
+    <div class="header-left">
+      <div class="menu-dropdown">
+        <a href="/home"><span>EATS</span></a>
+        <!-- <img class="menu-image" src="imgs/menu.png">
+        <div class="menu-dropdown-items">
+          <a href="#">Edit Profile</a>
+          <a id="logout-button" href="#">Logout</a>
+        </div> -->
+      </div>
+    </div>
+    <div class="header-right">
+      <!-- <a href="/home"><img class="home-image" src="imgs/home.png"></a> -->
+      <button id="logout" class="btn btn-outline-dark">Log Out</button>
+    </div>
+  </header>
+  <main>
+    <div class="user-image">
+      <h2>Hello</h2>
+      <!-- <img class="user-profile-image" src="imgs/temp-profile-img.png"> -->
+      <h2 id="user-fullname">
+        Collin Riggs
+      </h2>
+      <div id="user-id">
+        cmriggs
+      </div>
+      <button id="edit-btn" class="btn btn-outline-secondary">Edit Profile</button>
+    </div>
+    <div class="user-information container">
+      
+      <div class="user-allergens-favorites container">
+        <div class="user-allergens container">
+          <h2>My Allergens</h2>
+          <!-- <div class="account-information allergen-container">
+              <div>Shellfish</div>
+              <div class="allergen-button-container">
+                <button>Remove</button>
+              </div>
+            </div>
+            <div class="account-information allergen-container">
+              <div>Peanuts</div>
+              <div class="allergen-button-container">
+                <button>Remove</button>
+              </div>
+            </div>
+            <div class="account-information allergen-container">
+              <div>Wheat</div>
+              <div class="allergen-button-container">
+                <button>Remove</button>
+              </div>
+            </div>
+            <div class="account-information allergen-container">
+              <form>
+                <input type="text" placeholder="New Allergen">
+                <input type="submit" value="Add Allergen">
+              </form>
+            </div> -->
+        </div>
+        <div class="user-favorites container">
+          <h2>My Favorites</h2>
+          <!-- <div class="account-information favorite-container">
+              <img src="imgs/restaurant-logos/McDonalds-logo.png">
+              <div>
+                McDonald's
+              </div>
+            </div>
+            <div class="account-information favorite-container">
+              <img src="imgs/restaurant-logos/Starbucks-logo.png">
+              <div>
+                Starbucks
+              </div>
+            </div>
+            <div class="account-information favorite-container">
+              <img src="imgs/restaurant-logos/Burger-King-logo.png">
+              <div>
+                Burger King
+              </div>
+            </div> -->
+        </div>
+
+      </div>
+
+      <div class="form-group user-account-information container">
+        <h2>Account Information</h2>
+        <div class="account-information">
+          <!-- <div class="account-information-title">
+            First Name
+          </div> -->
+          <label for="user-fname">First Name</label>
+          <!-- <div class="account-information-info" id="user-fname">
+            Collin
+          </div> -->
+          <input type="text" disabled class="account-information-info form-control" id="user-fname">
+            <!-- Collin -->
+          <!-- </div> -->
+        </div>
+        <div class="account-information">
+          <!-- <div class="account-information-title">
+            Last Name
+          </div> -->
+          <label for="user-lname">Last Name</label>
+          <!-- <div class="account-information-info" id="user-lname">
+            Riggs
+          </div> -->
+          <input type="text" disabled class="account-information-info form-control" id="user-lname">
+        </div>
+        <div class="account-information">
+          <!-- <div class="account-information-title">
+            Username
+          </div> -->
+          <label for="user-username">Username</label>
+          <!-- <div class="account-information-info" id="user-username">
+            cmriggs
+          </div> -->
+          <input type="text" disabled class="account-information-info form-control" id="user-username">
+        </div>
+        <div class="account-information">
+          <!-- <div class="account-information-title">
+            Email
+          </div> -->
+          <label for="user-email">Email</label>
+          <!-- <div class="account-information-info" id="user-email">
+            cmriggs@ncsu.edu
+          </div> -->
+          <input type="text" disabled class="account-information-info form-control" id="user-email">
+        </div>
+        <div class="save-div">
+          <button id="save-btn" class="btn btn-outline-secondary">Save</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>

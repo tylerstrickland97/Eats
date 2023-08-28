@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/restaurant.css" />
+  <script src="https://kit.fontawesome.com/9eabea1474.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <script src="../js/restaurant.js" type="module"></script>
+  <script src="../js/common.js" type="module"></script>
+  <!-- <script src="../js/locations.js" type="module"></script> -->
+  <title>Restaurant</title>
+</head>
+<header>
+  <div class="header-left">
+    <a href="/home"><span>EATS</span></a>
+  </div>
+  <div class="header-middle">
+      </div>
+  <div class="header-right">
+    <a href="profile">
+      <image class="img-profile" src="imgs/profile.png"></image>
+    </a>
+  </div>
+  <!-- <div class="header-left">
+    <a href="profile">
+      <image class="img-profile" src="imgs/temp-profile-img.png"></image>
+    </a>
+  </div>
+  <div class="header-middle">
+    <input class="search-bar" type="text" placeholder="Search" />
+    <button class="search-button">
+      <img class="search-img" src="imgs/search-icon.png" />
+    </button>
+  </div>
+  <div class="header-right">
+    <div class="sort-dropdown">
+      <button class="sort-button">Sort</button>
+      <div class="sort-dropdown-items">
+        <a href="#">Distance</a>
+        <a href="#">Rating</a>
+        <a href="#">Favorites</a>
+        <a href="#">Relevance</a>
+      </div>
+    </div>
+  </div> -->
+</header>
+<body>
+  <div class="container">
+    <!-- <header>
+      <a href="/home" class='back-button'>Back</a>
+      <button><img class="favorite-button" src="imgs/star.webp" /></button>
+    </header> -->
+    <div class="top">
+      <!-- <a href="/home" class='back-button'>Back</a> -->
+      <!-- <button><img class="favorite-button" src="imgs/star.webp" /></button>   -->
+      <button id="favorite-button">
+        <!-- <span class="favorite-label">Add to Favorites</span> -->
+        <!-- <i class="fa-regular fa-star"></i> -->
+      </button>  
+    </div>
+    
+    <div class="restaurant-info-container">
+     
+      <!-- This is an example of what the JS generates
+        <div class="restaurant-logo">
+          <img
+            class="restaurant-logo-img"
+            src="imgs/temp-restaurant-logo.png"
+          />
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-name">Restaurant Name</div>
+          <div class="restaurant-info-grid">
+            <div class="restaurant-info-grid-item">Distance</div>
+            <div class="restaurant-info-grid-item">Num Favorites</div>
+            <div class="restaurant-info-grid-item">Ratings</div>
+            <div class="restaurant-info-grid-item">Address</div>
+          </div>
+        </div> -->
+    </div>
+  </div>
+  <div class = "content-container">
+    <div class="restaurant-menu">
+      <div class="restaurant-tabs">
+        <button id="menu-button">Menu</button>
+        <button id="locations-button">Locations</button>
+      </div>
+      <div id="menu-container" class="menu-items">
+        <!-- This is an example of what the JS generates
+          <div class="menu-item">
+            <div class="menu-item-basic">
+              <div class="menu-item-name">Item Name
+                
+              </div>
+              <div>Calories: XXX</div>
+              <div class="menu-item-price">$XX.XX</div>
+            </div>
+            <div class="menu-item-info">
+              <div>Allergies: XX, XX, XX</div>
+            </div>
+          </div> -->
+      </div>
+      <div id="locations-container" class="location-items">
+        <div id="map-container">
+          <div class='map' id='map'></div>
+        </div>
+        <div id="locations-list">
+          <!-- <div class="location">
+              <div class="location-header">
+                105 E South St, Raleigh, NC 27602, USA
+              </div>
+              <div class="location-information">
+                <div>Rating: 3.3</div>
+                <div>Phone: (123) 456-7890</div>
+                <div>Location Hours:</div>
+                <div class="open-container">
+                  <div class="empty-space"></div>
+                  <div>
+                    <div>Monday: Open 24 hours</div>
+                    <div>Tuesday: Open 24 hours</div>
+                    <div>Wednesday: Open 24 hours</div>
+                    <div>Thursday: Open 24 hours</div>
+                    <div>Friday: Open 24 hours</div>
+                    <div>Saturday: Open 24 hours</div>
+                    <div>Sunday: Open 24 hours</div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

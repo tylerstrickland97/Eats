@@ -1,0 +1,220 @@
+
+p {
+    margin: 0;
+}
+
+button {
+    cursor: pointer;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    height: 48px;
+    background-color: #577590;
+    justify-content: space-around;
+}
+
+header img {
+    border-radius: 50%;
+    height: 80%;
+    box-sizing: border-box;
+    max-width: 42px;
+    vertical-align: middle; 
+}
+
+.header-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content:left;
+    margin-left: 5vw;
+}
+
+.menu-dropdown {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+}
+
+.menu-dropdown:hover .menu-dropdown-items {
+    display: block;
+}
+
+.menu-dropdown-items {
+    display: none;
+    right: -16px;
+    position: absolute;
+    background-color: #CCC;
+    text-align: right;
+    z-index: 9;
+    width: 400px;
+}
+
+.menu-dropdown-items > a {
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    height: 50px;
+    color: black;
+}
+
+a {
+    text-decoration: none;
+}
+
+span {
+    color: white;
+    font-weight: 600;
+    font-size:30px;
+    font-family:"Poppins", sans-serif;
+}
+
+.no-fav-btn {
+    width:50%;
+}
+
+.header-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 5vw;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 16px;
+    flex-direction: column;
+}
+
+.container {
+    min-width: fit-content;
+    padding:10px;
+    border-radius: 8px;
+}
+
+.user-allergens-favorites {
+    display: flex;
+    /* flex-wrap: wrap; */
+    padding: 0;
+    margin: 8px 0;
+    border: none;
+    gap: 10px;
+}
+
+.user-allergens,
+.user-favorites {
+    /* flex: 1; */
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    border:2px solid #afafaf;
+    min-width: 300px;
+}
+
+#user-id {
+    display: none;
+}
+
+.account-information {
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+    font-size: 20px;
+    border-bottom: 2px solid #afafaf;
+    padding: 4px 0;
+}
+
+.account-information-title {
+    width: fit-content;
+    padding-right: 8px;
+}
+
+.allergen-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.allergen-button-container {
+    display: flex;
+    justify-content: end;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+input[type=text] {
+    font-size: 20px;
+    /* width: 60%; */
+    text-align: right;
+}
+
+input[type=submit] {
+    width: 30%;
+}
+
+.favorite-container {
+    align-items: center;
+}
+
+.favorite-container > img {
+    object-fit: contain;
+    height: 32px;
+    width: 32px;
+    padding-right: 6px;
+}
+
+.favorite-container > div {
+    white-space: normal;
+}
+
+.favorite-name a {
+    text-decoration: none;
+    color: black;
+}
+
+.favorite-name a:hover {
+    text-decoration: underline;
+}
+
+.user-account-information {
+    margin: 4px;
+    border: 2px solid #afafaf;
+}
+
+.user-image {
+    display: flex;
+    flex-direction: column;
+    padding: min(5%, 100px);
+    margin: auto 0;
+    max-height: 300px;
+    background: rgb(243,202,64);
+    background: linear-gradient(90deg, rgba(243,202,64,1) 0%, rgba(242,165,65,1) 35%, rgba(240,138,75,1) 100%);
+    box-sizing: border-box;
+}
+
+.user-image > button {
+    width:150px;
+}
+
+.user-profile-image {
+    max-width: 50%;
+}
+
+#save-btn {
+    display:none;
+}
+
+.save-div {
+    display:flex;
+    padding-top: 8px;
+    justify-content: center;
+}
