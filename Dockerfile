@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Expose the PORT environment variable (optional, if required by your app)
-# ENV PORT=80
+ENV PORT=80
 
 # Define the command to run the application
 CMD ["npm", "start"]
