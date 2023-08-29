@@ -6,3 +6,4 @@ build:
   docker:
     api: ./api/Dockerfile
     web: ./frontend/Dockerfile
+    proxy: ./proxy/Dockerfile
