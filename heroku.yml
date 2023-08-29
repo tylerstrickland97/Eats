@@ -5,5 +5,4 @@ setup:
 build:
   docker:
     api: ./api/Dockerfile
-    frontend: ./api/Dockerfile
-    
+    web: ./frontend/Dockerfile
